@@ -286,13 +286,14 @@ The anime rendering style uses **clean outlines** with **flat color fills**. Sha
 5. **Front-load the character** — subject description comes first
 6. **Be specific** — rich descriptions produce better results
 7. **Character name + description** — always lead with the character name followed by a physical description (e.g., "Eren Yeager, a lean muscular man with long dark hair..."). The name helps NanoBanana 2 understand who you mean; the description ensures accuracy.
-8. **Anti-watermark strategy** — always include clean image language AND add a follow-up instruction after receiving the image: "Remove any watermarks, logos, or stamps from the corners of this image while keeping everything else identical." (see Troubleshooting Guide)
-9. **Style anchoring** — anchor visual style early in the prompt
+8. **Outfit Integration** — if a specific outfit is requested (e.g. streetwear), **blend it** with the character's signature style to maintain their likeness. Don't completely override their identity. (e.g. "Toji Fushiguro wearing an oversized streetwear hoodie, but retaining his signature baggy white pants").
+9. **Anti-watermark strategy** — always include clean image language AND add a follow-up instruction after receiving the image: "Remove any watermarks, logos, or stamps from the corners of this image while keeping everything else identical." (see Troubleshooting Guide)
+10. **Style anchoring** — anchor visual style early in the prompt
 
 ### Master Prompt Template (Trained)
 
 ```
-Generate an image in 9:16 portrait orientation of [CHARACTER NAME], [CHARACTER PHYSICAL DESCRIPTION], [OUTFIT]. 
+Generate an image in 9:16 portrait orientation of [CHARACTER NAME], [CHARACTER PHYSICAL DESCRIPTION], [OUTFIT — seamlessly integrated with their signature look]. 
 
 [ACTION/POSE DESCRIPTION].
 
@@ -418,7 +419,7 @@ These are known issues and workarounds discovered through real-world testing:
 | **Character looks too generic** | Vague physical description | Front-load 5+ specific physical details: hair color+style, eye color+shape, build, facial feature, expression |
 | **Typography unreadable or messy** | Overly complex text request | Keep text to 1-3 characters in Japanese + one short English word. Describe as "large, bold, semi-transparent, ghosted" |
 | **Composition feels flat** | Missing depth cues | Add foreground/background separation: "foreground element partially framing the scene" + "background in heavy bokeh" |
-| **Multiple characters appear** | Ambiguous subject description | Start prompt with "a single male figure" and avoid plural descriptions |
+| **Character likeness is lost** | Generic outfit overrides their signature look | When requesting outfits, instruct the prompt generator to *blend* the new outfit with their signature style (e.g. "wearing a dark streetwear jacket over his signature tight black shirt") |
 
 ---
 

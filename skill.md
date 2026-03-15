@@ -90,29 +90,29 @@ The anime rendering style uses **clean outlines** with **flat color fills**. Sha
 
 **Tier 1 — Top Performers:**
 
-| Character | Series | Visual Signature | Signature Outfit |
+| Character | Series | Visual Signature (ALWAYS include these) | Outfit Range (match to scene) |
 |---|---|---|---|
-| Toji Fushiguro | Jujutsu Kaisen | muscular man with messy black hair, lip scar, sharp jawline, heavy-lidded green eyes | tight fitted black athletic shirt, baggy white cargo pants, dark sandals |
-| Satoru Gojo | Jujutsu Kaisen | tall lean man with spiky white hair, bright blue eyes, black blindfold, charismatic smirk | dark navy blue high-collar jujutsu uniform, or casual black jacket with sunglasses |
-| Eren Yeager | Attack on Titan | lean muscular man with long dark hair tied in man bun, intense gray-green eyes, fierce expression | dark brown long coat over black shirt, or Survey Corps jacket with straps and harness |
-| Levi Ackerman | Attack on Titan | short but muscular man with sharp undercut black hair, cold grey eyes, stoic expression | Survey Corps green cape with wings emblem, white cravat, brown leather harness over white shirt |
-| Baki Hanma | Baki | extremely muscular young man with wild reddish-brown hair, battle scars across torso | shirtless with loose dark shorts or baggy martial arts pants, bare feet |
-| Yuji Itadori | Jujutsu Kaisen | athletic young man with pink undercut hair, dark roots, facial markings on cheeks | dark navy blue jujutsu high school uniform jacket, red hoodie underneath |
+| Toji Fushiguro | Jujutsu Kaisen | muscular man with messy black hair, lip scar, sharp jawline, heavy-lidded green eyes | gym: shirtless with hand wraps or tape · city: dark jacket or long coat · casual: white crewneck sweater · combat: black athletic shirt, baggy white cargo pants · post-fight: shirtless with bandages across torso |
+| Satoru Gojo | Jujutsu Kaisen | tall lean man with spiky white hair, bright blue eyes, black blindfold, charismatic smirk | combat: dark navy high-collar jujutsu uniform · casual: black jacket, sunglasses pushed up · relaxed: open white shirt, rolled sleeves |
+| Eren Yeager | Attack on Titan | lean muscular man with long dark hair tied in man bun, intense gray-green eyes, fierce expression | combat: Survey Corps jacket with harness straps · post-timeskip: dark brown long coat over black shirt · casual: dark hoodie, scarf |
+| Levi Ackerman | Attack on Titan | short but muscular man with sharp undercut black hair, cold grey eyes, stoic expression | combat: Survey Corps green cape, white cravat, brown leather harness · downtime: crisp white button-up, sleeves rolled · casual: dark turtleneck |
+| Baki Hanma | Baki | extremely muscular young man with wild reddish-brown hair, battle scars across torso | fighting: shirtless, dark shorts, bare feet · gym: tight white tank top straining over muscles, dark baggy pants · casual: oversized jacket, open |
+| Yuji Itadori | Jujutsu Kaisen | athletic young man with pink undercut hair, dark roots, facial markings on cheeks | school: dark navy jujutsu uniform jacket · gym: grey t-shirt, dark joggers, white sneakers · casual: red hoodie, dark pants |
 
 **Tier 2 — Trending (2025-2026):**
 
-| Character | Series | Visual Signature | Signature Outfit |
+| Character | Series | Visual Signature (ALWAYS include these) | Outfit Range (match to scene) |
 |---|---|---|---|
-| Aqua Hoshino | Oshi no Ko | handsome young man with dark hair and one star-shaped eye, brooding expression | dark school uniform blazer, or dark hoodie with headphones around neck |
-| Rin Itoshi | Blue Lock | lean striker with messy dark teal hair, cold piercing eyes, captain armband | Blue Lock black and blue soccer jersey with number, short soccer shorts |
-| Megumi Fushiguro | Jujutsu Kaisen | young man with dark spiky hair, stoic expression | dark navy high-collar jujutsu uniform, or dark casual jacket |
-| Shoto Todoroki | My Hero Academia | half-white half-red hair, heterochromatic eyes, burn scar over left eye | UA school uniform blazer, or hero costume dark blue bodysuit |
-| Loid Forger | SPY x FAMILY | handsome blond man, sharp features, calculating expression | sharp tailored three-piece dark suit, crisp white shirt, dark tie |
-| Killua Zoldyck | Hunter x Hunter | young boy with spiky silver-white hair, sharp blue cat-like eyes | loose purple long-sleeve shirt, dark baggy shorts, sneakers |
-| Sebastian Michaelis | Black Butler | tall elegant man with black hair, red-brown eyes | impeccable black tailcoat butler suit, white gloves, dark vest |
-| Jinshi | The Apothecary Diaries | beautiful young man with long dark hair, shrewd violet eyes | elegant traditional Chinese court robes with flowing sleeves |
-| Izuku Midoriya | My Hero Academia | young man with messy dark green hair, freckled cheeks | green hero suit with iron soles and hood, or UA school uniform |
-| Sung Jinwoo | Solo Leveling | tall man with jet-black hair, glowing purple eyes | dark shadow-like armor with purple accents, or black casual modern outfit |
+| Aqua Hoshino | Oshi no Ko | handsome young man with dark hair and one star-shaped eye, brooding expression | school: dark blazer uniform · moody: dark hoodie, headphones around neck · casual: open jacket over dark tee |
+| Rin Itoshi | Blue Lock | lean striker with messy dark teal hair, cold piercing eyes, captain armband | match: Blue Lock black/blue soccer jersey · training: dark athletic wear · casual: tracksuit jacket, unzipped |
+| Megumi Fushiguro | Jujutsu Kaisen | young man with dark spiky hair, stoic expression | combat: dark navy high-collar jujutsu uniform · casual: dark jacket, hands in pockets · relaxed: black hoodie |
+| Shoto Todoroki | My Hero Academia | half-white half-red hair, heterochromatic eyes, burn scar over left eye | hero: dark blue bodysuit · school: UA blazer uniform · casual: simple dark jacket, scarf |
+| Loid Forger | SPY x FAMILY | handsome blond man, sharp features, calculating expression | spy: sharp tailored dark suit, dark tie · home: vest over shirt, sleeves rolled · field: dark trench coat |
+| Killua Zoldyck | Hunter x Hunter | young boy with spiky silver-white hair, sharp blue cat-like eyes | signature: loose purple long-sleeve, dark baggy shorts · night: dark hoodie, hands hidden · combat: dark sleeveless |
+| Sebastian Michaelis | Black Butler | tall elegant man with black hair, red-brown eyes | butler: impeccable black tailcoat, white gloves · combat: coat removed, vest only, sleeves up · dark: all-black, no gloves |
+| Jinshi | The Apothecary Diaries | beautiful young man with long dark hair, shrewd violet eyes | court: elegant traditional Chinese robes, flowing sleeves · casual: simpler dark hanfu · undercover: common dark clothing |
+| Izuku Midoriya | My Hero Academia | young man with messy dark green hair, freckled cheeks | hero: green suit with hood · school: UA uniform · training: simple white tee, red sneakers · battered: torn hero suit, exposed arms |
+| Sung Jinwoo | Solo Leveling | tall man with jet-black hair, glowing purple eyes | shadow monarch: dark armor with purple accents · hunter: dark tactical gear · casual: all-black modern outfit, dark coat |
 
 ### 🔍 Intelligent Character Discovery (Web Search)
 
@@ -286,7 +286,7 @@ The anime rendering style uses **clean outlines** with **flat color fills**. Sha
 5. **Front-load the character** — subject description comes first
 6. **Be specific** — rich descriptions produce better results
 7. **Character name + description** — always lead with the character name followed by a physical description (e.g., "Eren Yeager, a lean muscular man with long dark hair..."). The name helps NanoBanana 2 understand who you mean; the description ensures accuracy.
-8. **Outfit Integration** — **always default to the character's Signature Outfit from the roster.** If the user requests a different outfit (e.g. streetwear), **blend it** with items from the character's signature style to maintain their likeness. Never completely override their identity. (e.g. for Toji: "wearing a dark streetwear hoodie over his signature baggy white pants" — keep at least one recognizable element).
+8. **Outfit Integration** — Choose the outfit that **fits the scene**, not just one fixed look. The roster provides an **Outfit Range** per character with scene-appropriate options (gym, combat, casual, rain, etc.). Pick the outfit that matches the current environment. Character recognition comes from **physical features** (hair, eyes, build, scars), NOT from clothes. A character can wear anything and still be recognizable if you nail their face, hair, and body. If the user requests a specific outfit, use it. If not, pick from the character's Outfit Range based on the scene.
 9. **Anti-watermark strategy** — always include clean image language AND add a follow-up instruction after receiving the image: "Remove any watermarks, logos, or stamps from the corners of this image while keeping everything else identical." (see Troubleshooting Guide)
 10. **Style anchoring** — anchor visual style early in the prompt
 
@@ -419,7 +419,7 @@ These are known issues and workarounds discovered through real-world testing:
 | **Character looks too generic** | Vague physical description | Front-load 5+ specific physical details: hair color+style, eye color+shape, build, facial feature, expression |
 | **Typography unreadable or messy** | Overly complex text request | Keep text to 1-3 characters in Japanese + one short English word. Describe as "large, bold, semi-transparent, ghosted" |
 | **Composition feels flat** | Missing depth cues | Add foreground/background separation: "foreground element partially framing the scene" + "background in heavy bokeh" |
-| **Character likeness is lost** | Generic outfit overrides their signature look | When requesting outfits, instruct the prompt generator to *blend* the new outfit with their signature style (e.g. "wearing a dark streetwear jacket over his signature tight black shirt") |
+| **Character likeness is lost** | Outfit is wrong for the scene, or physical features are too vague | Pick outfit from the character's Outfit Range that matches the scene. Character recognition comes from **physical features** (hair, eyes, build, scars) — always include 5+ specific physical details, not just clothes |
 
 ---
 

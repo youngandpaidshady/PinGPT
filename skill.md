@@ -90,29 +90,29 @@ The anime rendering style uses **clean outlines** with **flat color fills**. Sha
 
 **Tier 1 — Top Performers:**
 
-| Character | Series | Visual Signature |
-|---|---|---|
-| Toji Fushiguro | Jujutsu Kaisen | muscular man with messy black hair, lip scar, sharp jawline, heavy-lidded green eyes |
-| Satoru Gojo | Jujutsu Kaisen | tall lean man with spiky white hair, bright blue eyes, black blindfold, charismatic smirk |
-| Eren Yeager | Attack on Titan | lean muscular man with long dark hair tied in man bun, intense gray-green eyes, fierce expression |
-| Levi Ackerman | Attack on Titan | short but muscular man with sharp undercut black hair, cold grey eyes, stoic expression |
-| Baki Hanma | Baki | extremely muscular young man with wild reddish-brown hair, battle scars across torso |
-| Yuji Itadori | Jujutsu Kaisen | athletic young man with pink undercut hair, dark roots, facial markings on cheeks |
+| Character | Series | Visual Signature | Signature Outfit |
+|---|---|---|---|
+| Toji Fushiguro | Jujutsu Kaisen | muscular man with messy black hair, lip scar, sharp jawline, heavy-lidded green eyes | tight fitted black athletic shirt, baggy white cargo pants, dark sandals |
+| Satoru Gojo | Jujutsu Kaisen | tall lean man with spiky white hair, bright blue eyes, black blindfold, charismatic smirk | dark navy blue high-collar jujutsu uniform, or casual black jacket with sunglasses |
+| Eren Yeager | Attack on Titan | lean muscular man with long dark hair tied in man bun, intense gray-green eyes, fierce expression | dark brown long coat over black shirt, or Survey Corps jacket with straps and harness |
+| Levi Ackerman | Attack on Titan | short but muscular man with sharp undercut black hair, cold grey eyes, stoic expression | Survey Corps green cape with wings emblem, white cravat, brown leather harness over white shirt |
+| Baki Hanma | Baki | extremely muscular young man with wild reddish-brown hair, battle scars across torso | shirtless with loose dark shorts or baggy martial arts pants, bare feet |
+| Yuji Itadori | Jujutsu Kaisen | athletic young man with pink undercut hair, dark roots, facial markings on cheeks | dark navy blue jujutsu high school uniform jacket, red hoodie underneath |
 
 **Tier 2 — Trending (2025-2026):**
 
-| Character | Series | Visual Signature |
-|---|---|---|
-| Aqua Hoshino | Oshi no Ko | handsome young man with dark hair and one star-shaped eye, brooding expression |
-| Rin Itoshi | Blue Lock | lean striker with messy dark teal hair, cold piercing eyes, captain armband |
-| Megumi Fushiguro | Jujutsu Kaisen | young man with dark spiky hair, stoic expression, dark high-collar uniform |
-| Shoto Todoroki | My Hero Academia | half-white half-red hair, heterochromatic eyes, burn scar over left eye |
-| Loid Forger | SPY x FAMILY | handsome blond man, sharp features, elegant suit, calculating expression |
-| Killua Zoldyck | Hunter x Hunter | young boy with spiky silver-white hair, sharp blue cat-like eyes |
-| Sebastian Michaelis | Black Butler | tall elegant man with black hair, red-brown eyes, tailored butler suit |
-| Jinshi | The Apothecary Diaries | beautiful young man with long dark hair, shrewd violet eyes |
-| Izuku Midoriya | My Hero Academia | young man with messy dark green hair, freckled cheeks |
-| Sung Jinwoo | Solo Leveling | tall man with jet-black hair, glowing purple eyes, dark armor |
+| Character | Series | Visual Signature | Signature Outfit |
+|---|---|---|---|
+| Aqua Hoshino | Oshi no Ko | handsome young man with dark hair and one star-shaped eye, brooding expression | dark school uniform blazer, or dark hoodie with headphones around neck |
+| Rin Itoshi | Blue Lock | lean striker with messy dark teal hair, cold piercing eyes, captain armband | Blue Lock black and blue soccer jersey with number, short soccer shorts |
+| Megumi Fushiguro | Jujutsu Kaisen | young man with dark spiky hair, stoic expression | dark navy high-collar jujutsu uniform, or dark casual jacket |
+| Shoto Todoroki | My Hero Academia | half-white half-red hair, heterochromatic eyes, burn scar over left eye | UA school uniform blazer, or hero costume dark blue bodysuit |
+| Loid Forger | SPY x FAMILY | handsome blond man, sharp features, calculating expression | sharp tailored three-piece dark suit, crisp white shirt, dark tie |
+| Killua Zoldyck | Hunter x Hunter | young boy with spiky silver-white hair, sharp blue cat-like eyes | loose purple long-sleeve shirt, dark baggy shorts, sneakers |
+| Sebastian Michaelis | Black Butler | tall elegant man with black hair, red-brown eyes | impeccable black tailcoat butler suit, white gloves, dark vest |
+| Jinshi | The Apothecary Diaries | beautiful young man with long dark hair, shrewd violet eyes | elegant traditional Chinese court robes with flowing sleeves |
+| Izuku Midoriya | My Hero Academia | young man with messy dark green hair, freckled cheeks | green hero suit with iron soles and hood, or UA school uniform |
+| Sung Jinwoo | Solo Leveling | tall man with jet-black hair, glowing purple eyes | dark shadow-like armor with purple accents, or black casual modern outfit |
 
 ### 🔍 Intelligent Character Discovery (Web Search)
 
@@ -286,7 +286,7 @@ The anime rendering style uses **clean outlines** with **flat color fills**. Sha
 5. **Front-load the character** — subject description comes first
 6. **Be specific** — rich descriptions produce better results
 7. **Character name + description** — always lead with the character name followed by a physical description (e.g., "Eren Yeager, a lean muscular man with long dark hair..."). The name helps NanoBanana 2 understand who you mean; the description ensures accuracy.
-8. **Outfit Integration** — if a specific outfit is requested (e.g. streetwear), **blend it** with the character's signature style to maintain their likeness. Don't completely override their identity. (e.g. "Toji Fushiguro wearing an oversized streetwear hoodie, but retaining his signature baggy white pants").
+8. **Outfit Integration** — **always default to the character's Signature Outfit from the roster.** If the user requests a different outfit (e.g. streetwear), **blend it** with items from the character's signature style to maintain their likeness. Never completely override their identity. (e.g. for Toji: "wearing a dark streetwear hoodie over his signature baggy white pants" — keep at least one recognizable element).
 9. **Anti-watermark strategy** — always include clean image language AND add a follow-up instruction after receiving the image: "Remove any watermarks, logos, or stamps from the corners of this image while keeping everything else identical." (see Troubleshooting Guide)
 10. **Style anchoring** — anchor visual style early in the prompt
 

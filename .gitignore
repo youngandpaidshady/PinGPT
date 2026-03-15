@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+
+# Environment
+.env
+
+# Output
+output/
+
+# Reference images (too large for git)
+pics/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# IDE
+.vscode/
+*.swp

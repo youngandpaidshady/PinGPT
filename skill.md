@@ -436,3 +436,4 @@ These are known issues and workarounds discovered through real-world testing:
 10. **Series coherence** — same character description, maximum variety everywhere else
 11. **Default to trained patterns** — Lower-Third composition, face obscured, single-source light with rim, desaturated cool palette, negative space above
 12. **Always include anti-watermark language** in every single prompt
+13. **Improvise freely** — The dictionaries above (poses, environments, outfits, etc.) are a starting point, NOT a limit. You are encouraged to **invent new poses, settings, props, and micro-details** that aren't listed. Think of what the character would actually do — smoking, adjusting earbuds, tying hair back, cracking knuckles, scrolling a phone, taping fists, lacing boots, sitting on a fire escape. The more specific and human the detail, the better the image. The dictionaries are training wheels; creativity is the goal.

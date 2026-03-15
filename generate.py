@@ -176,10 +176,17 @@ def interactive_mode():
             break
         print("    ⚠ Enter 1, 2, 3, or 4")
 
-    # Common: pick character
-    character = pick_from_menu("Choose Character", CHARACTERS)
+    # Character selection — skip for Discover mode
+    character = None
+    if mode == "4":
+        print("\n  ┌─ 🔍 Discover Mode")
+        print("  │  Gemini will search the web for a currently")
+        print("  │  trending anime character and use them.")
+        print("  └─ Character: Auto-discovered via web search\n")
+    else:
+        character = pick_from_menu("Choose Character", CHARACTERS)
 
-    # For series, get count
+    # Count for batch/series
     count = 1
     if mode == "2":
         while True:
@@ -211,8 +218,9 @@ def interactive_mode():
     include_text = pick_yes_no("Add text overlay?")
 
     # Build args namespace
+    char_value = character if character and character != "random" else None
     args = argparse.Namespace(
-        character=character if character != "random" else None,
+        character=char_value,
         mood=mood if mood and mood != "random" else None,
         setting=setting if setting and setting != "random" else None,
         color=color if color and color != "random" else None,
@@ -221,7 +229,7 @@ def interactive_mode():
         outfit=outfit if outfit and outfit != "random" else None,
         text=include_text,
         batch=count if mode == "2" else 1,
-        series=character if mode == "3" and character != "random" else (None if mode != "3" else None),
+        series=char_value if mode == "3" else None,
         count=count,
         discover=mode == "4",
     )
@@ -231,7 +239,8 @@ def interactive_mode():
     print("  ║  📋  Generation Summary                      ║")
     print("  ╠═══════════════════════════════════════════════╣")
     print(f"  ║  Mode:      {'Series' if mode == '3' else 'Batch' if mode == '2' else 'Discover' if mode == '4' else 'Single':30s}  ║")
-    print(f"  ║  Character: {(args.character or '🎲 Random'):30s}  ║")
+    char_display = '🔍 Web Search' if mode == '4' else (args.character or '🎲 Random')
+    print(f"  ║  Character: {char_display:30s}  ║")
     print(f"  ║  Mood:      {(args.mood or '🎲 Random'):30s}  ║")
     print(f"  ║  Setting:   {(args.setting or '🎲 Random'):30s}  ║")
     print(f"  ║  Color:     {(args.color or '🎲 Random'):30s}  ║")

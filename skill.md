@@ -203,6 +203,9 @@ The anime rendering style uses **clean outlines** with **flat color fills**. Sha
 | Hoodie Up | Hood pulled up, face shadowed, hands in pockets, walking. |
 | Bandaged Rest | Shirtless with bandages across torso and arms, slumped in exhaustion. |
 | Stretching | Arms overhead, back arched, muscles defined, quiet moment. |
+| Cigarette Lean | Leaning against wall or railing, cigarette between fingers, thin trail of smoke curling upward, eyes half-closed, face lit by the faint ember glow. |
+| Rooftop Smoke | Standing on rooftop edge, cigarette in mouth, smoke drifting into the wind, one hand in pocket, gazing at the distant city lights below. |
+| Post-Fight Smoke | Sitting on the ground after a fight, cigarette dangling from lips, bruised knuckles resting on knee, smoke mixing with visible breath in cold air. |
 
 ### 2.4 Camera & Framing
 

@@ -190,7 +190,26 @@ PHOTO_CACHE_TTL = 300  # 5 minutes
 # Key: "{chat_id}_{hash}" → value: {"name": str, "hash": str, "race": str, "gender": str, "dna": str, "created": float}
 import hashlib
 import html as html_module
-MODEL_REGISTRY = {}
+
+MODEL_STORAGE_PATH = "/tmp/models.json"
+
+def _load_models():
+    """Load models from /tmp persistence file."""
+    try:
+        with open(MODEL_STORAGE_PATH, "r") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+def _save_models():
+    """Save models to /tmp persistence file."""
+    try:
+        with open(MODEL_STORAGE_PATH, "w") as f:
+            json.dump(MODEL_REGISTRY, f)
+    except Exception as e:
+        logger.error(f"Failed to save models: {e}")
+
+MODEL_REGISTRY = _load_models()
 
 RACE_PRESETS = {
     "west_african": ("West African", "🌍", "deep brown skin with warm golden/copper undertone, broad nose with low flat bridge, full lips, coily 4C hair texture, prominent cheekbones"),
@@ -1518,6 +1537,7 @@ def cmd_model(token, cid, args, api_keys):
         # Also store by name for easy lookup
         name_key = f"{cid}_{name.lower()}"
         MODEL_REGISTRY[name_key] = MODEL_REGISTRY[registry_key]
+        _save_models()
 
         # Send DNA + usage instructions (no captions)
         source_label = "\U0001f4f8 Extracted from photo" if source == "photo" else "\U0001f9ec Generated"
@@ -1646,6 +1666,7 @@ def cmd_model(token, cid, args, api_keys):
         name = model_data["name"]
         MODEL_REGISTRY.pop(registry_key, None)
         MODEL_REGISTRY.pop(f"{cid}_{name.lower()}", None)
+        _save_models()
         tg_send(token, cid, f"\U0001f5d1\ufe0f Model '<b>{name}</b>' (#{hash_val}) deleted.")
         return
 
@@ -2945,6 +2966,7 @@ def cmd_model(token, cid, args, api_keys):
         # Also store by name for easy lookup
         name_key = f"{cid}_{name.lower()}"
         MODEL_REGISTRY[name_key] = MODEL_REGISTRY[registry_key]
+        _save_models()
 
         # Send DNA + usage instructions (no captions)
         source_label = "\U0001f4f8 Extracted from photo" if source == "photo" else "\U0001f9ec Generated"
@@ -3076,6 +3098,7 @@ def cmd_model(token, cid, args, api_keys):
         name = model_data["name"]
         MODEL_REGISTRY.pop(registry_key, None)
         MODEL_REGISTRY.pop(f"{cid}_{name.lower()}", None)
+        _save_models()
         tg_send(token, cid, f"\U0001f5d1\ufe0f Model '<b>{name}</b>' (#{hash_val}) deleted.")
         return
 

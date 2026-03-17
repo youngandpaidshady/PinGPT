@@ -1781,15 +1781,30 @@ def cleanup_photo_cache():
 
 def tg_send(token, chat_id, text, parse_mode="HTML"):
     import urllib.request
-    payload = json.dumps({"chat_id": chat_id, "text": text, "parse_mode": parse_mode})
-    req = urllib.request.Request(
-        f"https://api.telegram.org/bot{token}/sendMessage",
-        data=payload.encode(), headers={"Content-Type": "application/json"}
-    )
-    try:
-        urllib.request.urlopen(req)
-    except Exception as e:
-        logger.error(f"TG send error: {e}")
+    # Telegram max message length is 4096 chars — split if needed
+    MAX_LEN = 4000  # Leave some margin
+    chunks = []
+    while len(text) > MAX_LEN:
+        # Try to split at last newline before limit
+        split_at = text.rfind("\n", 0, MAX_LEN)
+        if split_at == -1:
+            split_at = MAX_LEN
+        chunks.append(text[:split_at])
+        text = text[split_at:].lstrip("\n")
+    chunks.append(text)
+
+    for chunk in chunks:
+        if not chunk.strip():
+            continue
+        payload = json.dumps({"chat_id": chat_id, "text": chunk, "parse_mode": parse_mode})
+        req = urllib.request.Request(
+            f"https://api.telegram.org/bot{token}/sendMessage",
+            data=payload.encode(), headers={"Content-Type": "application/json"}
+        )
+        try:
+            urllib.request.urlopen(req)
+        except Exception as e:
+            logger.error(f"TG send error: {e}")
 
 
 def tg_typing(token, chat_id):

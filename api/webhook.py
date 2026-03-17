@@ -1526,12 +1526,11 @@ def cmd_model(token, cid, args, api_keys):
             f"\u2705 <b>Model '{name}' spawned!</b>\n"
             f"Hash: <code>#{model_hash}</code> \u2014 {source_label}\n"
             f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
-            f"<b>DNA:</b>\n"
-            f"<i>{html_escape(dna_preview)}</i>\n\n"
-            f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
             f"<b>Now use your model:</b>\n"
             f"Tap a scene below or type <code>#{model_hash} your request</code>"
         ))
+        # Send DNA preview as plain text to avoid HTML parsing issues
+        tg_send(token, cid, f"DNA:\n{dna_preview}", parse_mode="")
         # Show scene picker buttons
         send_model_scene_picker(token, cid, model_hash, name)
         return
@@ -1783,7 +1782,10 @@ def tg_send(token, chat_id, text, parse_mode="HTML"):
     for chunk in chunks:
         if not chunk.strip():
             continue
-        payload = json.dumps({"chat_id": chat_id, "text": chunk, "parse_mode": parse_mode})
+        payload_data = {"chat_id": chat_id, "text": chunk}
+        if parse_mode:
+            payload_data["parse_mode"] = parse_mode
+        payload = json.dumps(payload_data)
         req = urllib.request.Request(
             f"https://api.telegram.org/bot{token}/sendMessage",
             data=payload.encode(), headers={"Content-Type": "application/json"}
@@ -2585,11 +2587,10 @@ def handle_callback_query(token, cid, callback_query, api_keys):
             prompt = build_model_prompt(model_data["dna"], user_request)
             tg_send(token, cid, (
                 f"\U0001f3b4 <b>PinGPT \u2014 {model_data['name']} \u00d7 {scene_name}</b>\n"
-                f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
-                f"<code>{html_escape(prompt)}</code>\n\n"
-                f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
                 f"\U0001f512 <i>DNA locked \u2014 #{model_hash} \u2192 paste into Gemini!</i>"
             ))
+            # Send prompt as plain text — avoids all HTML parsing issues
+            tg_send(token, cid, prompt, parse_mode="")
         return
 
     # ACTION CALLBACKS: action:{style_key}:{action_key}
@@ -3272,11 +3273,10 @@ def webhook():
                 prompt = build_model_prompt(model_data["dna"], user_request)
                 tg_send(token, cid, (
                     f"\U0001f3b4 <b>PinGPT \u2014 Model Prompt</b>\n"
-                    f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
-                    f"<code>{html_escape(prompt)}</code>\n\n"
-                    f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
                     f"\U0001f512 <i>DNA locked \u2014 #{model_data['hash']} \u2192 paste into Gemini!</i>"
                 ))
+                # Send prompt as plain text — avoids all HTML parsing issues
+                tg_send(token, cid, prompt, parse_mode="")
             else:
                 # No request: #hash alone → show scene picker buttons
                 send_model_scene_picker(token, cid, hash_val, model_data["name"])
@@ -3309,11 +3309,10 @@ def webhook():
                 prompt = build_model_prompt(model_data["dna"], user_request)
                 tg_send(token, cid, (
                     f"\U0001f3b4 <b>PinGPT \u2014 {model_name}</b>\n"
-                    f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
-                    f"<code>{html_escape(prompt)}</code>\n\n"
-                    f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
                     f"\U0001f512 <i>DNA locked \u2014 #{model_hash} \u2192 paste into Gemini!</i>"
                 ))
+                # Send prompt as plain text — avoids all HTML parsing issues
+                tg_send(token, cid, prompt, parse_mode="")
                 # Done — user can type #hash for another scene
             return
 

@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 PinGPT Telegram Bot — Vercel Serverless Webhook Handler
 Generates Pinterest-aesthetic anime prompts via Gemini 2.5 Flash.
@@ -1047,33 +1047,25 @@ def build_photo_prompt_instruction(analysis, style_key, action_key=None):
         pose_instruction = f"ORIGINAL POSE (keep exactly): {original_pose}"
 
     return (
-        f"Generate a single PinGPT prompt that transforms this real person into an anime character "
-        f"while PERFECTLY PRESERVING their facial identity.\n\n"
-        f"━━━ FACIAL IDENTITY (MUST PRESERVE EXACTLY) ━━━\n"
+        f"Generate a REFERENCE-IMAGE transformation prompt. The user will upload their original photo "
+        f"alongside this prompt in Gemini Chat. The prompt must work WITH the uploaded photo.\n\n"
+        f"IMPORTANT: The prompt must say 'the person in this photo' or 'this person' \u2014 NEVER describe "
+        f"facial features from scratch. The photo IS the identity source.\n\n"
+        f"\u2501\u2501\u2501 WHAT TO REFERENCE (from photo context) \u2501\u2501\u2501\n"
         f"{face_block}"
         f"  - Build: {analysis.get('build', 'average')}\n\n"
-        f"━━━ CONTEXT ━━━\n"
-        f"  - Outfit: {analysis.get('outfit', 'dark clothing')}\n"
-        f"  - Setting: {analysis.get('setting', 'dark environment')}\n"
-        f"  - Mood: {analysis.get('mood', 'intense')}\n"
-        f"  - Lighting: {analysis.get('lighting', 'dramatic')}\n"
-        f"  - Details: {analysis.get('key_details', 'none')}\n\n"
-        f"{pose_instruction}\n\n"
-        f"CHOSEN ART STYLE: {style_name}\n"
-        f"Style description: {style_desc}\n\n"
-        f"━━━ IDENTITY-LOCK RULES (CRITICAL) ━━━\n"
-        f"1. The FIRST SENTENCE of the prompt MUST describe the person's face shape, eyes, nose, lips, "
-        f"skin tone, and hair in that exact order. This is the identity anchor.\n"
-        f"2. NEVER generalize facial features. If the analysis says 'wide nose with flat bridge', write "
-        f"exactly 'wide nose with flat bridge' — not just 'nose'.\n"
-        f"3. Include ALL distinguishing marks (scars, moles, dimples, piercings) with exact placement.\n"
-        f"4. Facial hair must be described precisely as analyzed — stubble, goatee, clean-shaven, etc.\n"
-        f"5. The generated image must look like THIS SPECIFIC PERSON, not a generic character.\n"
-        f"6. Include 'preserving exact facial structure, skin texture, and proportions' in the prompt.\n"
-        f"7. Apply the art style to rendering technique ONLY — face structure and skin texture stay photo-accurate.\n"
-        f"8. Skin texture is identity — include visible pores, acne marks, shine zones FROM THE DNA.\n"
-        f"9. State '9:16 portrait orientation'. Include anti-watermark language.\n"
-        f"10. Add 1-2 micro-details.\n\n"
+        f"\u2501\u2501\u2501 WHAT CHANGES \u2501\u2501\u2501\n"
+        f"  - Art Style: {style_name} \u2014 {style_desc}\n"
+        f"  - {pose_instruction}\n\n"
+        f"\u2501\u2501\u2501 PROMPT RULES \u2501\u2501\u2501\n"
+        f"1. START with: 'Using the uploaded photo as reference \u2014 transform/render this person in {style_name} style'\n"
+        f"2. Include: 'Keep their EXACT face, skin tone, skin texture, hair texture, facial hair, "
+        f"and every mark/blemish exactly as in the photo'\n"
+        f"3. Include: 'Do NOT alter any facial features, skin tone, or proportions'\n"
+        f"4. Only describe what CHANGES: the art style rendering, pose, setting, lighting\n"
+        f"5. Include: 'preserving exact facial structure, skin texture, and proportions'\n"
+        f"6. State '9:16 portrait orientation, no watermark, no text overlay'\n"
+        f"7. The art style changes the RENDERING, not the person's actual features\n\n"
         f"Output ONLY the raw prompt text. No markdown, no metadata."
     )
 
@@ -1086,42 +1078,30 @@ def load_dna_skill():
 
 
 def build_custom_dna_prompt(analysis, user_request):
-    """Build Gemini instruction to generate ANY prompt from photo DNA + free-form user request."""
-    # Build facial identity block from detailed analysis
-    face_block = ""
-    for field in ["face_shape", "forehead", "eyes", "eyebrows", "nose", "lips", "jawline", "cheeks",
-                  "skin_tone", "skin_texture", "skin_blemishes", "skin",
-                  "hair", "facial_hair", "distinguishing_marks"]:
-        val = analysis.get(field, "")
-        if val:
-            face_block += f"  - {field.replace('_', ' ').title()}: {val}\n"
-    if not face_block:
-        face_block = f"  - Subject: {analysis.get('subject', 'person')}\n"
-
+    """Build a REFERENCE-IMAGE transformation prompt from user's free-form request.
+    The prompt is designed to work WITH the user's uploaded photo, not replace it."""
     return (
-        f"Generate a single image prompt based on the user's specific request, "
-        f"while PERFECTLY PRESERVING the person's facial and body identity (their DNA).\n\n"
-        f"\u2501\u2501\u2501 PERSON'S DNA (MUST PRESERVE EXACTLY) \u2501\u2501\u2501\n"
-        f"{face_block}"
-        f"  - Build: {analysis.get('build', 'average')}\n"
-        f"  - Original Outfit: {analysis.get('outfit', 'not specified')}\n"
-        f"  - Original Setting: {analysis.get('setting', 'not specified')}\n\n"
+        f"Generate a REFERENCE-IMAGE transformation prompt. The user will upload their original photo "
+        f"alongside this prompt in Gemini Chat. The prompt must work WITH the uploaded photo.\n\n"
+        f"CRITICAL: The prompt must say 'the person in this photo' or 'this person' \u2014 NEVER describe "
+        f"facial features from scratch. The photo IS the identity source. "
+        f"Only describe what CHANGES.\n\n"
         f"\u2501\u2501\u2501 USER'S REQUEST \u2501\u2501\u2501\n"
         f"{user_request}\n\n"
-        f"\u2501\u2501\u2501 IDENTITY-LOCK RULES (CRITICAL) \u2501\u2501\u2501\n"
-        f"1. The FIRST SENTENCE of the prompt MUST describe the person's face shape, eyes, nose, lips, "
-        f"skin tone, and hair in that exact order. This is the identity anchor.\n"
-        f"2. NEVER generalize facial features. Write EXACTLY what the DNA says.\n"
-        f"3. Include ALL distinguishing marks (scars, moles, dimples, piercings) with exact placement.\n"
-        f"4. The generated image must look like THIS SPECIFIC PERSON.\n"
-        f"5. Include 'preserving exact facial structure and proportions' in the prompt.\n"
-        f"6. Skin tone, skin texture, eye color, face shape, and body build are IMMUTABLE.\n"
-        f"7. Skin texture is identity — visible pores, acne marks, oil/shine zones, blemishes MUST be described.\n"
-        f"8. Hair texture must be preserved (coily stays coily, straight stays straight).\n"
-        f"9. The user's request determines: art style, outfit, pose, setting, mood, lighting.\n"
-        f"10. If the request implies a context (e.g., LinkedIn, professional, anime), "
-        f"adapt everything EXCEPT the DNA to match.\n"
-        f"11. State '9:16 portrait orientation'. Include anti-watermark language.\n\n"
+        f"\u2501\u2501\u2501 PHOTO CONTEXT (for understanding, NOT for re-describing) \u2501\u2501\u2501\n"
+        f"  - Current outfit: {analysis.get('outfit', 'not specified')}\n"
+        f"  - Current setting: {analysis.get('setting', 'not specified')}\n"
+        f"  - Current mood: {analysis.get('mood', 'neutral')}\n"
+        f"  - Build: {analysis.get('build', 'average')}\n\n"
+        f"\u2501\u2501\u2501 PROMPT FORMAT RULES \u2501\u2501\u2501\n"
+        f"1. START with: 'Using the uploaded photo as reference \u2014' then state the transformation\n"
+        f"2. Say: 'Keep their EXACT face, all skin details (pores, marks, texture, tone), hair texture, "
+        f"facial hair, and every distinguishing mark completely unchanged'\n"
+        f"3. Say: 'Do NOT alter any facial features, skin tone, blemishes, or proportions'\n"
+        f"4. Only describe what CHANGES based on the user's request (outfit, setting, pose, style, lighting)\n"
+        f"5. Include: 'preserving exact facial structure, skin texture, and proportions'\n"
+        f"6. End with: '9:16 portrait, high resolution, no watermark, no text overlay'\n"
+        f"7. NEVER describe the person's face/features from scratch \u2014 always reference the photo\n\n"
         f"Output ONLY the raw prompt text. No markdown, no metadata, no explanation."
     )
 

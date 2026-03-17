@@ -2481,6 +2481,8 @@ def send_browse_styles(token, cid):
 
 # ─── Model Scene Picker ──────────────────────────────────────────────────────
 MODEL_PENDING = {}  # {chat_id: {"hash": str, "scene": str}} — awaiting product/context input
+PROCESSED_UPDATES = {}  # {update_id: timestamp} — dedup Telegram retries
+DEDUP_TTL = 120  # seconds to remember processed updates
 
 def send_model_scene_picker(token, cid, model_hash, model_name):
     """Send inline keyboard with UGC scene options for a model."""
@@ -2586,7 +2588,6 @@ def handle_callback_query(token, cid, callback_query, api_keys):
                 f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
                 f"\U0001f512 <i>DNA locked \u2014 #{model_hash} \u2192 paste into Gemini!</i>"
             ))
-            send_model_scene_picker(token, cid, model_hash, model_data["name"])
         return
 
     # ACTION CALLBACKS: action:{style_key}:{action_key}
@@ -3173,6 +3174,20 @@ def webhook():
 
     update = request.get_json(force=True) or {}
 
+    # ── Dedup: skip already-processed updates (Telegram retries on slow response) ──
+    update_id = update.get("update_id")
+    if update_id:
+        now = time.time()
+        # Cleanup old entries
+        expired = [k for k, v in PROCESSED_UPDATES.items() if now - v > DEDUP_TTL]
+        for k in expired:
+            del PROCESSED_UPDATES[k]
+        # Check if already processed
+        if update_id in PROCESSED_UPDATES:
+            logger.info(f"Skipping duplicate update_id: {update_id}")
+            return Response("OK", status=200)
+        PROCESSED_UPDATES[update_id] = now
+
     # ── Handle callback queries (inline button taps) ──
     callback_query = update.get("callback_query")
     if callback_query:
@@ -3297,8 +3312,7 @@ def webhook():
                     f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
                     f"\U0001f512 <i>DNA locked \u2014 #{model_hash} \u2192 paste into Gemini!</i>"
                 ))
-                # Show scene picker again for another round
-                send_model_scene_picker(token, cid, model_hash, model_name)
+                # Done — user can type #hash for another scene
             return
 
         # Check if user has a pending photo session

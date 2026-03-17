@@ -189,6 +189,7 @@ PHOTO_CACHE_TTL = 300  # 5 minutes
 # Stores generated fictional model DNA profiles
 # Key: "{chat_id}_{hash}" → value: {"name": str, "hash": str, "race": str, "gender": str, "dna": str, "created": float}
 import hashlib
+import html as html_module
 MODEL_REGISTRY = {}
 
 RACE_PRESETS = {
@@ -1545,7 +1546,7 @@ def cmd_model(token, cid, args, api_keys):
             f"Hash: <code>#{model_hash}</code> \u2014 {source_label}\n"
             f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
             f"<b>DNA:</b>\n"
-            f"<i>{dna_preview}</i>\n\n"
+            f"<i>{html_escape(dna_preview)}</i>\n\n"
             f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
             f"<b>Now use your model:</b>\n"
             f"Tap a scene below or type <code>#{model_hash} your request</code>"
@@ -1769,6 +1770,11 @@ def tg_answer_callback(token, callback_query_id, text=""):
         urllib.request.urlopen(req)
     except Exception:
         pass
+
+
+def html_escape(text):
+    """Escape HTML special chars for safe embedding in Telegram HTML messages."""
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
 def cleanup_photo_cache():
@@ -2599,7 +2605,7 @@ def handle_callback_query(token, cid, callback_query, api_keys):
             tg_send(token, cid, (
                 f"\U0001f3b4 <b>PinGPT \u2014 {model_data['name']} \u00d7 {scene_name}</b>\n"
                 f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
-                f"<code>{prompt}</code>\n\n"
+                f"<code>{html_escape(prompt)}</code>\n\n"
                 f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
                 f"\U0001f512 <i>DNA locked \u2014 #{model_hash} \u2192 paste into Gemini!</i>"
             ))
@@ -2966,7 +2972,7 @@ def cmd_model(token, cid, args, api_keys):
             f"Hash: <code>#{model_hash}</code> \u2014 {source_label}\n"
             f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
             f"<b>DNA:</b>\n"
-            f"<i>{dna_preview}</i>\n\n"
+            f"<i>{html_escape(dna_preview)}</i>\n\n"
             f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
             f"<b>Now use your model:</b>\n"
             f"Tap a scene below or type <code>#{model_hash} your request</code>"
@@ -3286,7 +3292,7 @@ def webhook():
                 tg_send(token, cid, (
                     f"\U0001f3b4 <b>PinGPT \u2014 Model Prompt</b>\n"
                     f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
-                    f"<code>{prompt}</code>\n\n"
+                    f"<code>{html_escape(prompt)}</code>\n\n"
                     f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
                     f"\U0001f512 <i>DNA locked \u2014 #{model_data['hash']} \u2192 paste into Gemini!</i>"
                 ))
@@ -3323,7 +3329,7 @@ def webhook():
                 tg_send(token, cid, (
                     f"\U0001f3b4 <b>PinGPT \u2014 {model_name}</b>\n"
                     f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
-                    f"<code>{prompt}</code>\n\n"
+                    f"<code>{html_escape(prompt)}</code>\n\n"
                     f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
                     f"\U0001f512 <i>DNA locked \u2014 #{model_hash} \u2192 paste into Gemini!</i>"
                 ))

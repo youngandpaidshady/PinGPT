@@ -185,6 +185,25 @@ import time
 PHOTO_CACHE = {}
 PHOTO_CACHE_TTL = 300  # 5 minutes
 
+# ─── Action / Pose Options (shown after style selection) ────────────────────
+ACTION_POSES = {
+    "keep_original": ("📸", "Keep Original Pose", "maintaining the exact same pose, body position, and gesture as in the original photo"),
+    "thumbs_up": ("👍", "Thumbs Up", "giving a confident thumbs up with one hand, slight smirk, relaxed posture"),
+    "peace_sign": ("✌️", "Peace Sign", "holding up a peace sign near the face, casual cool expression"),
+    "arms_crossed": ("💪", "Arms Crossed", "standing with arms confidently crossed over chest, chin slightly raised, assertive stance"),
+    "hoodie_walk": ("🚶", "Hood Up Walking", "walking forward with hood pulled up, hands in pockets, face partially shadowed"),
+    "lean_wall": ("🧑", "Leaning on Wall", "leaning one shoulder against a wall, one knee bent, relaxed but intense gaze"),
+    "phone_check": ("📱", "Checking Phone", "looking down at phone held in one hand, face lit by screen glow, slightly distracted expression"),
+    "running": ("🏃", "Running / In Motion", "mid-stride running forward, hair and clothes flowing with motion, determined expression"),
+    "sitting_floor": ("🧘", "Sitting on Floor", "sitting on the ground, back against a wall, one arm resting on raised knee, head slightly tilted"),
+    "looking_back": ("👀", "Looking Back", "glancing back over one shoulder, half-face visible, mysterious over-the-shoulder look"),
+    "fist_clench": ("✊", "Fist Clench / Ready", "fists clenched at sides, jaw tight, body tense, ready for action — power stance"),
+    "coffee_hold": ("☕", "Holding Coffee/Drink", "holding a warm drink cup with both hands near face, steam rising, cozy contemplative moment"),
+    "headphones": ("🎧", "Headphones Vibing", "wearing over-ear headphones, eyes closed, head slightly bobbing, lost in music"),
+    "gym_flex": ("💪", "Gym / Flexing", "post-workout flex, one arm raised showing bicep, confident smirk, gym mirror or dark gym background"),
+    "rain_stand": ("🌧️", "Standing in Rain", "standing still in pouring rain, head slightly tilted back, eyes closed or gazing upward, rain streaking down face and clothes"),
+}
+
 SLIDE_LABELS = [
     ("🪝", "HOOK"),
     ("🌍", "CONTEXT"),
@@ -851,21 +870,32 @@ def call_gemini(api_keys, skill_text, instruction):
 
 
 def analyze_photo(api_keys, image_data):
-    """Analyze an uploaded photo with Gemini Vision to extract subject details."""
+    """Analyze an uploaded photo with Gemini Vision — hyper-detailed facial biometrics for identity preservation."""
     from google import genai
     import base64
 
     instruction = (
-        "Analyze this image and extract the following details for generating an anime-style prompt. "
-        "Be very specific and descriptive.\n\n"
+        "You are an expert portrait analyst. Analyze this image with EXTREME PRECISION on facial features. "
+        "The goal is to capture enough detail to recreate this person's face identically in an AI-generated image.\n\n"
         "Output EXACTLY in this format (no extra text):\n"
-        "SUBJECT: [detailed physical description — build, skin tone, hair, facial features, distinguishing marks]\n"
+        "FACE_SHAPE: [exact face shape — oval, round, square, heart, oblong, diamond, etc.]\n"
+        "EYES: [shape (almond, round, hooded, monolid, deep-set), color, spacing (close-set, wide-set), "
+        "any notable features like double eyelids, eye bags, long lashes]\n"
+        "EYEBROWS: [thickness, arch type (straight, arched, curved), color, grooming]\n"
+        "NOSE: [size, shape (straight bridge, button, wide, narrow, hooked, flat bridge), nostril shape]\n"
+        "LIPS: [thickness (thin, medium, full), shape, color, any asymmetry]\n"
+        "JAWLINE: [sharp/soft/rounded, chin shape (pointed, square, round), any dimple]\n"
+        "SKIN: [exact tone (light, medium, olive, brown, dark brown, deep), texture, any visible pores or shine]\n"
+        "HAIR: [color, texture (straight, wavy, curly, coily), length, style, hairline, how it frames the face]\n"
+        "FACIAL_HAIR: [type (clean-shaven, stubble, goatee, full beard, mustache), length, pattern]\n"
+        "DISTINGUISHING_MARKS: [scars, moles, birthmarks, piercings, tattoos, dimples, wrinkles — exact location]\n"
+        "BUILD: [body type — lean, athletic, muscular, slim, stocky, heavyset]\n"
         "POSE: [what the subject is doing, body position, hand placement]\n"
         "OUTFIT: [detailed clothing description]\n"
         "SETTING: [environment, background, location]\n"
-        "MOOD: [emotional tone, energy, vibe]\n"
+        "MOOD: [emotional tone, energy, expression]\n"
         "LIGHTING: [light direction, quality, color temperature]\n"
-        "KEY_DETAILS: [notable micro-details — accessories, textures, props]\n"
+        "KEY_DETAILS: [accessories, textures, props, anything distinctive]\n"
         "SUGGESTED_STYLES: [comma-separated list of 5 style keywords that would best suit this image, "
         "e.g. 'samurai, dark seinen, afrofuturism, cyberpunk, ink wash']"
     )
@@ -901,7 +931,11 @@ def parse_photo_analysis(raw):
         line = line.strip()
         if not line:
             continue
-        for key in ["SUBJECT", "POSE", "OUTFIT", "SETTING", "MOOD", "LIGHTING", "KEY_DETAILS", "SUGGESTED_STYLES"]:
+        for key in ["FACE_SHAPE", "EYES", "EYEBROWS", "NOSE", "LIPS", "JAWLINE", "SKIN",
+                    "HAIR", "FACIAL_HAIR", "DISTINGUISHING_MARKS", "BUILD", "POSE", "OUTFIT",
+                    "SETTING", "MOOD", "LIGHTING", "KEY_DETAILS", "SUGGESTED_STYLES",
+                    # Legacy fallback
+                    "SUBJECT"]:
             if line.upper().startswith(f"{key}:"):
                 result[key.lower()] = line.split(":", 1)[1].strip()
                 break
@@ -976,32 +1010,58 @@ def match_keyword_to_style(text):
     return best_match
 
 
-def build_photo_prompt_instruction(analysis, style_key):
-    """Build Gemini instruction to generate PinGPT prompt from photo analysis + chosen style."""
+def build_photo_prompt_instruction(analysis, style_key, action_key=None):
+    """Build Gemini instruction to generate PinGPT prompt from photo analysis + chosen style + action."""
     style_desc = STYLE_LIBRARY[style_key][3] if style_key in STYLE_LIBRARY else "clean anime cel-shading"
     style_name = STYLE_LIBRARY[style_key][1] if style_key in STYLE_LIBRARY else "Clean Cel-Shading"
 
+    # Build facial identity block from detailed analysis
+    face_block = ""
+    for field in ["face_shape", "eyes", "eyebrows", "nose", "lips", "jawline", "skin",
+                  "hair", "facial_hair", "distinguishing_marks"]:
+        val = analysis.get(field, "")
+        if val:
+            face_block += f"  - {field.replace('_', ' ').title()}: {val}\n"
+    # Fallback to legacy "subject" if no facial fields
+    if not face_block:
+        face_block = f"  - Subject: {analysis.get('subject', 'person')}\n"
+
+    # Determine action/pose
+    if action_key and action_key in ACTION_POSES:
+        _, action_name, action_desc = ACTION_POSES[action_key]
+        pose_instruction = f"ACTION TO PERFORM: {action_name} — {action_desc}"
+    else:
+        original_pose = analysis.get('pose', 'standing naturally')
+        pose_instruction = f"ORIGINAL POSE (keep exactly): {original_pose}"
+
     return (
-        f"Generate a single PinGPT prompt based on this photo analysis and chosen art style.\n\n"
-        f"PHOTO ANALYSIS:\n"
-        f"- Subject: {analysis.get('subject', 'male figure')}\n"
-        f"- Pose: {analysis.get('pose', 'standing')}\n"
-        f"- Outfit: {analysis.get('outfit', 'dark clothing')}\n"
-        f"- Setting: {analysis.get('setting', 'dark environment')}\n"
-        f"- Mood: {analysis.get('mood', 'intense')}\n"
-        f"- Lighting: {analysis.get('lighting', 'dramatic')}\n"
-        f"- Key Details: {analysis.get('key_details', 'none')}\n\n"
+        f"Generate a single PinGPT prompt that transforms this real person into an anime character "
+        f"while PERFECTLY PRESERVING their facial identity.\n\n"
+        f"━━━ FACIAL IDENTITY (MUST PRESERVE EXACTLY) ━━━\n"
+        f"{face_block}"
+        f"  - Build: {analysis.get('build', 'average')}\n\n"
+        f"━━━ CONTEXT ━━━\n"
+        f"  - Outfit: {analysis.get('outfit', 'dark clothing')}\n"
+        f"  - Setting: {analysis.get('setting', 'dark environment')}\n"
+        f"  - Mood: {analysis.get('mood', 'intense')}\n"
+        f"  - Lighting: {analysis.get('lighting', 'dramatic')}\n"
+        f"  - Details: {analysis.get('key_details', 'none')}\n\n"
+        f"{pose_instruction}\n\n"
         f"CHOSEN ART STYLE: {style_name}\n"
-        f"Style description to use: {style_desc}\n\n"
-        f"RULES:\n"
-        f"- Transform the real photo subject into an anime character while preserving their physical features\n"
-        f"- Apply the chosen art style faithfully\n"
-        f"- Recreate the pose, setting, and mood from the photo but elevate it to Pinterest-aesthetic quality\n"
-        f"- Always state '9:16 portrait orientation'\n"
-        f"- Include anti-watermark language\n"
-        f"- Include 1-2 micro-details\n"
-        f"- Add photorealistic background with heavy bokeh\n"
-        f"- Front-load the character description\n\n"
+        f"Style description: {style_desc}\n\n"
+        f"━━━ IDENTITY-LOCK RULES (CRITICAL) ━━━\n"
+        f"1. The FIRST SENTENCE of the prompt MUST describe the person's face shape, eyes, nose, lips, "
+        f"skin tone, and hair in that exact order. This is the identity anchor.\n"
+        f"2. NEVER generalize facial features. If the analysis says 'wide nose with flat bridge', write "
+        f"exactly 'wide nose with flat bridge' — not just 'nose'.\n"
+        f"3. Include ALL distinguishing marks (scars, moles, dimples, piercings) with exact placement.\n"
+        f"4. Facial hair must be described precisely as analyzed — stubble, goatee, clean-shaven, etc.\n"
+        f"5. The generated image must look like THIS SPECIFIC PERSON, not a generic anime character.\n"
+        f"6. Include the phrase 'preserving exact facial structure and proportions' in the prompt.\n"
+        f"7. Apply the art style to rendering technique ONLY — the face structure stays photo-accurate.\n"
+        f"8. State '9:16 portrait orientation'.\n"
+        f"9. Include anti-watermark language.\n"
+        f"10. Add 1-2 micro-details.\n\n"
         f"Output ONLY the raw prompt text. No markdown, no metadata."
     )
 
@@ -1497,20 +1557,30 @@ def handle_photo(token, cid, photo_list, msg_id, api_keys):
     ])
 
     # Step 6: Send analysis summary + style picker
-    subject_short = analysis.get("subject", "subject")[:80]
+    face_shape = analysis.get("face_shape", "")
+    eyes = analysis.get("eyes", "")
+    skin = analysis.get("skin", "")
+    hair = analysis.get("hair", "")
     mood = analysis.get("mood", "intense")
-    setting = analysis.get("setting", "")
+    # Build a short identity summary
+    identity_parts = []
+    if face_shape:
+        identity_parts.append(face_shape.split(",")[0][:30])
+    if eyes:
+        identity_parts.append(eyes.split(",")[0][:30])
+    if skin:
+        identity_parts.append(skin.split(",")[0][:25])
+    if hair:
+        identity_parts.append(hair.split(",")[0][:30])
+    identity_summary = ", ".join(identity_parts) if identity_parts else analysis.get("subject", "subject")[:80]
 
     msg_text = (
-        f"🔍 <b>Photo Analyzed!</b>\n"
+        f"🔍 <b>Photo Analyzed! Face Mapped.</b>\n"
         f"━━━━━━━━━━━━━━━━━━━━━\n"
-        f"👤 <b>Subject:</b> {subject_short}\n"
+        f"🧑 <b>Identity:</b> {identity_summary}\n"
         f"🎭 <b>Mood:</b> {mood}\n"
-    )
-    if setting:
-        msg_text += f"🌍 <b>Setting:</b> {setting[:60]}\n"
-    msg_text += (
         f"━━━━━━━━━━━━━━━━━━━━━\n"
+        f"🔒 Your facial features are locked!\n"
         f"🎨 <b>Pick an animation style:</b>\n\n"
         f"<i>Or type a keyword: samurai, cyberpunk, african, ghibli...</i>"
     )
@@ -1575,8 +1645,36 @@ def handle_crop(token, cid, photo_list, msg_id):
         tg_send(token, cid, "❌ Could not send cropped image.")
 
 
-def generate_photo_prompt(token, cid, api_keys, style_key):
-    """Generate PinGPT prompt from cached photo analysis + chosen style."""
+def send_action_picker(token, cid, style_key):
+    """After style selection, show action/pose picker."""
+    style_emoji, style_name, _, _ = STYLE_LIBRARY.get(style_key, ("", "Unknown", [], ""))
+
+    buttons = []
+    # Keep Original at top
+    buttons.append([{"text": "📸 Keep Original Pose", "callback_data": f"action:{style_key}:keep_original"}])
+    # Grid the rest
+    action_keys = [k for k in ACTION_POSES if k != "keep_original"]
+    row = []
+    for ak in action_keys:
+        emoji, name, _ = ACTION_POSES[ak]
+        row.append({"text": f"{emoji} {name}", "callback_data": f"action:{style_key}:{ak}"})
+        if len(row) == 2:
+            buttons.append(row)
+            row = []
+    if row:
+        buttons.append(row)
+
+    msg_text = (
+        f"🎨 Style: <b>{style_emoji} {style_name}</b> ✔\n"
+        f"━━━━━━━━━━━━━━━━━━━━━\n"
+        f"🎬 <b>Now pick an action/pose:</b>\n\n"
+        f"<i>Your face will be preserved exactly — only the pose changes!</i>"
+    )
+    tg_send_inline_keyboard(token, cid, msg_text, buttons)
+
+
+def generate_photo_prompt(token, cid, api_keys, style_key, action_key=None):
+    """Generate PinGPT prompt from cached photo analysis + chosen style + action."""
     cache_key = f"{cid}"
     cached = PHOTO_CACHE.get(cache_key)
     if not cached:
@@ -1590,22 +1688,34 @@ def generate_photo_prompt(token, cid, api_keys, style_key):
         return
 
     style_emoji, style_name, _, _ = STYLE_LIBRARY.get(style_key, ("", "Unknown", [], ""))
-    tg_send(token, cid, f"🎨 Generating prompt in <b>{style_emoji} {style_name}</b> style... ⏳")
+    action_label = ""
+    if action_key and action_key in ACTION_POSES:
+        _, action_label, _ = ACTION_POSES[action_key]
+
+    status_msg = f"🎨 Generating <b>{style_emoji} {style_name}</b>"
+    if action_label and action_key != "keep_original":
+        status_msg += f" + <b>{action_label}</b>"
+    status_msg += "... ⏳"
+    tg_send(token, cid, status_msg)
     tg_typing(token, cid)
 
-    instruction = build_photo_prompt_instruction(analysis, style_key)
+    instruction = build_photo_prompt_instruction(analysis, style_key, action_key)
     try:
         prompt = call_gemini(api_keys, skill, instruction)
     except Exception as e:
         tg_send(token, cid, f"❌ API error: {str(e)[:200]}")
         return
 
+    header = f"🎴 <b>PinGPT Prompt — {style_emoji} {style_name}</b>"
+    if action_label and action_key != "keep_original":
+        header += f" + {action_label}"
+
     tg_send(token, cid, (
-        f"🎴 <b>PinGPT Prompt — {style_emoji} {style_name}</b>\n"
+        f"{header}\n"
         f"━━━━━━━━━━━━━━━━━━━━━\n\n"
         f"<code>{prompt}</code>\n\n"
         f"━━━━━━━━━━━━━━━━━━━━━\n"
-        f"💡 <i>Copy ↑ → paste into Gemini Chat!</i>"
+        f"🔒 <i>Face identity locked → paste into Gemini Chat!</i>"
     ))
 
     # Generate and send captions
@@ -1699,7 +1809,7 @@ def send_browse_styles(token, cid):
 
 
 def handle_callback_query(token, cid, callback_query, api_keys):
-    """Handle inline button taps for style selection."""
+    """Handle inline button taps for style selection → action selection → generation."""
     cb_id = callback_query.get("id", "")
     data = callback_query.get("data", "")
 
@@ -1707,6 +1817,19 @@ def handle_callback_query(token, cid, callback_query, api_keys):
         tg_answer_callback(token, cb_id, "↑ Category header")
         return
 
+    # ACTION CALLBACKS: action:{style_key}:{action_key}
+    if data.startswith("action:"):
+        parts = data.split(":", 2)
+        if len(parts) == 3:
+            _, style_key, action_key = parts
+            action_name = ACTION_POSES.get(action_key, ("", action_key, ""))[1]
+            tg_answer_callback(token, cb_id, f"Generating {action_name}...")
+            generate_photo_prompt(token, cid, api_keys, style_key, action_key)
+        else:
+            tg_answer_callback(token, cb_id, "Invalid action")
+        return
+
+    # STYLE CALLBACKS: style:{style_key}
     if not data.startswith("style:"):
         tg_answer_callback(token, cb_id)
         return
@@ -1725,8 +1848,9 @@ def handle_callback_query(token, cid, callback_query, api_keys):
 
     if style_key in STYLE_LIBRARY:
         style_name = STYLE_LIBRARY[style_key][1]
-        tg_answer_callback(token, cb_id, f"Generating {style_name}...")
-        generate_photo_prompt(token, cid, api_keys, style_key)
+        tg_answer_callback(token, cb_id, f"{style_name} ✔ Pick a pose!")
+        # Show action picker (step 2)
+        send_action_picker(token, cid, style_key)
     else:
         tg_answer_callback(token, cb_id, "Unknown style")
 
@@ -1846,7 +1970,7 @@ def webhook():
         if cache_key in PHOTO_CACHE and (time.time() - PHOTO_CACHE[cache_key]["timestamp"]) < PHOTO_CACHE_TTL:
             matched = match_keyword_to_style(text)
             if matched:
-                generate_photo_prompt(token, cid, api_keys, matched)
+                send_action_picker(token, cid, matched)
             else:
                 tg_send(token, cid, (
                     f"🤔 Couldn't match '<b>{text}</b>' to a style.\n"

@@ -1551,11 +1551,10 @@ def cmd_model(token, cid, args, api_keys):
             f"<i>{dna_preview}</i>\n\n"
             f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
             f"<b>Now use your model:</b>\n"
-            f"<code>#{model_hash} smiling in gym</code>\n"
-            f"<code>#{model_hash} product-hold with coffee cup</code>\n"
-            f"<code>#{model_hash} testimonial about skincare</code>\n"
-            f"<code>#{model_hash} selfie with protein shake</code>"
+            f"Tap a scene below or type <code>#{model_hash} your request</code>"
         ))
+        # Show scene picker buttons
+        send_model_scene_picker(token, cid, model_hash, name)
         return
 
     # ── USE ──
@@ -1624,8 +1623,20 @@ def cmd_model(token, cid, args, api_keys):
             f"\U0001f9ec <b>Your Models ({len(models)})</b>\n"
             f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
             + "\n".join(lines)
-            + "\n\n\U0001f4cb Type <code>#hash your request</code> to use a model"
+            + "\n\n\U0001f4cb Tap a model or type <code>#hash your request</code>"
         ))
+        # Add USE buttons for each model
+        if models:
+            use_buttons = []
+            row = []
+            for m in sorted(models, key=lambda x: x["created"], reverse=True)[:6]:
+                row.append({"text": f"\u25b6\ufe0f {m['name']}", "callback_data": f"mscene:{m['hash']}:custom"})
+                if len(row) == 2:
+                    use_buttons.append(row)
+                    row = []
+            if row:
+                use_buttons.append(row)
+            tg_send_with_keyboard(token, cid, "\U0001f447 <b>Quick use:</b>", use_buttons)
         return
 
     # ── DELETE ──
@@ -2471,6 +2482,47 @@ def send_browse_styles(token, cid):
         tg_send(token, cid, "\n".join(lines))
 
 
+# ─── Model Scene Picker ──────────────────────────────────────────────────────
+MODEL_PENDING = {}  # {chat_id: {"hash": str, "scene": str}} — awaiting product/context input
+
+def send_model_scene_picker(token, cid, model_hash, model_name):
+    """Send inline keyboard with UGC scene options for a model."""
+    buttons = [
+        [
+            {"text": "📦 Product Hold", "callback_data": f"mscene:{model_hash}:product-hold"},
+            {"text": "📸 Selfie", "callback_data": f"mscene:{model_hash}:selfie"},
+        ],
+        [
+            {"text": "🗣 Testimonial", "callback_data": f"mscene:{model_hash}:testimonial"},
+            {"text": "🌅 Lifestyle", "callback_data": f"mscene:{model_hash}:lifestyle"},
+        ],
+        [
+            {"text": "📦 Unboxing", "callback_data": f"mscene:{model_hash}:unboxing"},
+            {"text": "🏋 Gym", "callback_data": f"mscene:{model_hash}:gym"},
+        ],
+        [
+            {"text": "☕ Cafe", "callback_data": f"mscene:{model_hash}:cafe"},
+            {"text": "🌤 Outdoor", "callback_data": f"mscene:{model_hash}:outdoor"},
+        ],
+        [
+            {"text": "🛏 Morning Routine", "callback_data": f"mscene:{model_hash}:morning-routine"},
+            {"text": "💻 Desk", "callback_data": f"mscene:{model_hash}:desk"},
+        ],
+        [
+            {"text": "🍳 Cooking", "callback_data": f"mscene:{model_hash}:cooking"},
+            {"text": "↔️ Before/After", "callback_data": f"mscene:{model_hash}:before-after"},
+        ],
+        [
+            {"text": "✍️ Custom (type anything)", "callback_data": f"mscene:{model_hash}:custom"},
+        ],
+    ]
+    tg_send_with_keyboard(token, cid, (
+        f"\U0001f3ac <b>Pick a scene for {model_name}:</b>\n"
+        f"<code>#{model_hash}</code>"
+    ), buttons)
+
+
+
 def handle_callback_query(token, cid, callback_query, api_keys):
     """Handle inline button taps for style selection → action selection → generation."""
     cb_id = callback_query.get("id", "")
@@ -2478,6 +2530,66 @@ def handle_callback_query(token, cid, callback_query, api_keys):
 
     if data == "noop":
         tg_answer_callback(token, cb_id, "↑ Category header")
+        return
+
+    # MODEL SCENE CALLBACKS: mscene:{hash}:{scene_key}
+    if data.startswith("mscene:"):
+        parts = data.split(":", 2)
+        if len(parts) == 3:
+            _, model_hash, scene_key = parts
+            registry_key = f"{cid}_{model_hash}"
+            model_data = MODEL_REGISTRY.get(registry_key)
+            if not model_data:
+                tg_answer_callback(token, cb_id, "Model not found")
+                return
+
+            if scene_key == "custom":
+                # Store pending state, wait for user text
+                MODEL_PENDING[str(cid)] = {"hash": model_hash, "name": model_data["name"]}
+                tg_answer_callback(token, cb_id, "Type your scene description!")
+                tg_send(token, cid, (
+                    f"\u270d\ufe0f <b>Type what you want {model_data['name']} doing:</b>\n\n"
+                    f"Examples:\n"
+                    f"\u2022 <i>smiling at camera on a rooftop at sunset</i>\n"
+                    f"\u2022 <i>holding a green smoothie in a modern kitchen</i>\n"
+                    f"\u2022 <i>LinkedIn headshot in navy blazer</i>"
+                ))
+                return
+
+            scene_desc = UGC_SCENES.get(scene_key, "standing naturally")
+            scene_name = scene_key.replace("-", " ").title()
+            tg_answer_callback(token, cb_id, f"{scene_name} \u2714")
+
+            # Check if scene needs a product
+            needs_product = scene_key in ("product-hold", "unboxing", "selfie", "morning-routine")
+            if needs_product:
+                MODEL_PENDING[str(cid)] = {
+                    "hash": model_hash,
+                    "name": model_data["name"],
+                    "scene": scene_key,
+                }
+                tg_send(token, cid, (
+                    f"\U0001f4e6 <b>What product or item?</b>\n\n"
+                    f"Examples:\n"
+                    f"\u2022 <i>coffee cup</i>\n"
+                    f"\u2022 <i>face serum bottle</i>\n"
+                    f"\u2022 <i>protein shake</i>\n"
+                    f"\u2022 <i>wireless headphones</i>"
+                ))
+                return
+
+            # No product needed — generate directly
+            tg_typing(token, cid)
+            user_request = f"{scene_name} scene"
+            prompt = build_model_prompt(model_data["dna"], user_request)
+            tg_send(token, cid, (
+                f"\U0001f3b4 <b>PinGPT \u2014 {model_data['name']} \u00d7 {scene_name}</b>\n"
+                f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
+                f"<code>{prompt}</code>\n\n"
+                f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
+                f"\U0001f512 <i>DNA locked \u2014 #{model_hash} \u2192 paste into Gemini!</i>"
+            ))
+            send_model_scene_picker(token, cid, model_hash, model_data["name"])
         return
 
     # ACTION CALLBACKS: action:{style_key}:{action_key}
@@ -2844,11 +2956,10 @@ def cmd_model(token, cid, args, api_keys):
             f"<i>{dna_preview}</i>\n\n"
             f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
             f"<b>Now use your model:</b>\n"
-            f"<code>#{model_hash} smiling in gym</code>\n"
-            f"<code>#{model_hash} product-hold with coffee cup</code>\n"
-            f"<code>#{model_hash} testimonial about skincare</code>\n"
-            f"<code>#{model_hash} selfie with protein shake</code>"
+            f"Tap a scene below or type <code>#{model_hash} your request</code>"
         ))
+        # Show scene picker buttons
+        send_model_scene_picker(token, cid, model_hash, name)
         return
 
     # ── USE ──
@@ -2919,8 +3030,20 @@ def cmd_model(token, cid, args, api_keys):
             f"\U0001f9ec <b>Your Models ({len(models)})</b>\n"
             f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
             + "\n".join(lines)
-            + "\n\n\U0001f4cb Type <code>#hash your request</code> to use a model"
+            + "\n\n\U0001f4cb Tap a model or type <code>#hash your request</code>"
         ))
+        # Add USE buttons for each model
+        if models:
+            use_buttons = []
+            row = []
+            for m in sorted(models, key=lambda x: x["created"], reverse=True)[:6]:
+                row.append({"text": f"\u25b6\ufe0f {m['name']}", "callback_data": f"mscene:{m['hash']}:custom"})
+                if len(row) == 2:
+                    use_buttons.append(row)
+                    row = []
+            if row:
+                use_buttons.append(row)
+            tg_send_with_keyboard(token, cid, "\U0001f447 <b>Quick use:</b>", use_buttons)
         return
 
     # ── DELETE ──
@@ -3118,29 +3241,69 @@ def webhook():
     elif cmd == "/model":
         cmd_model(token, cid, args, api_keys)
     elif text.startswith("#") and len(text) > 2:
-        # #hash shortcut: #a7f2 smiling in gym
+        # #hash shortcut
         hash_parts = text.split(None, 1)
         hash_val = hash_parts[0][1:]  # Remove #
-        user_request = hash_parts[1] if len(hash_parts) > 1 else "standing naturally, neutral expression"
         registry_key = f"{cid}_{hash_val}"
         model_data = MODEL_REGISTRY.get(registry_key)
         if model_data:
-            tg_send(token, cid, (
-                f"\U0001f9ec <b>Using {model_data['name']} (#{model_data['hash']})</b>\n"
-                f"<i>{user_request[:100]}</i>"
-            ))
-            tg_typing(token, cid)
-            prompt = build_model_prompt(model_data["dna"], user_request)
-            tg_send(token, cid, (
-                f"\U0001f3b4 <b>PinGPT \u2014 Model Prompt</b>\n"
-                f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
-                f"<code>{prompt}</code>\n\n"
-                f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
-                f"\U0001f512 <i>DNA locked \u2014 #{model_data['hash']} \u2192 paste into Gemini!</i>"
-            ))
+            if len(hash_parts) > 1:
+                # Has a request: #hash smiling in gym → generate directly
+                user_request = hash_parts[1]
+                tg_send(token, cid, (
+                    f"\U0001f9ec <b>Using {model_data['name']} (#{model_data['hash']})</b>\n"
+                    f"<i>{user_request[:100]}</i>"
+                ))
+                tg_typing(token, cid)
+                prompt = build_model_prompt(model_data["dna"], user_request)
+                tg_send(token, cid, (
+                    f"\U0001f3b4 <b>PinGPT \u2014 Model Prompt</b>\n"
+                    f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
+                    f"<code>{prompt}</code>\n\n"
+                    f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
+                    f"\U0001f512 <i>DNA locked \u2014 #{model_data['hash']} \u2192 paste into Gemini!</i>"
+                ))
+            else:
+                # No request: #hash alone → show scene picker buttons
+                send_model_scene_picker(token, cid, hash_val, model_data["name"])
         else:
             tg_send(token, cid, f"\u274c Model <code>#{hash_val}</code> not found. Use <code>/model list</code>.")
     elif not text.startswith("/"):
+        # Check if user has a pending model scene context
+        pending_key = str(cid)
+        if pending_key in MODEL_PENDING:
+            pending = MODEL_PENDING.pop(pending_key)
+            model_hash = pending["hash"]
+            model_name = pending["name"]
+            registry_key = f"{cid}_{model_hash}"
+            model_data = MODEL_REGISTRY.get(registry_key)
+            if model_data:
+                scene_key = pending.get("scene")
+                if scene_key:
+                    # Product/context for a scene
+                    scene_desc = UGC_SCENES.get(scene_key, "")
+                    user_request = f"{scene_key.replace('-', ' ')} with {text}. {scene_desc}"
+                else:
+                    # Custom free-text scene
+                    user_request = text
+
+                tg_send(token, cid, (
+                    f"\U0001f9ec <b>Using {model_name} (#{model_hash})</b>\n"
+                    f"<i>{user_request[:100]}</i>"
+                ))
+                tg_typing(token, cid)
+                prompt = build_model_prompt(model_data["dna"], user_request)
+                tg_send(token, cid, (
+                    f"\U0001f3b4 <b>PinGPT \u2014 {model_name}</b>\n"
+                    f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
+                    f"<code>{prompt}</code>\n\n"
+                    f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
+                    f"\U0001f512 <i>DNA locked \u2014 #{model_hash} \u2192 paste into Gemini!</i>"
+                ))
+                # Show scene picker again for another round
+                send_model_scene_picker(token, cid, model_hash, model_name)
+            return
+
         # Check if user has a pending photo session
         cache_key = f"{cid}"
         if cache_key in PHOTO_CACHE and (time.time() - PHOTO_CACHE[cache_key]["timestamp"]) < PHOTO_CACHE_TTL:

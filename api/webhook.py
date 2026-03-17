@@ -1287,8 +1287,12 @@ def generate_model_dna(api_keys, description, name):
         f"- The description must be UNIQUE to this one fictional person\n"
         f"- Output a SINGLE PARAGRAPH, no line breaks, no labels, no bullet points\n"
         f"- Start with age bracket and gender, then flow through all features\n"
-        f"- End with the 2-3 distinguishing features that make them INSTANTLY recognizable\n"
-        f"- Aim for 350-450 words of pure dense description — more detail = more consistency"
+        f"- Include HAND details: finger length proportions, knuckle prominence, nail shape/length, vein visibility\n"
+        f"- Include TEETH details: alignment, gap, color (white/yellow/natural), any crookedness\n"
+        f"- Include LIP TEXTURE: chapped areas, moisture, color gradient from center to edges\n"
+        f"- Include EAR LOBES: attached vs detached, piercing holes even if no earrings\n"
+        f"- End with 3-4 distinguishing features that make them INSTANTLY recognizable\n"
+        f"- Aim for 500-700 words of pure dense description — longer = more unique = more consistent"
     )
 
     shuffled = list(api_keys)
@@ -1353,8 +1357,11 @@ def extract_dna_from_photo(api_keys, image_data, name):
         f"- Be SPECIFIC: not 'dark skin' but 'deep warm brown skin with golden copper undertone, "
         f"slight redness around nose, matte finish on forehead with shine on nose bridge'\n"
         f"- Position EVERY blemish: 'cluster of 3 PIH spots on left cheek near jawline'\n"
-        f"- End with the 2-3 distinguishing features\n"
-        f"- Aim for 350-450 words — more detail = more consistency across images"
+        f"- Include HAND details if visible: finger proportions, knuckle prominence, nail shape, veins\n"
+        f"- Include TEETH details if visible: alignment, gaps, color, crookedness\n"
+        f"- Include LIP TEXTURE: chapped areas, moisture, color gradient center to edges\n"
+        f"- End with 3-4 distinguishing features that make them INSTANTLY recognizable\n"
+        f"- Aim for 500-700 words — longer = more unique = more consistent across images"
     )
 
     b64_image = base64.b64encode(image_data).decode("utf-8")

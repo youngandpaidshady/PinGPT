@@ -1396,41 +1396,22 @@ def extract_dna_from_photo(api_keys, image_data, name):
 def build_model_prompt(model_dna, user_request):
     """Build UGC-grade hyper-realistic image prompt using stored model DNA + user's request."""
 
-    # Pick random camera spec and realism modifiers
     camera = random.choice(CAMERA_SPECS)
-    realism = random.sample(REALISM_MODIFIERS, min(4, len(REALISM_MODIFIERS)))
 
     return (
-        f"IDENTITY DNA (every detail is IMMUTABLE — do NOT alter):\n"
         f"{model_dna}\n\n"
-        f"--- SCENE ---\n"
-        f"{user_request}\n"
-        f"(Stage this scene naturally — realistic pose, natural body language, "
-        f"environment-appropriate lighting. Make it look candid, not posed.)\n\n"
-        f"--- HYPER-REALISM REQUIREMENTS ---\n"
-        f"Camera: {camera}\n"
-        f"Realism details that MUST be visible:\n"
-        f"- {realism[0]}\n"
-        f"- {realism[1]}\n"
-        f"- {realism[2]}\n"
-        f"- {realism[3] if len(realism) > 3 else 'natural ambient occlusion and contact shadows'}\n"
-        f"- Clothing has real fabric weight, natural creases, not CGI-smooth\n"
-        f"- Background has natural depth of field blur, not uniform\n"
-        f"- Lighting matches environment (no studio flat-light unless specified)\n\n"
-        f"--- ANTI-AI RULES (CRITICAL) ---\n"
-        f"- NO plastic/waxy skin — real pores, texture, micro-wrinkles must be visible\n"
-        f"- NO perfectly symmetrical face — preserve natural asymmetry from DNA\n"
-        f"- NO AI glow/bloom — natural skin finish (matte/oily zones as described)\n"
-        f"- NO generic model face — THIS specific person with THEIR imperfections\n"
-        f"- NO smooth gradient skin — real tonal variation, visible capillaries\n"
-        f"- NO stock-photo smile — genuine, slightly asymmetric expression\n"
-        f"- Every mole, scar, mark, blemish from DNA MUST appear in correct position\n\n"
-        f"--- IDENTITY LOCK ---\n"
-        f"All facial features, skin marks, blemishes, moles, scars, distinguishing features "
-        f"described in the DNA are IMMUTABLE. Only the scene changes. This must look like "
-        f"a real photograph of a real person, not an AI render.\n\n"
-        f"9:16 portrait, high resolution, no watermark, no text overlay, no AI smoothing, "
-        f"no beauty filter, raw unprocessed look"
+        f"SCENE: {user_request}. Candid, not posed. Natural body language.\n\n"
+        f"PHOTO SPECS: {camera}. 9:16 portrait. RAW unprocessed look.\n\n"
+        f"MANDATORY REALISM (non-negotiable):\n"
+        f"- Real skin: visible pores on nose/cheeks, tonal variation, "
+        f"natural oil on T-zone, under-eye texture and darkness.\n"
+        f"- Real hair: flyaways, stray strands, frizz, not every strand placed.\n"
+        f"- Real face: NATURALLY ASYMMETRIC. No symmetry correction. No beauty filter.\n"
+        f"- Real clothing: fabric weight, wearing wrinkles, visible seams.\n"
+        f"- Real background: natural lens bokeh, not uniform blur.\n"
+        f"- Every mole, scar, mark from description MUST appear at correct position.\n"
+        f"- ZERO AI smoothing, ZERO glow/bloom, ZERO stock expression.\n"
+        f"- This is a REAL PHOTOGRAPH of a REAL PERSON, not an AI render."
     )
 
 

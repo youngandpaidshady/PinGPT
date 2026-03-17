@@ -1,124 +1,196 @@
 ---
-name: DNA — Reference-Image Identity Preservation
-description: Generate transformation prompts that work WITH the original photo as primary input. The photo IS the DNA — text guides the transformation, the image preserves identity.
+name: DNA — Identity Preservation System
+description: Atomic-level DNA extraction for real photos (reference-image approach) AND fictional model generation (text-anchor approach).
 ---
 
-# DNA — Reference-Image Identity Preservation
+# DNA — Identity Preservation System
 
-## Core Principle
+## Part A: Real Photo DNA (Reference-Image)
 
-**The original photo IS the DNA.** Text descriptions alone CANNOT recreate a face. Instead:
-- The user's photo is ALWAYS uploaded alongside the prompt
-- The prompt instructs the AI to TRANSFORM the person in the photo
-- The prompt explicitly says "this person" / "the person in this photo" — never describes them from scratch
+For REAL people: the original photo IS the DNA. Prompts reference the photo, text only describes what changes.
 
----
-
-## How It Works
-
-### Step 1: Photo Analysis (for context only)
-Still analyze the photo to understand what you're working with — but this data is used for CONTEXT and CONSTRAINT instructions, NOT to re-describe the face from scratch.
-
-### Step 2: Build a Transformation Prompt
-The prompt must:
-1. **Reference the photo directly**: "Transform the person in this photo..."
-2. **Lock identity explicitly**: "Keep their EXACT face, features, skin, and proportions unchanged"
-3. **Only specify what CHANGES**: outfit, setting, lighting, pose, art style
-4. **Include anti-alteration guards**: "Do NOT modify facial features, skin tone, skin texture, hair texture, or any distinguishing marks"
-
----
-
-## Prompt Template
-
+### Prompt Template
 ```
-[REFERENCE]: Use the uploaded photo as the identity source. This person's face, skin, features, and proportions are the ground truth.
-
-[INSTRUCTION]: Transform this person into [USER'S REQUEST] while keeping their face, skin tone, skin texture, hair texture, facial hair, and every distinguishing mark (acne marks, moles, scars, pores, under-eye features) EXACTLY as they appear in the photo.
-
-[CHANGES ONLY]:
-- Outfit: [from user request]
-- Setting/Background: [from user request]
-- Lighting: [from user request]
-- Pose: [from user request, or "keep same as photo"]
-- Art style: [from user request, or "photorealistic"]
-
-[IDENTITY LOCK — DO NOT CHANGE]:
-- Face shape and structure
-- Skin tone and undertone
-- Skin texture (pores, shine, blemishes, marks — all must remain)
-- Eye shape, color, spacing, and under-eye features
-- Nose shape and proportions
-- Lip shape, size, and pigmentation
-- Hair color, texture, and curl pattern
-- Facial hair pattern and density
-- Every mole, scar, acne mark, and distinguishing feature
-- Body build and proportions
-
-[FORMAT]: 9:16 portrait, high resolution, no watermark, no text overlay
+Using the uploaded photo as reference — [transformation].
+Keep their EXACT face, all skin details (pores, marks, texture, tone),
+hair texture, facial hair, and every distinguishing mark completely unchanged.
+Do NOT alter any facial features, skin tone, blemishes, or proportions.
+Only change: [outfit/setting/pose/style].
+Preserving exact facial structure, skin texture, and proportions.
+9:16 portrait, high resolution, no watermark, no text overlay.
 ```
 
 ---
 
-## Example Prompts
+## Part B: Fictional Model DNA (Text-Anchor)
 
-### LinkedIn Profile Pic
-```
-Using the uploaded photo as reference — transform this person into a professional LinkedIn headshot. Keep their EXACT face, all skin details (pores, marks, texture), hair, and features completely unchanged. Only change: put them in a sharp tailored black suit with crisp white dress shirt (top button open, no tie), professional studio background with soft neutral grey gradient, even studio lighting with gentle fill and subtle rim light. Confident, approachable expression with slight natural smile. Shot from chest up, slight low angle. Do NOT alter any facial features, skin tone, blemishes, or proportions. 9:16 portrait, photorealistic, no watermark.
-```
+For FICTIONAL models: generate an ultra-detailed text DNA profile. The same DNA paragraph produces the same face every time.
 
-### Anime/Art Style
-```
-Using the uploaded photo as reference — render this EXACT person in [style name] anime style. Their face shape, skin tone, eye shape, nose, lips, hair texture, facial hair, and every mark/blemish must be accurately translated into the art style. The art style changes the RENDERING TECHNIQUE, not the person's actual features. Do NOT give them generic anime features — their unique facial structure must be recognizable. [pose/action]. [setting]. 9:16 portrait, no watermark.
-```
+### DNA Generation — 15 Atomic Categories
 
-### Action Pose
-```
-Using the uploaded photo as reference — show this EXACT person [action/pose]. Keep every facial detail identical to the photo — face structure, skin tone and texture, acne marks, pores, hair texture, facial hair pattern, under-eye features. Only change their pose to [action] and put them in [outfit] in [setting]. Do NOT alter any facial features. 9:16 portrait, photorealistic, no watermark.
-```
+When creating a model, Gemini must generate a SINGLE DENSE PARAGRAPH covering ALL of these:
+
+#### 1. CRANIAL STRUCTURE
+- Face shape (oblong, oval, round, square, heart, diamond, inverted triangle)
+- Face width-to-length ratio (e.g., 1:1.4)
+- Left-right asymmetry (which side is slightly wider/higher)
+- Head shape from profile (flat back, rounded, elongated)
+- Temporal region (sunken, flat, protruding)
+
+#### 2. FOREHEAD
+- Height (low, medium, high) in proportion to face thirds
+- Width at widest point vs face width
+- Curvature (flat, gently curved, strongly convex)
+- Surface detail: horizontal creases (count, depth), vertical furrow (glabellar lines)
+- Vein visibility, skin texture (smooth, rough, oily)
+- Hairline interaction: widow's peak, rounded, M-shaped, receding
+
+#### 3. EYES (per-eye detail)
+- Shape: almond, round, hooded, monolid, upturned, downturned, deep-set, protruding
+- Size: relative to face, and left vs right comparison
+- Iris color: exact shade with flecks, rings, or limbal dark ring
+- Pupil visibility, sclera color (white, yellowish, bloodshot zones)
+- Eyelid type: monolid, single fold, double fold, hooded, visible crease height
+- Epicanthic fold presence and degree
+- Canthal tilt: positive (upward), neutral, negative (downward)
+- Under-eye: dark circle color (purple, blue, brown, grey), puffiness, tear trough depth
+- Lash length per eye, density, curl direction
+- Crow's feet: count, depth, visibility at rest vs smiling
+
+#### 4. EYEBROWS
+- Shape: straight, soft arch, high arch, S-curve, curved
+- Thickness gradient: head (inner) vs body vs tail (outer)
+- Density: sparse, medium, dense, bushy
+- Color: match to hair? Lighter/darker?
+- Gap between brows (in finger-widths)
+- Hair direction: upward at head, horizontal at body, downward at tail
+- Any gaps, scars, cowlicks, or stray hairs
+
+#### 5. NOSE
+- Bridge: width (narrow, medium, wide), height (low, medium, high), any bump or deviation
+- Tip: shape (bulbous, pointed, rounded, upturned, downturned), width, angle from profile
+- Nostrils: shape (round, oval, slit), size, flare on breathing/smiling
+- Septum: visible? Deviated? Pierced?
+- Skin on nose: pore size, blackheads, oil, redness
+- Overall size relative to face (proportional? Large? Small?)
+
+#### 6. LIPS & MOUTH
+- Upper lip thickness (thin, medium, full)
+- Lower lip thickness (thin, medium, full)
+- Upper-to-lower ratio (e.g., 1:1.5 — lower fuller)
+- Cupid's bow: sharp, soft, flat, asymmetric
+- Corner shape: upturned, neutral, downturned
+- Pigmentation: even, darker edges, lighter center, gradient, any discoloration
+- Texture: smooth, dry, cracked
+- Philtrum: deep, shallow, wide, narrow, defined columns
+- Mouth width relative to nose width
+- Teeth visibility at rest, gap, alignment
+
+#### 7. JAWLINE & CHIN
+- Jawline definition: sharp, soft, undefined
+- Mandible angle: narrow (obtuse), moderate, wide (right angle)
+- Jaw width relative to cheekbones
+- Chin shape: round, square, pointed, cleft/dimple
+- Chin projection: receding, neutral, prominent
+- Under-chin area: defined, double chin, soft
+
+#### 8. CHEEKS
+- Cheekbone prominence: flat, moderate, high and sharp
+- Cheek fullness: hollow, flat, full, chubby
+- Dimples: none, one side, both sides, depth
+- Nasolabial fold depth (smile lines)
+- Surface: smooth, acne-scarred, pockmarked
+
+#### 9. EARS (if visible)
+- Size relative to head
+- Shape: round, pointed, square
+- Lobe: attached, detached, large, small
+- Protrusion: flat against head, moderate, prominent
+- Any piercings, stretching, or deformities
+
+#### 10. SKIN — FORENSIC DETAIL (most critical section)
+- **Base tone**: Fitzpatrick type (I-VI) + precise descriptive sentence
+- **Undertone**: warm (golden, peach), cool (pink, blue, red), neutral, olive
+- **Undertone map by zone**: forehead may differ from cheeks and neck
+- **Texture zone map**:
+  - Forehead: smooth/rough/oily/porous
+  - T-zone: pore size, blackheads, congestion
+  - Cheeks: texture type, visible pores
+  - Chin: texture, any roughness
+  - Jawline: smoothness
+- **Oil/shine map**: which zones are oily vs matte
+- **EVERY blemish** (with exact position):
+  - Active acne: location, type (whitehead, cystic, papule), size
+  - Post-inflammatory hyperpigmentation (PIH): location, color (brown, purple, red), size
+  - Dark spots: count, positions (e.g., "3 dark PIH spots on left cheek, 1 on right temple")
+- **Moles/beauty marks**: exact count and positions (e.g., "mole 1.5cm below right eye, flat dark brown, 3mm diameter")
+- **Scars**: type (atrophic, hypertrophic, keloid, ice-pick), location, length, color
+- **Under-eye specifics**: darkness color and intensity, puffiness level, fine lines count
+- **Age indicators**: forehead lines, crow's feet, marionette lines, jowling
+- **Vein visibility**: temple veins, forehead veins, hand veins
+- **Skin finish**: dewy, matte, combination, satin
+
+#### 11. HAIR
+- Exact color shade (not just "black" — jet black, soft black, dark brown-black)
+- Texture type: 1A (pin straight) → 4C (tight coily)
+- Curl pattern details: loose waves, tight spirals, z-pattern coils
+- Length in inches/cm
+- Current style: fade, buzz, locs, braids, afro, slicked, messy, etc.
+- Density: thin, medium, thick, very thick
+- Hairline shape: rounded, square, M-shaped, widow's peak, receding where
+- Scalp visibility: none, slight at crown, thinning areas
+- Shine: matte, slight sheen, glossy
+- Any grey/white: percentage, location (temples? scattered?)
+
+#### 12. FACIAL HAIR
+- Type: clean-shaven, stubble, goatee, full beard, mustache, soul patch
+- Coverage map: where it grows vs where it's patchy
+- Density: sparse, medium, thick
+- Growth pattern: straight, curly, wiry
+- Length: 5 o'clock shadow, 3-day, full length
+- Color: same as head hair? Lighter? Red tints?
+- Ingrown hairs, razor bumps: location, severity
+
+#### 13. NECK & BODY
+- Neck: thickness, length, Adam's apple prominence, skin creases
+- Skin tone continuity: neck matches face? Darker? Lighter?
+- Shoulders: narrow, medium, broad, slope
+- Build: ectomorph, mesomorph, endomorph, with specifics
+- Chest-to-waist ratio
+- Arm size and definition
+- Any visible tattoos: design, location, size, style
+- Body scars, stretch marks
+- Posture: upright, rounded shoulders, head forward
+
+#### 14. EXPRESSION & MICRO-EXPRESSIONS (default state)
+- Resting expression: neutral, slight smile, resting frown, serious
+- Eye intensity: soft, intense, tired, alert
+- Mouth at rest: slightly open, closed, lips pressed
+- Jaw tension: relaxed or clenched
+- Brow position at rest: lifted, neutral, furrowed
+
+#### 15. DISTINGUISHING FEATURES (THE KEY TO CONSISTENCY)
+- 2-3 UNIQUE features that make this person instantly recognizable
+- Examples: "thin scar through left eyebrow", "gap between front teeth",
+  "beauty mark on left jawline", "asymmetric eye size — left noticeably smaller",
+  "prominent forehead vein when tensed"
+- These are the CONSISTENCY ANCHORS — if these features are present, the face reads as the same person
 
 ---
 
-## Critical Rules
+### DNA Output Format
 
-1. **NEVER describe the face from scratch** — always say "this person" / "the person in this photo"
-2. **The photo is the source of truth** — reference it explicitly in every prompt
-3. **Only describe what CHANGES** — outfit, setting, pose, lighting, style
-4. **Include identity lock guards** — explicitly say "do NOT alter facial features"
-5. **Blemishes/marks are identity** — say "keep all distinguishing marks including acne marks, moles, and skin texture"
-6. **Hair texture is locked** — say "maintain exact hair texture and curl pattern"
-7. **Skin tone is immutable** — say "keep exact skin tone" not describe what shade it is
-8. **The prompt works WITH the image** — it's a transformation instruction, not a standalone description
+The DNA must be a **SINGLE DENSE PARAGRAPH** (300-400 words). No bullet points, no labels, no line breaks. It reads like a forensic description that flows naturally and can be dropped directly into an image prompt.
 
----
+**Example structure:**
+> A [age] [gender] of [ethnicity] descent with a [face shape] face, [forehead description], [eye description per eye], [eyebrow description], [nose bridge-to-tip description], [lip ratio and details], [jawline and chin], [cheek details], [skin tone and undertone], [texture zones], [specific blemishes with positions], [moles with positions], [hair type, color, style], [facial hair], [build], [neck details], and [2-3 distinguishing features].
 
-## Anti-Patterns
+### DNA Usage Rules
 
-| ❌ WRONG (text-only DNA) | ✅ RIGHT (reference-image) |
-|---|---|
-| "A man with oblong face, deep brown skin, deep-set almond eyes..." | "Transform the person in this photo..." |
-| Trying to describe every feature in words | Reference the uploaded photo as ground truth |
-| "Generate an image of a person who looks like..." | "Keep this person's EXACT face and features, only change..." |
-| Long paragraph describing skin tone, pores, marks | "Keep all skin details exactly as in the photo" |
-| Hope the AI generates the same face | The AI transforms the actual uploaded face |
-
----
-
-## User Workflow
-
-### In Gemini Chat:
-1. Upload your photo
-2. Paste the transformation prompt
-3. Gemini uses YOUR photo as the identity source and transforms it
-
-### In PinGPT Bot:
-1. Send your photo to the bot
-2. Bot analyzes it (extracts context for styling)
-3. You type what you want: "LinkedIn pic in black suit"
-4. Bot generates a prompt designed to work WITH your uploaded photo
-5. Bot tells you: "Upload your photo + this prompt to Gemini Chat"
-
-### Why This Works
-- Gemini's image model can SEE the actual face and KEEP it
-- Text just guides what to change (outfit, setting, pose)
-- No information loss — the photo contains perfect DNA
-- The face doesn't need to be reconstructed from words
+When using a model's DNA in prompts:
+1. **PASTE THE FULL DNA** as the first paragraph — no summarizing, no abbreviating
+2. Add scene details (pose, outfit, setting) AFTER the DNA
+3. Include: "Every facial feature, skin mark, blemish, mole described above is IMMUTABLE"
+4. Include: "Photorealistic, real skin texture with pores and imperfections, no AI smoothing"
+5. End with: "9:16 portrait, high resolution, no watermark, no text overlay"
+6. The DNA paragraph is the **IDENTITY LOCK** — it must appear verbatim in every prompt for this model

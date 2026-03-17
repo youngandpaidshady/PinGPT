@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 PinGPT Telegram Bot — Vercel Serverless Webhook Handler
 Generates Pinterest-aesthetic anime prompts via Gemini 2.5 Flash.
@@ -19,6 +19,7 @@ PROMPT_MODEL = "gemini-2.5-flash"
 # skill.md lives in project root (one level up from api/)
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 SKILL_FILE = PROJECT_ROOT / "skill.md"
+DNA_FILE = PROJECT_ROOT / "dna.md"
 
 # ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -875,29 +876,39 @@ def analyze_photo(api_keys, image_data):
     import base64
 
     instruction = (
-        "You are an expert portrait analyst. Analyze this image with EXTREME PRECISION on facial features. "
-        "The goal is to capture enough detail to recreate this person's face identically in an AI-generated image.\n\n"
+        "You are an expert portrait DNA analyst. Analyze this image with EXTREME PRECISION. "
+        "The goal is to capture every facial feature and skin detail so this person can be identically "
+        "recreated in an AI-generated image. Skin texture, pores, blemishes, and marks are IDENTITY — capture them all.\n\n"
         "Output EXACTLY in this format (no extra text):\n"
-        "FACE_SHAPE: [exact face shape — oval, round, square, heart, oblong, diamond, etc.]\n"
-        "EYES: [shape (almond, round, hooded, monolid, deep-set), color, spacing (close-set, wide-set), "
-        "any notable features like double eyelids, eye bags, long lashes]\n"
-        "EYEBROWS: [thickness, arch type (straight, arched, curved), color, grooming]\n"
-        "NOSE: [size, shape (straight bridge, button, wide, narrow, hooked, flat bridge), nostril shape]\n"
-        "LIPS: [thickness (thin, medium, full), shape, color, any asymmetry]\n"
-        "JAWLINE: [sharp/soft/rounded, chin shape (pointed, square, round), any dimple]\n"
-        "SKIN: [exact tone (light, medium, olive, brown, dark brown, deep), texture, any visible pores or shine]\n"
-        "HAIR: [color, texture (straight, wavy, curly, coily), length, style, hairline, how it frames the face]\n"
-        "FACIAL_HAIR: [type (clean-shaven, stubble, goatee, full beard, mustache), length, pattern]\n"
-        "DISTINGUISHING_MARKS: [scars, moles, birthmarks, piercings, tattoos, dimples, wrinkles — exact location]\n"
-        "BUILD: [body type — lean, athletic, muscular, slim, stocky, heavyset]\n"
+        "FACE_SHAPE: [exact shape — oval, round, square, heart, oblong, diamond. Include cheekbone prominence and facial width]\n"
+        "FOREHEAD: [height, width, any creases or lines, hairline interaction]\n"
+        "EYES: [shape (almond, round, hooded, monolid, deep-set), exact color, spacing, depth, "
+        "lids (single/double), under-eye features (bags, dark circles, puffiness), lash length]\n"
+        "EYEBROWS: [thickness, arch type, density, grooming, color, spacing from eyes]\n"
+        "NOSE: [bridge width/height, tip shape, nostril flare, size relative to face]\n"
+        "LIPS: [upper/lower thickness ratio, Cupid's bow definition, pigmentation, any asymmetry]\n"
+        "JAWLINE: [definition (sharp/soft/rounded), mandible angle, chin shape and projection]\n"
+        "CHEEKS: [fullness, cheekbone prominence, hollowness]\n"
+        "SKIN_TONE: [EXACT shade — e.g. 'deep brown with warm golden undertone' or 'light olive with cool undertone'. "
+        "Be extremely specific. Include how it looks under the current lighting]\n"
+        "SKIN_TEXTURE: [pore visibility (especially on nose, cheeks, forehead), smoothness vs roughness by zone, "
+        "oil/shine zones (T-zone, forehead, nose), matte areas, overall skin finish]\n"
+        "SKIN_BLEMISHES: [EVERY visible mark with EXACT location — acne, acne scars/marks, "
+        "post-inflammatory hyperpigmentation spots, dark spots, pitting. Count them approximately and state positions "
+        "like 'left cheek', 'right temple', 'forehead near hairline'. Also note moles, beauty marks, birthmarks with size and position. "
+        "If skin is clear, state 'clear complexion']\n"
+        "HAIR: [exact color shade, texture (straight/wavy/curly/coily — specify curl type like 4C if applicable), "
+        "length, current style, hairline shape, density (thick/thin/thinning)]\n"
+        "FACIAL_HAIR: [type (clean-shaven, stubble, goatee, beard, mustache), density, patchiness, exact coverage pattern]\n"
+        "DISTINGUISHING_MARKS: [scars, tattoos, piercings, dimples, wrinkles — exact location on face/body]\n"
+        "BUILD: [body type — lean, athletic, muscular, slim, stocky, heavyset. Shoulder width, neck thickness]\n"
         "POSE: [what the subject is doing, body position, hand placement]\n"
         "OUTFIT: [detailed clothing description]\n"
         "SETTING: [environment, background, location]\n"
-        "MOOD: [emotional tone, energy, expression]\n"
-        "LIGHTING: [light direction, quality, color temperature]\n"
+        "MOOD: [emotional tone, expression — be specific: 'neutral with slight tension in jaw' not just 'calm']\n"
+        "LIGHTING: [direction, quality, color temperature, how it hits the face and where shadows fall]\n"
         "KEY_DETAILS: [accessories, textures, props, anything distinctive]\n"
-        "SUGGESTED_STYLES: [comma-separated list of 5 style keywords that would best suit this image, "
-        "e.g. 'samurai, dark seinen, afrofuturism, cyberpunk, ink wash']"
+        "SUGGESTED_STYLES: [5 style keywords: e.g. 'samurai, dark seinen, afrofuturism, cyberpunk, ink wash']"
     )
 
     b64_image = base64.b64encode(image_data).decode("utf-8")
@@ -931,10 +942,10 @@ def parse_photo_analysis(raw):
         line = line.strip()
         if not line:
             continue
-        for key in ["FACE_SHAPE", "EYES", "EYEBROWS", "NOSE", "LIPS", "JAWLINE", "SKIN",
+        for key in ["FACE_SHAPE", "FOREHEAD", "EYES", "EYEBROWS", "NOSE", "LIPS", "JAWLINE", "CHEEKS",
+                    "SKIN_TONE", "SKIN_TEXTURE", "SKIN_BLEMISHES", "SKIN",
                     "HAIR", "FACIAL_HAIR", "DISTINGUISHING_MARKS", "BUILD", "POSE", "OUTFIT",
                     "SETTING", "MOOD", "LIGHTING", "KEY_DETAILS", "SUGGESTED_STYLES",
-                    # Legacy fallback
                     "SUBJECT"]:
             if line.upper().startswith(f"{key}:"):
                 result[key.lower()] = line.split(":", 1)[1].strip()
@@ -1017,7 +1028,8 @@ def build_photo_prompt_instruction(analysis, style_key, action_key=None):
 
     # Build facial identity block from detailed analysis
     face_block = ""
-    for field in ["face_shape", "eyes", "eyebrows", "nose", "lips", "jawline", "skin",
+    for field in ["face_shape", "forehead", "eyes", "eyebrows", "nose", "lips", "jawline", "cheeks",
+                  "skin_tone", "skin_texture", "skin_blemishes", "skin",
                   "hair", "facial_hair", "distinguishing_marks"]:
         val = analysis.get(field, "")
         if val:
@@ -1056,14 +1068,126 @@ def build_photo_prompt_instruction(analysis, style_key, action_key=None):
         f"exactly 'wide nose with flat bridge' — not just 'nose'.\n"
         f"3. Include ALL distinguishing marks (scars, moles, dimples, piercings) with exact placement.\n"
         f"4. Facial hair must be described precisely as analyzed — stubble, goatee, clean-shaven, etc.\n"
-        f"5. The generated image must look like THIS SPECIFIC PERSON, not a generic anime character.\n"
-        f"6. Include the phrase 'preserving exact facial structure and proportions' in the prompt.\n"
-        f"7. Apply the art style to rendering technique ONLY — the face structure stays photo-accurate.\n"
-        f"8. State '9:16 portrait orientation'.\n"
-        f"9. Include anti-watermark language.\n"
+        f"5. The generated image must look like THIS SPECIFIC PERSON, not a generic character.\n"
+        f"6. Include 'preserving exact facial structure, skin texture, and proportions' in the prompt.\n"
+        f"7. Apply the art style to rendering technique ONLY — face structure and skin texture stay photo-accurate.\n"
+        f"8. Skin texture is identity — include visible pores, acne marks, shine zones FROM THE DNA.\n"
+        f"9. State '9:16 portrait orientation'. Include anti-watermark language.\n"
         f"10. Add 1-2 micro-details.\n\n"
         f"Output ONLY the raw prompt text. No markdown, no metadata."
     )
+
+
+def load_dna_skill():
+    """Load the DNA identity preservation skill."""
+    if DNA_FILE.exists():
+        return DNA_FILE.read_text(encoding="utf-8")
+    return None
+
+
+def build_custom_dna_prompt(analysis, user_request):
+    """Build Gemini instruction to generate ANY prompt from photo DNA + free-form user request."""
+    # Build facial identity block from detailed analysis
+    face_block = ""
+    for field in ["face_shape", "forehead", "eyes", "eyebrows", "nose", "lips", "jawline", "cheeks",
+                  "skin_tone", "skin_texture", "skin_blemishes", "skin",
+                  "hair", "facial_hair", "distinguishing_marks"]:
+        val = analysis.get(field, "")
+        if val:
+            face_block += f"  - {field.replace('_', ' ').title()}: {val}\n"
+    if not face_block:
+        face_block = f"  - Subject: {analysis.get('subject', 'person')}\n"
+
+    return (
+        f"Generate a single image prompt based on the user's specific request, "
+        f"while PERFECTLY PRESERVING the person's facial and body identity (their DNA).\n\n"
+        f"\u2501\u2501\u2501 PERSON'S DNA (MUST PRESERVE EXACTLY) \u2501\u2501\u2501\n"
+        f"{face_block}"
+        f"  - Build: {analysis.get('build', 'average')}\n"
+        f"  - Original Outfit: {analysis.get('outfit', 'not specified')}\n"
+        f"  - Original Setting: {analysis.get('setting', 'not specified')}\n\n"
+        f"\u2501\u2501\u2501 USER'S REQUEST \u2501\u2501\u2501\n"
+        f"{user_request}\n\n"
+        f"\u2501\u2501\u2501 IDENTITY-LOCK RULES (CRITICAL) \u2501\u2501\u2501\n"
+        f"1. The FIRST SENTENCE of the prompt MUST describe the person's face shape, eyes, nose, lips, "
+        f"skin tone, and hair in that exact order. This is the identity anchor.\n"
+        f"2. NEVER generalize facial features. Write EXACTLY what the DNA says.\n"
+        f"3. Include ALL distinguishing marks (scars, moles, dimples, piercings) with exact placement.\n"
+        f"4. The generated image must look like THIS SPECIFIC PERSON.\n"
+        f"5. Include 'preserving exact facial structure and proportions' in the prompt.\n"
+        f"6. Skin tone, skin texture, eye color, face shape, and body build are IMMUTABLE.\n"
+        f"7. Skin texture is identity — visible pores, acne marks, oil/shine zones, blemishes MUST be described.\n"
+        f"8. Hair texture must be preserved (coily stays coily, straight stays straight).\n"
+        f"9. The user's request determines: art style, outfit, pose, setting, mood, lighting.\n"
+        f"10. If the request implies a context (e.g., LinkedIn, professional, anime), "
+        f"adapt everything EXCEPT the DNA to match.\n"
+        f"11. State '9:16 portrait orientation'. Include anti-watermark language.\n\n"
+        f"Output ONLY the raw prompt text. No markdown, no metadata, no explanation."
+    )
+
+
+def generate_custom_dna_response(token, cid, api_keys, user_request):
+    """Generate a prompt from ANY free-form text request + cached photo DNA."""
+    cache_key = f"{cid}"
+    cached = PHOTO_CACHE.get(cache_key)
+    if not cached:
+        tg_send(token, cid, "\u23f0 Session expired. Please send your photo again.")
+        return
+
+    analysis = cached["analysis"]
+
+    # Load skill + DNA skill for system context
+    skill = load_skill()
+    dna_skill = load_dna_skill()
+    system_context = ""
+    if skill:
+        system_context += skill + "\n\n---\n\n"
+    if dna_skill:
+        system_context += dna_skill + "\n\n---\n\n"
+    if not system_context:
+        tg_send(token, cid, "\u274c skill files not found.")
+        return
+
+    tg_send(token, cid, f"\ud83e\udde0 <b>Processing your request...</b>\n<i>{user_request[:100]}</i>")
+    tg_typing(token, cid)
+
+    instruction = build_custom_dna_prompt(analysis, user_request)
+
+    from google import genai
+    shuffled = list(api_keys)
+    random.shuffle(shuffled)
+    last_error = None
+    for key in shuffled:
+        try:
+            client = genai.Client(api_key=key)
+            r = client.models.generate_content(
+                model=PROMPT_MODEL,
+                contents=[{"role": "user", "parts": [{"text": f"{system_context}{instruction}"}]}],
+            )
+            prompt = r.text.strip().replace("```", "").replace("> ", "").strip()
+            if prompt.startswith('"') and prompt.endswith('"'):
+                prompt = prompt[1:-1]
+
+            tg_send(token, cid, (
+                f"\ud83c\udfb4 <b>PinGPT \u2014 Custom DNA Prompt</b>\n"
+                f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
+                f"<code>{prompt}</code>\n\n"
+                f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
+                f"\ud83d\udd12 <i>DNA locked \u2192 paste into Gemini Chat!</i>"
+            ))
+
+            # Generate captions
+            captions = generate_captions(api_keys, prompt)
+            send_captions(token, cid, captions)
+            return
+        except Exception as e:
+            last_error = e
+            if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
+                continue
+            tg_send(token, cid, f"\u274c API error: {str(e)[:200]}")
+            return
+
+    tg_send(token, cid, f"\u274c All API keys exhausted: {str(last_error)[:150]}")
 
 
 def tg_send_inline_keyboard(token, chat_id, text, buttons, parse_mode="HTML"):
@@ -1855,6 +1979,53 @@ def handle_callback_query(token, cid, callback_query, api_keys):
         tg_answer_callback(token, cb_id, "Unknown style")
 
 
+def generate_custom_dna_response(token, cid, api_keys, user_request):
+    """Generate a prompt from cached photo DNA + any free-form user request."""
+    cache_key = f"{cid}"
+    cached = PHOTO_CACHE.get(cache_key)
+    if not cached:
+        tg_send(token, cid, "⏰ Session expired. Please send your photo again.")
+        return
+
+    analysis = cached["analysis"]
+
+    # Load DNA skill for system context
+    dna_skill = load_dna_skill()
+    skill = load_skill()
+    system_context = ""
+    if dna_skill:
+        system_context += dna_skill + "\n\n"
+    if skill:
+        system_context += skill
+
+    if not system_context:
+        tg_send(token, cid, "❌ skill files not found.")
+        return
+
+    tg_send(token, cid, f"🧠 <b>Processing:</b> <i>{user_request[:100]}</i>\n🔒 Face DNA locked... ⏳")
+    tg_typing(token, cid)
+
+    instruction = build_custom_dna_prompt(analysis, user_request)
+    try:
+        prompt = call_gemini(api_keys, system_context, instruction)
+    except Exception as e:
+        tg_send(token, cid, f"❌ API error: {str(e)[:200]}")
+        return
+
+    tg_send(token, cid, (
+        f"🎴 <b>PinGPT Prompt — Custom DNA</b>\n"
+        f"━━━━━━━━━━━━━━━━━━━━━\n\n"
+        f"<code>{prompt}</code>\n\n"
+        f"━━━━━━━━━━━━━━━━━━━━━\n"
+        f"🔒 <i>Face DNA locked → paste into Gemini Chat!</i>\n"
+        f"💡 <i>Send another request or a new photo!</i>"
+    ))
+
+    # Generate and send captions
+    captions = generate_captions(api_keys, prompt)
+    send_captions(token, cid, captions)
+
+
 def register_menu(token):
     """Register bot commands menu with Telegram (called once on /start)."""
     import urllib.request
@@ -1965,20 +2136,18 @@ def webhook():
     elif cmd == "/pingpt":
         cmd_pingpt(token, cid, args, api_keys)
     elif not text.startswith("/"):
-        # Check if user has a pending photo and typed a keyword
+        # Check if user has a pending photo session
         cache_key = f"{cid}"
         if cache_key in PHOTO_CACHE and (time.time() - PHOTO_CACHE[cache_key]["timestamp"]) < PHOTO_CACHE_TTL:
-            matched = match_keyword_to_style(text)
+            # Short input (1-3 words): try style keyword match first
+            matched = match_keyword_to_style(text) if len(text.split()) <= 3 else None
             if matched:
                 send_action_picker(token, cid, matched)
             else:
-                tg_send(token, cid, (
-                    f"🤔 Couldn't match '<b>{text}</b>' to a style.\n"
-                    f"Try: samurai, cyberpunk, african, ghibli, noir...\n"
-                    f"Or use /styles to browse all."
-                ))
+                # Free-form request: use DNA to build custom prompt
+                generate_custom_dna_response(token, cid, api_keys, text)
         else:
-            # Treat plain text as /pingpt
+            # No photo pending: treat plain text as /pingpt
             cmd_pingpt(token, cid, text, api_keys)
 
     return Response("OK", status=200)

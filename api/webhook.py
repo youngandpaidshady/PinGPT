@@ -1388,27 +1388,17 @@ def extract_dna_from_photo(api_keys, image_data, name):
 def build_model_prompt(model_dna, user_request):
     """Build UGC-grade hyper-realistic image prompt using stored model DNA + user's request."""
 
-    # Detect UGC scene keywords in the request
-    ugc_scene = None
-    request_lower = user_request.lower()
-    for scene_key, scene_desc in UGC_SCENES.items():
-        if scene_key.replace("-", " ") in request_lower or scene_key in request_lower:
-            ugc_scene = scene_desc
-            break
-
     # Pick random camera spec and realism modifiers
     camera = random.choice(CAMERA_SPECS)
     realism = random.sample(REALISM_MODIFIERS, min(4, len(REALISM_MODIFIERS)))
-
-    scene_block = user_request
-    if ugc_scene:
-        scene_block = f"{user_request}. Pose and staging: {ugc_scene}"
 
     return (
         f"IDENTITY DNA (every detail is IMMUTABLE — do NOT alter):\n"
         f"{model_dna}\n\n"
         f"--- SCENE ---\n"
-        f"{scene_block}\n\n"
+        f"{user_request}\n"
+        f"(Stage this scene naturally — realistic pose, natural body language, "
+        f"environment-appropriate lighting. Make it look candid, not posed.)\n\n"
         f"--- HYPER-REALISM REQUIREMENTS ---\n"
         f"Camera: {camera}\n"
         f"Realism details that MUST be visible:\n"

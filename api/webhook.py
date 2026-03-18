@@ -2880,55 +2880,9 @@ def extract_dna_from_photo(api_keys, image_data, name):
     raise last_error or Exception("All API keys exhausted")
 
 
-def build_model_prompt(model_dna, user_request):
-    """Build UGC-grade hyper-realistic image prompt using stored model DNA + user's request."""
-
-    # Detect UGC scene keywords in the request
-    ugc_scene = None
-    request_lower = user_request.lower()
-    for scene_key, scene_desc in UGC_SCENES.items():
-        if scene_key.replace("-", " ") in request_lower or scene_key in request_lower:
-            ugc_scene = scene_desc
-            break
-
-    # Pick random camera spec and realism modifiers
-    camera = random.choice(CAMERA_SPECS)
-    realism = random.sample(REALISM_MODIFIERS, min(4, len(REALISM_MODIFIERS)))
-
-    scene_block = user_request
-    if ugc_scene:
-        scene_block = f"{user_request}. Pose and staging: {ugc_scene}"
-
-    return (
-        f"IDENTITY DNA (every detail is IMMUTABLE — do NOT alter):\n"
-        f"{model_dna}\n\n"
-        f"--- SCENE ---\n"
-        f"{scene_block}\n\n"
-        f"--- HYPER-REALISM REQUIREMENTS ---\n"
-        f"Camera: {camera}\n"
-        f"Realism details that MUST be visible:\n"
-        f"- {realism[0]}\n"
-        f"- {realism[1]}\n"
-        f"- {realism[2]}\n"
-        f"- {realism[3] if len(realism) > 3 else 'natural ambient occlusion and contact shadows'}\n"
-        f"- Clothing has real fabric weight, natural creases, not CGI-smooth\n"
-        f"- Background has natural depth of field blur, not uniform\n"
-        f"- Lighting matches environment (no studio flat-light unless specified)\n\n"
-        f"--- ANTI-AI RULES (CRITICAL) ---\n"
-        f"- NO plastic/waxy skin — real pores, texture, micro-wrinkles must be visible\n"
-        f"- NO perfectly symmetrical face — preserve natural asymmetry from DNA\n"
-        f"- NO AI glow/bloom — natural skin finish (matte/oily zones as described)\n"
-        f"- NO generic model face — THIS specific person with THEIR imperfections\n"
-        f"- NO smooth gradient skin — real tonal variation, visible capillaries\n"
-        f"- NO stock-photo smile — genuine, slightly asymmetric expression\n"
-        f"- Every mole, scar, mark, blemish from DNA MUST appear in correct position\n\n"
-        f"--- IDENTITY LOCK ---\n"
-        f"All facial features, skin marks, blemishes, moles, scars, distinguishing features "
-        f"described in the DNA are IMMUTABLE. Only the scene changes. This must look like "
-        f"a real photograph of a real person, not an AI render.\n\n"
-        f"9:16 portrait, high resolution, no watermark, no text overlay, no AI smoothing, "
-        f"no beauty filter, raw unprocessed look"
-    )
+# NOTE: build_model_prompt is defined earlier in the file (around line 1415).
+# This duplicate was removed to avoid overriding the canonical version which
+# supports pose_ref parameter for pose mimicry feature.
 
 
 def cmd_model(token, cid, args, api_keys):

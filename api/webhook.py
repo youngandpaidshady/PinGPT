@@ -1861,7 +1861,26 @@ def tg_send(token, chat_id, text, parse_mode="HTML"):
         try:
             urllib.request.urlopen(req)
         except Exception as e:
-            logger.error(f"TG send error: {e}")
+            # Read the actual error body from Telegram
+            error_detail = str(e)
+            if hasattr(e, 'read'):
+                try:
+                    error_detail = e.read().decode('utf-8', errors='replace')
+                except Exception:
+                    pass
+            logger.error(f"TG send error: {error_detail}")
+            # Auto-retry without HTML if it was a parse error
+            if parse_mode and ("can't parse" in error_detail.lower() or "bad request" in error_detail.lower()):
+                try:
+                    retry_payload = json.dumps({"chat_id": chat_id, "text": chunk})
+                    retry_req = urllib.request.Request(
+                        f"https://api.telegram.org/bot{token}/sendMessage",
+                        data=retry_payload.encode(), headers={"Content-Type": "application/json"}
+                    )
+                    urllib.request.urlopen(retry_req)
+                    logger.info("TG send retry without HTML succeeded")
+                except Exception as retry_e:
+                    logger.error(f"TG send retry also failed: {retry_e}")
 
 
 def tg_typing(token, chat_id):
@@ -3336,22 +3355,26 @@ def webhook():
         if model_data:
             if len(hash_parts) > 1:
                 # Has a request: #hash smiling in gym → generate directly
-                user_request = hash_parts[1]
-                # Check for cached pose reference from recent photo upload
-                pose_ref = _get_cached_pose(cid)
-                pose_label = "\n📐 <i>Pose reference detected from your photo!</i>" if pose_ref else ""
-                tg_send(token, cid, (
-                    f"\U0001f9ec <b>Using {model_data['name']} (#{model_data['hash']})</b>\n"
-                    f"<i>{user_request[:100]}</i>{pose_label}"
-                ))
-                tg_typing(token, cid)
-                prompt = build_model_prompt(model_data["dna"], user_request, pose_ref=pose_ref)
-                tg_send(token, cid, (
-                    f"\U0001f3b4 <b>PinGPT \u2014 Model Prompt</b>\n"
-                    f"\U0001f512 <i>DNA locked \u2014 #{model_data['hash']} \u2192 paste into Gemini!</i>"
-                ))
-                # Send prompt as plain text — avoids all HTML parsing issues
-                tg_send(token, cid, prompt, parse_mode="")
+                try:
+                    user_request = hash_parts[1]
+                    # Check for cached pose reference from recent photo upload
+                    pose_ref = _get_cached_pose(cid)
+                    pose_label = "\n📐 <i>Pose reference detected from your photo!</i>" if pose_ref else ""
+                    tg_send(token, cid, (
+                        f"\U0001f9ec <b>Using {model_data['name']} (#{model_data['hash']})</b>\n"
+                        f"<i>{user_request[:100]}</i>{pose_label}"
+                    ))
+                    tg_typing(token, cid)
+                    prompt = build_model_prompt(model_data["dna"], user_request, pose_ref=pose_ref)
+                    tg_send(token, cid, (
+                        f"\U0001f3b4 <b>PinGPT \u2014 Model Prompt</b>\n"
+                        f"\U0001f512 <i>DNA locked \u2014 #{model_data['hash']} \u2192 paste into Gemini!</i>"
+                    ))
+                    # Send prompt as plain text — avoids all HTML parsing issues
+                    tg_send(token, cid, prompt, parse_mode="")
+                except Exception as e:
+                    logger.error(f"#hash prompt error: {e}")
+                    tg_send(token, cid, f"\u274c Prompt generation failed: {str(e)[:200]}", parse_mode="")
             else:
                 # No request: #hash alone → show scene picker buttons
                 send_model_scene_picker(token, cid, hash_val, model_data["name"])

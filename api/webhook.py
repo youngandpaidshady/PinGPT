@@ -1412,9 +1412,58 @@ def extract_dna_from_photo(api_keys, image_data, name):
     raise last_error or Exception("All API keys exhausted")
 
 
-def build_model_prompt(model_dna, user_request, pose_ref=None):
+def expand_scene(user_request, api_keys):
+    """Use Gemini to expand a brief scene description into rich UGC scene details.
+    Returns enriched scene string, or original request if expansion fails."""
+    instruction = (
+        "You are a UGC (user-generated content) photography director. "
+        "The user gave a BRIEF scene description for a photo. "
+        "Expand it into a RICH, SPECIFIC, REALISTIC scene description for an image generation prompt. "
+        "Include: specific lighting (direction, color temperature, source), "
+        "clothing/outfit details, props in hands or nearby, body position/posture, "
+        "facial expression and mood, environmental details (furniture, textures, objects), "
+        "time of day cues, and any lifestyle context that makes it feel like a REAL candid moment.\n\n"
+        "Rules:\n"
+        "- Keep it under 80 words\n"
+        "- Write as a scene description, NOT instructions\n"
+        "- Make it feel like a REAL person's real life moment\n"
+        "- Include small imperfect details (messy sheets, half-empty coffee, phone charging)\n"
+        "- NO fantasy, NO studio setups — only things that happen in real life\n"
+        "- Output ONLY the expanded scene, nothing else\n\n"
+        f"Scene to expand: {user_request}"
+    )
+    try:
+        from google import genai
+        shuffled = list(api_keys)
+        random.shuffle(shuffled)
+        for key in shuffled:
+            try:
+                client = genai.Client(api_key=key)
+                r = client.models.generate_content(
+                    model=PROMPT_MODEL,
+                    contents=[{"role": "user", "parts": [{"text": instruction}]}],
+                )
+                expanded = r.text.strip()
+                if expanded and len(expanded) > 20:
+                    return expanded
+            except Exception as e:
+                if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
+                    continue
+                raise
+    except Exception as e:
+        logger.error(f"Scene expansion failed: {e}")
+    return user_request  # Fallback to original
+
+
+def build_model_prompt(model_dna, user_request, pose_ref=None, api_keys=None):
     """Build UGC-grade hyper-realistic image prompt using stored model DNA + user's request.
-    If pose_ref is provided, it describes a reference pose to mimic."""
+    If pose_ref is provided, it describes a reference pose to mimic.
+    If api_keys is provided, uses Gemini to expand the scene description."""
+
+    # Expand scene using AI if keys available
+    scene = user_request
+    if api_keys:
+        scene = expand_scene(user_request, api_keys)
 
     camera = random.choice(CAMERA_SPECS)
 
@@ -1427,44 +1476,36 @@ def build_model_prompt(model_dna, user_request, pose_ref=None):
         )
 
     return (
-        f"Generate a REAL candid phone camera photo. NOT a studio portrait. NOT an AI render.\n\n"
+        f"Generate a REAL candid photo. NOT a studio portrait. NOT an AI render.\n\n"
         f"SUBJECT IDENTITY (immutable — do NOT alter ANY feature):\n"
         f"{model_dna}\n\n"
-        f"SCENE: {user_request}\n\n"
-        f"CAMERA: {camera}. Handheld, slight motion, imperfect framing — NOT centered. "
-        f"Phone camera barrel distortion on edges. 9:16 vertical.{pose_block}\n\n"
+        f"SCENE: {scene}\n\n"
+        f"CAMERA: {camera}. Handheld, imperfect framing — NOT centered. "
+        f"9:16 vertical.{pose_block}\n\n"
         f"CRITICAL REALISM — what makes a REAL photo look real vs AI:\n"
-        f"SKIN (most important): Visible open pores on nose, inner cheeks, forehead. "
+        f"SKIN: Visible open pores on nose, inner cheeks, forehead. "
         f"Skin texture changes between zones — oilier T-zone vs matte cheeks. "
         f"Under-eye area: thin skin showing purple/blue capillaries, slight puffiness, "
         f"fine lines. Redness around nostrils, between brows. "
-        f"Uneven skin tone — sun spots, slight discoloration on temples, neck color differs from face. "
-        f"NO smooth gradients. NO airbrushed look. Skin should look like SKIN, not matte paint.\n\n"
-        f"FACE: Naturally asymmetric — one eye slightly more open, ears at slightly different heights, "
-        f"one eyebrow higher. Natural expression with visible teeth imperfections if smiling "
-        f"(slight crowding, color variation, not porcelain white). Lips have texture lines, "
-        f"not smooth curves.\n\n"
-        f"HAIR: NOT every strand placed. Real hair has: flyaways catching light, frizz halo, "
-        f"flat sections mixed with volume, strands crossing the face, roots showing differently "
-        f"than ends. Hair catches and reflects light unevenly.\n\n"
-        f"BODY & CLOTHING: Natural posture with weight shifting, not mannequin-rigid. "
-        f"Clothes have real fabric behavior — pulling at buttons, bunching at elbows, "
-        f"collar slightly uneven. Visible seams, tags, wear marks.\n\n"
+        f"Uneven skin tone — neck color differs from face. "
+        f"NO smooth gradients. Skin looks like SKIN, not matte paint.\n\n"
+        f"FACE: Naturally asymmetric — one eye slightly more open, one eyebrow higher. "
+        f"Teeth imperfections if visible (slight crowding, not porcelain white). "
+        f"Lips have texture lines, not smooth curves.\n\n"
+        f"HAIR: Flyaways catching light, frizz halo, flat sections mixed with volume, "
+        f"roots showing differently than ends.\n\n"
+        f"BODY & CLOTHING: Natural posture with weight shifting. "
+        f"Clothes have real fabric behavior — wrinkles, bunching, uneven collar.\n\n"
         f"ENVIRONMENT: Real depth of field with circular bokeh. Background objects partially "
-        f"visible and identifiable, not abstract blur. Natural ambient lighting with soft "
-        f"shadows under chin, nose, brows. Color cast from environment.\n\n"
-        f"AI TELLS TO AVOID (these break the illusion):\n"
-        f"- Perfectly smooth skin anywhere → ADD texture everywhere\n"
-        f"- Both eyes exactly the same → MAKE slightly different\n"
-        f"- Uniform hair color → ADD variation root to tip\n"
-        f"- Perfect symmetry → BREAK IT subtly\n"
-        f"- Studio-perfect lighting → USE environmental light with shadows\n"
-        f"- Centered composition → OFFSET the subject slightly\n"
-        f"- Porcelain teeth → ADD natural yellowish tint and imperfection\n"
+        f"visible, not abstract blur. Natural ambient light with soft shadows.\n\n"
+        f"AI TELLS TO AVOID:\n"
+        f"- Smooth skin → ADD pore texture everywhere\n"
+        f"- Symmetric face → BREAK symmetry subtly\n"
+        f"- Perfect teeth → ADD natural imperfection\n"
+        f"- Centered composition → OFFSET subject\n"
         f"- Smooth under-eyes → ADD dark circles, fine texture\n"
-        f"- Every blemish from DNA MUST appear in the described position\n\n"
-        f"This must be indistinguishable from a real phone camera photo. "
-        f"No watermark, no text, no beauty filter, RAW unprocessed."
+        f"- Every blemish from DNA MUST appear in described position\n\n"
+        f"Indistinguishable from a real photo. No watermark, no text, no beauty filter, RAW."
     )
 
 
@@ -1618,7 +1659,7 @@ def cmd_model(token, cid, args, api_keys):
         ))
         tg_typing(token, cid)
 
-        prompt = build_model_prompt(model_data["dna"], user_request)
+        prompt = build_model_prompt(model_data["dna"], user_request, api_keys=api_keys)
         tg_send(token, cid, (
             f"\U0001f3b4 <b>PinGPT \u2014 Model Prompt</b>\n"
             f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
@@ -2698,7 +2739,7 @@ def handle_callback_query(token, cid, callback_query, api_keys):
             user_request = f"{scene_name} scene"
             # Check for cached pose reference
             pose_ref = _get_cached_pose(cid)
-            prompt = build_model_prompt(model_data["dna"], user_request, pose_ref=pose_ref)
+            prompt = build_model_prompt(model_data["dna"], user_request, pose_ref=pose_ref, api_keys=api_keys)
             tg_send(token, cid, (
                 f"\U0001f3b4 <b>PinGPT \u2014 {model_data['name']} \u00d7 {scene_name}</b>\n"
                 f"\U0001f512 <i>DNA locked \u2014 #{model_hash} \u2192 paste into Gemini!</i>"
@@ -3344,7 +3385,7 @@ def webhook():
                         f"<i>{user_request[:100]}</i>{pose_label}"
                     ))
                     tg_typing(token, cid)
-                    prompt = build_model_prompt(model_data["dna"], user_request, pose_ref=pose_ref)
+                    prompt = build_model_prompt(model_data["dna"], user_request, pose_ref=pose_ref, api_keys=api_keys)
                     tg_send(token, cid, (
                         f"\U0001f3b4 <b>PinGPT \u2014 Model Prompt</b>\n"
                         f"\U0001f512 <i>DNA locked \u2014 #{model_data['hash']} \u2192 paste into Gemini!</i>"
@@ -3384,7 +3425,7 @@ def webhook():
                 ))
                 tg_typing(token, cid)
                 pose_ref = _get_cached_pose(cid)
-                prompt = build_model_prompt(model_data["dna"], user_request, pose_ref=pose_ref)
+                prompt = build_model_prompt(model_data["dna"], user_request, pose_ref=pose_ref, api_keys=api_keys)
                 tg_send(token, cid, (
                     f"\U0001f3b4 <b>PinGPT \u2014 {model_name}</b>\n"
                     f"\U0001f512 <i>DNA locked \u2014 #{model_hash} \u2192 paste into Gemini!</i>"

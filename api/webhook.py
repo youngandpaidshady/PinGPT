@@ -1412,6 +1412,51 @@ def extract_dna_from_photo(api_keys, image_data, name):
     raise last_error or Exception("All API keys exhausted")
 
 
+def _get_cached_pose(cid):
+    """Retrieve pose reference data from a recently uploaded photo in PHOTO_CACHE.
+    Returns a formatted string describing the pose, outfit, and setting, or None if no valid cache."""
+    cache_key = f"{cid}"
+    cached = PHOTO_CACHE.get(cache_key)
+    if not cached:
+        return None
+
+    # Check TTL
+    if (time.time() - cached.get("timestamp", 0)) > PHOTO_CACHE_TTL:
+        return None
+
+    analysis = cached.get("analysis")
+    if not analysis:
+        return None
+
+    # Build pose reference from analysis fields
+    parts = []
+    if isinstance(analysis, dict):
+        pose = analysis.get("pose")
+        outfit = analysis.get("outfit")
+        setting = analysis.get("setting")
+        build = analysis.get("build")
+        if pose:
+            parts.append(f"Body position: {pose}")
+        if outfit:
+            parts.append(f"Outfit: {outfit}")
+        if setting:
+            parts.append(f"Setting: {setting}")
+        if build:
+            parts.append(f"Build: {build}")
+    elif isinstance(analysis, str):
+        # Raw analysis text — extract relevant lines
+        for line in analysis.split("\n"):
+            line_stripped = line.strip()
+            for prefix in ["POSE:", "OUTFIT:", "SETTING:", "BUILD:"]:
+                if line_stripped.upper().startswith(prefix):
+                    parts.append(line_stripped)
+
+    if not parts:
+        return None
+
+    return "\n".join(parts)
+
+
 def expand_scene(user_request, api_keys):
     """Use Gemini to expand a brief scene description into rich UGC scene details.
     Returns enriched scene string, or original request if expansion fails."""

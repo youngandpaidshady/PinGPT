@@ -1412,15 +1412,24 @@ def extract_dna_from_photo(api_keys, image_data, name):
     raise last_error or Exception("All API keys exhausted")
 
 
-def build_model_prompt(model_dna, user_request):
-    """Build UGC-grade hyper-realistic image prompt using stored model DNA + user's request."""
+def build_model_prompt(model_dna, user_request, pose_ref=None):
+    """Build UGC-grade hyper-realistic image prompt using stored model DNA + user's request.
+    If pose_ref is provided, it describes a reference pose to mimic."""
 
     camera = random.choice(CAMERA_SPECS)
 
+    pose_block = ""
+    if pose_ref:
+        pose_block = (
+            f"\n\nPOSE REFERENCE (mimic this EXACTLY):\n"
+            f"{pose_ref}\n"
+            f"Replicate body position, hand placement, camera angle, and framing precisely."
+        )
+
     return (
         f"{model_dna}\n\n"
-        f"SCENE: {user_request}. Candid, not posed. Natural body language.\n\n"
-        f"PHOTO SPECS: {camera}. 9:16 portrait. RAW unprocessed look.\n\n"
+        f"SCENE: {user_request}. Candid, natural body language.\n\n"
+        f"PHOTO SPECS: {camera}. 9:16 portrait. RAW unprocessed look.{pose_block}\n\n"
         f"MANDATORY REALISM (non-negotiable):\n"
         f"- Real skin: visible pores on nose/cheeks, tonal variation, "
         f"natural oil on T-zone, under-eye texture and darkness.\n"
@@ -1784,6 +1793,44 @@ def cleanup_photo_cache():
     expired = [k for k, v in PHOTO_CACHE.items() if now - v.get("timestamp", 0) > PHOTO_CACHE_TTL]
     for k in expired:
         del PHOTO_CACHE[k]
+
+
+def _get_cached_pose(cid):
+    """Extract pose reference from recently uploaded photo analysis.
+    Returns a detailed pose description string, or None if no recent photo."""
+    cache_key = f"{cid}"
+    cached = PHOTO_CACHE.get(cache_key)
+    if not cached:
+        return None
+    # Check TTL
+    if time.time() - cached.get("timestamp", 0) > PHOTO_CACHE_TTL:
+        return None
+    analysis = cached.get("analysis", {})
+    if not analysis:
+        return None
+    # Build comprehensive pose reference from all relevant fields
+    parts = []
+    pose = analysis.get("pose", "")
+    if pose:
+        parts.append(f"Body position: {pose}")
+    build = analysis.get("build", "")
+    if build:
+        parts.append(f"Build: {build}")
+    outfit = analysis.get("outfit", "")
+    if outfit:
+        parts.append(f"Outfit: {outfit}")
+    setting = analysis.get("setting", "")
+    if setting:
+        parts.append(f"Setting/background: {setting}")
+    lighting = analysis.get("lighting", "")
+    if lighting:
+        parts.append(f"Lighting: {lighting}")
+    mood = analysis.get("mood", "")
+    if mood:
+        parts.append(f"Expression/mood: {mood}")
+    if not parts:
+        return None
+    return "\n".join(parts)
 
 
 def tg_send(token, chat_id, text, parse_mode="HTML"):
@@ -2605,7 +2652,9 @@ def handle_callback_query(token, cid, callback_query, api_keys):
             # No product needed — generate directly
             tg_typing(token, cid)
             user_request = f"{scene_name} scene"
-            prompt = build_model_prompt(model_data["dna"], user_request)
+            # Check for cached pose reference
+            pose_ref = _get_cached_pose(cid)
+            prompt = build_model_prompt(model_data["dna"], user_request, pose_ref=pose_ref)
             tg_send(token, cid, (
                 f"\U0001f3b4 <b>PinGPT \u2014 {model_data['name']} \u00d7 {scene_name}</b>\n"
                 f"\U0001f512 <i>DNA locked \u2014 #{model_hash} \u2192 paste into Gemini!</i>"
@@ -3288,12 +3337,15 @@ def webhook():
             if len(hash_parts) > 1:
                 # Has a request: #hash smiling in gym → generate directly
                 user_request = hash_parts[1]
+                # Check for cached pose reference from recent photo upload
+                pose_ref = _get_cached_pose(cid)
+                pose_label = "\n📐 <i>Pose reference detected from your photo!</i>" if pose_ref else ""
                 tg_send(token, cid, (
                     f"\U0001f9ec <b>Using {model_data['name']} (#{model_data['hash']})</b>\n"
-                    f"<i>{user_request[:100]}</i>"
+                    f"<i>{user_request[:100]}</i>{pose_label}"
                 ))
                 tg_typing(token, cid)
-                prompt = build_model_prompt(model_data["dna"], user_request)
+                prompt = build_model_prompt(model_data["dna"], user_request, pose_ref=pose_ref)
                 tg_send(token, cid, (
                     f"\U0001f3b4 <b>PinGPT \u2014 Model Prompt</b>\n"
                     f"\U0001f512 <i>DNA locked \u2014 #{model_data['hash']} \u2192 paste into Gemini!</i>"
@@ -3329,7 +3381,8 @@ def webhook():
                     f"<i>{user_request[:100]}</i>"
                 ))
                 tg_typing(token, cid)
-                prompt = build_model_prompt(model_data["dna"], user_request)
+                pose_ref = _get_cached_pose(cid)
+                prompt = build_model_prompt(model_data["dna"], user_request, pose_ref=pose_ref)
                 tg_send(token, cid, (
                     f"\U0001f3b4 <b>PinGPT \u2014 {model_name}</b>\n"
                     f"\U0001f512 <i>DNA locked \u2014 #{model_hash} \u2192 paste into Gemini!</i>"

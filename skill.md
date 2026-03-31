@@ -187,6 +187,21 @@ The anime rendering style uses **clean outlines** with **flat color fills**. Sha
 | Late-Night Convenience Store | Bright buzzing interior of a konbini at 2 AM. Shelved snacks, magazine rack, floor-to-ceiling glass windows showing dark street outside. |
 | Elevator Interior | Cramped metal elevator, mirrored back wall, single overhead light, floor indicator glowing. |
 | Fire Escape Landing | Rusty metal fire escape, brick wall behind, view of alley below, hanging laundry on nearby lines. |
+| Cherry Blossom Path | A sunlit path lined with cherry blossom trees in full bloom. Pink petals carpeting the ground. Warm golden afternoon light filtering through branches. |
+| Rooftop Garden | A lush rooftop garden at golden hour with fairy lights strung between planters. Warm amber glow. City skyline soft in the distance. |
+| Vintage Bookstore | Narrow aisles between floor-to-ceiling dark wood bookshelves. Warm lamp light. Dust motes floating in sunbeams through tall windows. |
+| Laundromat at Night | Row of front-loading machines casting blue-white fluorescent light. One machine running, clothes tumbling. Neon "OPEN" sign reflected in the window. |
+| Aquarium Tunnel | Walking through an overhead glass tunnel in a darkened aquarium. Blue-green water light rippling across skin. Sharks and rays gliding overhead. |
+| Summer Festival | Warm lantern-lit Japanese summer festival. Paper lanterns in orange and red. Yakisoba steam. Distant firework glow in sky. |
+| Record Store | Cramped indie record store. Warm overhead bulbs. Vinyl crate in hands. Band posters on walls. Analog warmth. |
+| Rainy Cafe Window | Seated at a rain-streaked cafe window. Warm interior light. Steam rising from a cup. Outside world blurred and grey. |
+| Basketball Court Dawn | Outdoor street basketball court at sunrise. Long shadows across asphalt. Net swaying. Orange sky bleeding into blue. |
+| Subway Car Empty | Sitting alone in a late-night subway car. Warm orange interior light. Black tunnel rushing past windows. Reflection in glass. |
+| Greenhouse | Humid glass greenhouse full of tropical plants. Warm condensation on glass panes. Green and gold everywhere. Lush overgrowth. |
+| Motorcycle Garage | Dim garage with a motorcycle mid-repair. Oil stains on concrete. Single work lamp. Industrial warmth. Tools scattered. |
+| Snowy Shrine Steps | Stone steps leading up to a snow-covered Shinto shrine. Red torii gate. Warm lantern glow against blue winter atmosphere. |
+| Art Studio | Paint-splattered studio with canvases leaning against walls. Natural north-light through skylights. Creative mess of brushes and palettes. |
+| Pier at Sunrise | Standing at the end of a wooden pier. Orange-pink sunrise reflecting on calm water. Seagulls distant. Infinite horizon. |
 
 ### 2.2 Outfit Variants
 
@@ -201,7 +216,7 @@ The anime rendering style uses **clean outlines** with **flat color fills**. Sha
 | Combat Ready | tactical dark vest, utility belt, fingerless gloves, combat boots |
 | Rain Gear | long dark coat with collar turned up, wet fabric clinging |
 | Athletic Jersey | sports jersey with visible number, shorts, knee tape |
-| Post-Fight | torn clothing, ripped shirt showing bandaged torso, dried blood on knuckles |
+| Post-Training | sweat-soaked clothing, exhausted posture, hand wraps taped tightly, intense focus |
 | Layered Winter | fur-lined dark parka over hoodie, hands in pockets |
 | Traditional Japanese | dark hakama and gi loosely tied, exposing collarbone, bare feet |
 
@@ -226,7 +241,7 @@ The anime rendering style uses **clean outlines** with **flat color fills**. Sha
 | Stretching | Arms overhead, back arched, muscles defined, quiet moment. |
 | Cigarette Lean | Leaning against wall or railing, cigarette between fingers, thin trail of smoke curling upward, eyes half-closed, face lit by the faint ember glow. |
 | Rooftop Smoke | Standing on rooftop edge, cigarette in mouth, smoke drifting into the wind, one hand in pocket, gazing at the distant city lights below. |
-| Post-Fight Smoke | Sitting on the ground after a fight, cigarette dangling from lips, bruised knuckles resting on knee, smoke mixing with visible breath in cold air. |
+| Exhausted Rest | Sitting on the ground after intense training, looking up at the sky, resting forearms on knees, smoke mixing with visible breath in cold air. |
 | Phone Scroll | Slumped against a wall, face lit by phone screen glow, thumb hovering, expression distant and numb. |
 | Hair Tie Pull | Reaching back to tie hair up with one hand, exposing the line of the neck and jaw, eyes focused forward. |
 | Earbud Adjust | One hand adjusting a single earbud, chin tilted, eyes half-closed, lost in music. |
@@ -241,6 +256,14 @@ The anime rendering style uses **clean outlines** with **flat color fills**. Sha
 | Gym Mirror Selfie Angle | Standing in front of a gym mirror, phone raised at chest height, expression stoic, pump visible in arms and shoulders. |
 | Midnight Balcony Lean | Forearms resting on apartment balcony railing, city lights blurred below, head slightly bowed, exhausted contemplation. |
 | Jaw Clench Walking | Walking with purpose through a crowd or empty street, jaw visibly clenched, fists at sides, tension radiating from posture. |
+| Cooking Focus | Chopping vegetables at a kitchen counter, sleeves rolled up, steam rising from a pot behind, focused and domestic. |
+| Skateboard Carry | Worn skateboard tucked under one arm, other hand adjusting earbuds, walking with easy purpose through golden-hour streets. |
+| Guitar Playing | Seated on stone steps, acoustic guitar on lap, head down, fingers on strings, lost in the melody, warm light. |
+| Basketball Dribble | Low dribble on outdoor court, one hand controlling the ball, eyes up, predatory focus, about to drive to the basket. |
+| Reading in Light | Sitting in a window seat, book open in lap, afternoon light warming the pages, peaceful and absorbed. |
+| Coffee Pour | Standing at a kitchen counter, pouring from a kettle into a pour-over dripper, watching the stream with quiet morning precision. |
+| Sketching | Hunched over a sketchbook at a cafe table, pencil in hand, eraser shavings scattered, intense creative focus, brow furrowed. |
+| Dawn Running | Mid-stride on a sunrise jog along a waterfront, earbuds in, breath visible, city waking up in warm light behind. |
 
 ### 2.4 Camera & Framing
 
@@ -277,7 +300,7 @@ The anime rendering style uses **clean outlines** with **flat color fills**. Sha
 
 | Mode | Description |
 |---|---|
-| Desaturated Cool (DEFAULT) | extremely muted, desaturated colors dominated by cool steel blues, dark grays, and near-blacks. Zero bright colors. |
+| Desaturated Cool | extremely muted, desaturated colors dominated by cool steel blues, dark grays, and near-blacks. Zero bright colors. |
 | Cold Blue | cold blue-tinted color grading, icy highlights, steel blue shadows, everything washed in frigid blue |
 | Warm Sepia | warm sepia tones, golden-brown shadows, amber highlights, nostalgic faded photograph |
 | Monochrome B&W | fully black and white, high contrast, deep pure blacks and bright whites, no color |
@@ -286,6 +309,11 @@ The anime rendering style uses **clean outlines** with **flat color fills**. Sha
 | Blood Red Accent | desaturated dark palette with one element in vivid crimson red as stark focal point |
 | Faded Polaroid | washed-out, slightly overexposed, colors bleed at edges, feels like a found photo from the 90s |
 | Neon Bleed | mostly dark, but vivid neon pinks, cyans, and purples bleed in from off-screen sources, painting skin in colored light |
+| Golden Amber | warm golden-amber tones, honey highlights, deep mahogany shadows, everything bathed in late-afternoon warmth, skin glows |
+| Sunset Gradient | rich gradient from deep orange through magenta to indigo-purple, painted-sky warmth washing across the entire composition |
+| Sakura Pink | soft pink and cream tones, gentle warmth, blush highlights, white negative space, delicate and airy |
+| Forest Green & Gold | deep emerald greens with golden-amber highlights, natural warmth, dappled sunlight tones, organic richness |
+| Rust & Copper | warm rust-orange and deep copper tones, industrial warmth, aged patina quality, earthy and grounded |
 
 ### 3.2a Lighting Setups (RANDOMIZE — don't always use single-source)
 
@@ -413,22 +441,27 @@ The anime rendering style uses **clean outlines** with **flat color fills**. Sha
 
 ---
 
-### 3.4 Expressions (randomize — don't default to stoic)
+### 3.4 Expressions (randomize — BALANCE warm and cool)
 
-> **IMPORTANT**: Pattern 3 (face obscured) still applies to *most* prompts, but **how** the face is obscured should vary. And ~30% of prompts should show a **visible expression** for variety.
+> **IMPORTANT**: Pattern 3 (face obscured) still applies to *most* prompts, but **how** the face is obscured should vary. And ~40% of prompts should show a **visible expression** for variety. **AT LEAST HALF of visible expressions must be warm/positive** — confident, playful, peaceful, amused. The old default was 8/10 brooding. Fix that.
 
-| Expression | Description |
-|---|---|
-| Stoic Default | No visible emotion, flat affect, unreadable — the classic |
-| Slight Smirk | One corner of the mouth barely lifted, confident or amused |
-| Jaw Clenched, Teeth Visible | Lower teeth showing, grinding, fury barely contained |
-| Eyes Wide and Unfocused | Thousand-yard stare, dissociated, reliving something |
-| Single Tear Track | One dried tear trail on cheek, otherwise composed |
-| Biting Lower Lip | Tension, hesitation, or suppressed pain |
-| Hollow Laugh | Mouth open in a silent laugh, eyes empty — nothing is funny |
-| Nostrils Flared | Controlled breathing, barely holding back |
-| Eyes Closed, At Peace | Eyelids down, face relaxed, a rare moment of rest |
-| Brow Furrowed, Calculating | One eyebrow slightly raised, studying something intensely |
+| Expression | Mood | Description |
+|---|---|---|
+| Stoic Default | Neutral | No visible emotion, flat affect, unreadable — the classic |
+| Slight Smirk | Confident | One corner of the mouth barely lifted, confident or amused, like he knows something you don't |
+| Jaw Clenched, Teeth Visible | Intense | Lower teeth showing, grinding, fury barely contained |
+| Eyes Wide and Unfocused | Dark | Thousand-yard stare, dissociated, reliving something |
+| Biting Lower Lip | Tense | Tension, hesitation, or intense emotional focus |
+| Eyes Closed, At Peace | Warm | Eyelids down, face relaxed, a rare moment of genuine rest |
+| Brow Furrowed, Calculating | Neutral | One eyebrow slightly raised, studying something intensely |
+| Genuine Soft Smile | Warm | A real smile, not forced — corners of eyes crinkling, looking at something that matters |
+| Confident Grin | Warm | Wide, cocky smile, head slightly tilted, radiating self-assurance — main character energy |
+| Peaceful Contentment | Warm | Soft expression, half-lidded eyes, small smile — the look of someone exactly where they want to be |
+| Focused Concentration | Neutral | Brow slightly drawn, lips parted, eyes locked on task — studying, cooking, creating, NOT angry |
+| Laughing Mid-Conversation | Warm | Head thrown back slightly, mouth open in a genuine laugh, caught mid-moment with someone |
+| Playful Side-Eye | Warm | Looking sideways with a teasing smirk, mischievous energy, about to say something clever |
+| Surprised Delight | Warm | Eyebrows up, mouth slightly open, eyes bright — just saw something unexpected and good |
+| Tired But Satisfied | Warm | Heavy-lidded eyes, small exhausted smile — just finished something hard and it went well |
 
 ### 3.5 Micro-Details (force 1-2 per prompt)
 
@@ -436,7 +469,7 @@ The anime rendering style uses **clean outlines** with **flat color fills**. Sha
 
 | Category | Details |
 |---|---|
-| Body | visible breath in cold air, single sweat droplet on temple, bandaged knuckle, fading bruise under eye, split lip half-healed, goosebumps on forearm, vein pulsing at temple |
+| Body | visible breath in cold air, single sweat droplet on temple, wrapped knuckle, smudge of dirt on cheek, exhausted posture, goosebumps on forearm, vein pulsing at temple |
 | Accessories | single small earring, thin chain necklace tucked under shirt, military dog tags, analog wristwatch face catching light, plain silver ring on thumb, black hair tie on wrist, medical ID bracelet |
 | Environmental Touch | fingers trailing along a wet wall, steam curling from a paper coffee cup nearby, catching a single raindrop on outstretched palm, breath fogging a glass window, crushed aluminum can underfoot |
 | Clothing Imperfection | one sleeve pushed up higher than the other, collar slightly askew, shirt untucked on one side, one shoelace untied dragging, tag sticking out at the back of the neck, jacket zipper half-down |
@@ -501,38 +534,194 @@ The anime rendering style uses **clean outlines** with **flat color fills**. Sha
 5. **Front-load the character** — subject description comes first
 6. **Be specific** — rich descriptions produce better results
 7. **Character name + description** — always lead with the character name followed by a physical description (e.g., "Eren Yeager, a lean muscular man with long dark hair..."). The name helps NanoBanana 2 understand who you mean; the description ensures accuracy.
-8. **Outfit Integration** — Choose the outfit that **fits the scene**, not just one fixed look. The roster provides an **Outfit Range** per character with scene-appropriate options (gym, combat, casual, rain, etc.). Pick the outfit that matches the current environment. Character recognition comes from **physical features** (hair, eyes, build, scars), NOT from clothes. A character can wear anything and still be recognizable if you nail their face, hair, and body. If the user requests a specific outfit, use it. If not, pick from the character's Outfit Range based on the scene.
+8. **Outfit Integration — DEFAULT TO SIGNATURE** — **6-8 out of every 10 prompts** should use the character's **iconic/themed outfit** (e.g., Gojo's black blindfold + dark navy jujutsu uniform, Toji's shirtless combat look, Levi's Survey Corps cape). This is what fans recognize instantly when scrolling. The remaining 2-4 out of 10, use the **Outfit Range** to put them in scene-appropriate casual/alternate looks (gym, cafe, rain, etc.) for variety. Character recognition comes from **physical features** (hair, eyes, build, scars) AND their **signature look**. If the user requests a specific outfit, always use it.
 9. **Anti-watermark strategy** — always include clean image language AND add a follow-up instruction after receiving the image: "Remove any watermarks, logos, or stamps from the corners of this image while keeping everything else identical." (see Troubleshooting Guide)
 10. **Style anchoring** — anchor visual style early in the prompt
+11. **Strict Safety Compliance** — NEVER generate words like "blood," "bruise," "pain," "explosion," "chaos," "injury," "hollow," "emptiness," "weapon," or any violence/self-harm imagery. These immediately trigger NanoBanana 2's safety filters. Use safe alternatives (e.g., "smudge of dirt" instead of "bruise", "intense focus" instead of "pain", "storm clouds" instead of "explosion").
 
-### Master Prompt Template (Trained — with Variable Blocks)
+### Master Prompt Templates (3 Structures — ROTATE between them)
 
-> **IMPORTANT**: This template provides structure, but **vary the sentence order, vocabulary, and phrasing every time**. Never output two prompts that read the same way structurally. The blocks below are ingredients, not a rigid script.
+> **CRITICAL FIX**: Keep the technical instruction (e.g., "Generate an image in 9:16 portrait orientation") as a **standalone first line**. This ensures the technical parameter is set without polluting the creative "vibe" of the opening prose.
+
+#### Structure A: ACTION-FIRST (lead with motion/energy)
 
 ```
-Generate an image in 9:16 portrait orientation of [CHARACTER NAME], [CHARACTER PHYSICAL DESCRIPTION — use ROTATED vocabulary from 3.8], [OUTFIT — from roster Outfit Range, matched to scene]. 
+Generate an image in 9:16 portrait orientation.
 
-[ACTION/POSE DESCRIPTION]. [NARRATIVE CONTEXT from 3.7 if applicable — the implied story]. [MICRO-DETAILS from 3.5 — 1-2 specific human touches]. [PROP from 3.6 if applicable].
+[ACTION/POSE in progress — vivid, mid-motion], [CHARACTER NAME], [2-3 key physical features]. [OUTFIT detail woven into action]. [NARRATIVE CONTEXT — what just happened or is about to]. [1-2 MICRO-DETAILS]. [ENVIRONMENT and LIGHTING described as one fused atmospheric sentence]. [WEATHER/PARTICLES integrated].
 
-The setting is [ENVIRONMENT]. [TIME OF DAY LIGHTING]. [WEATHER/PARTICLES if applicable].
+[Duo Rule: If two characters, use the "Spatial Identity Lock": describe two distinct figures, one on the far left and one on the far right, separated by a visual barrier].
 
-[COMPOSITION from 2.5]. [CAMERA ANGLE from 2.4]. 
-
-[FACE/EXPRESSION — pick from 3.4, or describe face obscured in a UNIQUE way each time].
-
-[ART STYLE — pick from 3.2b, default cel-shading but rotate 30% of the time]. [LIGHTING — pick from 3.2a, NOT always single-source + rim].
-
-The overall color palette is [COLOR GRADE from 3.1]. [COLOR ACCENT if applicable].
-
-[TYPOGRAPHY from Phase 5 if applicable].
-
-The image should be completely clean — no watermarks, no logos, no stamps, no signatures, no icons, no sparkle marks, no brand marks anywhere in the image, especially not in the corners. Grainy film texture. Pinterest-aesthetic anime wallpaper composition.
+[ART STYLE anchored]. [COLOR GRADE described as a FEELING]. Grainy film texture. Pinterest-aesthetic anime wallpaper. No watermarks, logos, stamps, or signatures anywhere.
 ```
+
+**Example opening**:
+*Generate an image in 9:16 portrait orientation.*
+*Mid-air and drenched in the aggressive magenta glare of a neon sign, Satoru Gojo twists away with a blur of white hair...*
+
+#### Structure B: ENVIRONMENT-FIRST (lead with atmosphere/world)
+
+```
+Vertical 9:16 Portrait:
+
+[ENVIRONMENT described with visceral sensory detail]. [TIME OF DAY and LIGHTING fused into the environment]. [WEATHER as part of the world]. [CHARACTER NAME] [described through interaction with the space]. [PHYSICAL FEATURES woven into lighting]. [OUTFIT matched to environment]. [POSE/ACTION]. [NARRATIVE CONTEXT]. [MICRO-DETAILS].
+
+[Duo Rule: Use Spatial Identity Lock to keep characters at opposite ends of the frame to prevent identity merging].
+
+[COMPOSITION embedded]. [ART STYLE]. [COLOR described atmospherically]. Grainy film texture. Pinterest-aesthetic anime wallpaper. No watermarks, logos, stamps, or signatures anywhere.
+```
+
+**Example opening**:
+*Vertical 9:16 Portrait:*
+*Sunlight bleeds through the dust-heavy air of an abandoned rural train station, wrapping Toji Fushiguro in a stifling, nostalgic golden-hour warmth...*
+
+#### Structure C: DETAIL-FIRST (lead with a tiny, hyper-specific moment)
+
+```
+9:16 Cinematic Still:
+
+[ONE HYPER-SPECIFIC MICRO-DETAIL — a droplet, a texture, a small action]. [Pull back to reveal CHARACTER NAME and PHYSICAL FEATURES]. [The detail connects to the ENVIRONMENT and MOOD]. [POSE and ACTION emerge from the detail]. [OUTFIT]. [NARRATIVE CONTEXT]. [ATMOSPHERE — lighting, color, weather — as one cohesive sensory experience].
+
+[COMPOSITION]. [ART STYLE]. Grainy film texture. Pinterest-aesthetic anime wallpaper. No watermarks, logos, stamps, or signatures anywhere.
+```
+
+**Example opening**:
+*9:16 Cinematic Still:*
+*A single bead of condensation tracks down the iced coffee in Levi Ackerman's hand, catching the sickly green hum of a flickering fluorescent light...*
+
+### 4.1 Aesthetic Texture Vocabulary (USE THESE — they're the missing glue)
+
+> **WHY**: The old template bolted adjectives onto nouns ("dark gym," "rainy street"). Viral Pinterest content uses **atmospheric texture words** that describe an all-encompassing FEELING, not isolated elements. Weave these into every prompt.
+
+| Category | Texture Words (rotate aggressively) |
+|---|---|
+| Immersion Verbs | bathed in · enveloped by · radiating · bleeding through · anchored by · framed by · saturated with · humming with · emerging from |
+| Sensory Anchors | the weight of humid air · the hum of distant bass · the sting of cold wind · the pressure of silence · the warmth of fading sunlight on skin |
+| Trending Aesthetics | Dark Gym / Hardstyle · Techwear Urban · Dark Academia · Stoic Minimalism · Neo-Noir Gutter · Old Money · lofi warmth · Ghibli-core · liminal space · Celestial Ethereal · high-fashion editorial |
+| Emotional Textures | the kind of silence that follows a confession · tension thick enough to taste · comfort that feels borrowed · peace that won't last · restless energy with nowhere to go |
+
+### 4.2 Scene Narrative Intelligence (THE BRAIN — this is what makes PinGPT smart)
+
+> **THE CORE PROBLEM**: Picking "Serene + Cherry Blossom + Golden Amber" from tables produces generic wallpaper. The reference images that go VIRAL on Pinterest are not aesthetic combos — they are **micro-stories**. A character roasting a marshmallow at a campfire. A character perched on a desk in an empty classroom at 2 AM. The scene tells you WHERE they are, WHAT they're doing, and WHY it feels like a stolen moment. The dictionaries above are INGREDIENTS. This section teaches you to COOK.
+
+#### The Moment Test
+
+Before writing any prompt, answer this question: **"What is the character doing RIGHT NOW, and what happened 5 seconds ago?"**
+
+- ❌ BAD: "Gojo standing in a forest at night" (static, no moment)
+- ✅ GOOD: "Gojo roasting a marshmallow over a campfire in a dark forest, sitting in a folding camp chair, the warm amber firelight painting one side of his face while the other dissolves into forest shadow — he just burned the last one and this is his second try" (SCENE with micro-story)
+
+- ❌ BAD: "Gojo in a classroom with dramatic lighting" (aesthetic combo, not a scene)
+- ✅ GOOD: "Gojo perched on a student desk in an empty classroom after hours, one leg up, the only light a warm desk lamp on the teacher's table and cold blue moonlight cutting through window blinds — he stayed behind after everyone left" (SCENE with implied narrative)
+
+#### Scene Construction Formula
+
+**You are an LLM. You are SMARTER than a dictionary lookup.** Don't just pick from tables — CONSTRUCT unique scenes by combining these 4 layers:
+
+1. **THE PHYSICAL ANCHOR** — A hyper-specific object or interaction that grounds the scene (a marshmallow on a stick, condensation on a coffee cup, chalk dust on fingers, a guitar pick between teeth, shoelaces being tied)
+2. **THE SPATIAL LOGIC** — Where EXACTLY in the space is the character? Not "in a classroom" but "perched sideways on the second desk from the window, back against the wall" — spatial precision creates cinematic framing
+3. **THE LIGHT STORY** — Light in viral anime images is NEVER just "warm" or "cold." It's DUAL: campfire amber on the face + forest darkness behind. Desk lamp warmth + moonlight blue through blinds. Neon pink from the left + street lamp yellow from the right. **Two competing light sources = instant cinematic depth.**
+4. **THE UNSPOKEN NARRATIVE** — What happened before this moment? Why is the character HERE? "He stayed after everyone left." "He burned the last marshmallow." "The gym closed 20 minutes ago but he hasn't moved." This layer is never stated in the prompt text — it's IMPLIED through body language, environment wear, and micro-details.
+
+#### 30 Scene Seeds (STARTING POINTS — LLM should generate infinite variations)
+
+> These are seeds, NOT a fixed list. Use them as inspiration to INVENT new scenes. Each seed combines a physical anchor + spatial logic + dual lighting + implied narrative.
+
+| # | Scene Seed | Physical Anchor | Dual Light Source |
+|---|---|---|---|
+| 1 | Campfire in dark forest, roasting marshmallows on a folding camp chair | marshmallow on stick, camp stove, backpack on ground | warm amber firelight vs. deep forest darkness |
+| 2 | Empty classroom after hours, perched on a student desk | desk lamp, chalk dust, forgotten notebook | warm desk lamp vs. cold blue moonlight through blinds |
+| 3 | Convenience store at 3 AM, reading a manga by the magazine rack | plastic bag of snacks, fluorescent buzz | white fluorescent interior vs. dark empty parking lot outside |
+| 4 | Rooftop at sunrise, headphones around neck, just finished a run | water bottle, towel on shoulder, sweat on temples | golden-pink sunrise from east vs. cool blue shadow from the west |
+| 5 | Laundromat alone, watching clothes tumble in the dryer | folded jacket on chair, loose change on counter | blue-white fluorescent tubes vs. warm neon "OPEN" sign reflection |
+| 6 | Train platform at dusk, sitting on a bench with a guitar case | guitar case leaning, train ticket in hand | amber platform lights vs. purple-blue dusk sky |
+| 7 | Gym after closing, sitting on a bench, wrapping tape around hands | boxing tape, water bottle half-empty, towel | single overhead cage light vs. streetlight through high window |
+| 8 | Bookstore floor, cross-legged between shelves, deep in a book | open book in lap, stack beside, coffee cooling | warm reading lamp overhead vs. grey rain light through window |
+| 9 | Motorcycle parked on a coastal cliff road at golden hour | helmet on handlebar, jacket draped on seat | warm golden hour sun vs. cool ocean haze |
+| 10 | Cooking in a small apartment kitchen, chopping vegetables | knife mid-chop, steam from pot, apron loosely tied | warm stove-top light vs. blue evening through kitchen window |
+| 11 | Basketball court at dawn, sitting on the ball, catching breath | ball under him, sweatband, scuffed court lines | orange sunrise flooding court vs. long blue shadows |
+| 12 | Record store, flipping through vinyl crates, headphones half-on | vinyl record held up, band tee visible | warm overhead bulb vs. cool daylight through front door |
+| 13 | Rain-soaked phone booth, making a call, city blurred behind | phone receiver to ear, wet hair plastered, foggy glass | warm phone booth interior bulb vs. cold rain and neon outside |
+| 14 | Art studio at midnight, staring at a half-finished canvas | paint on fingers, turpentine jar, scattered brushes | warm clip-on desk lamp vs. cold blue monitor glow |
+| 15 | Festival food stall, waiting for takoyaki, lanterns overhead | paper tray in hand, chopsticks, light steam | warm red-orange paper lanterns vs. cool night sky |
+| 16 | Apartment balcony during a thunderstorm, coffee in hand | mug of coffee, wet railing, sliding door ajar | warm interior light spilling out vs. blue-white lightning flash |
+| 17 | Skatepark at blue hour, sitting on a ramp edge, board across lap | skateboard, worn shoes, scraped knuckles | purple-blue twilight sky vs. amber street lamp from behind |
+| 18 | Library closing time, still at a desk, surrounded by books | stack of books, pen between fingers, notes scattered | warm reading lamp vs. dim overhead institutional light |
+| 19 | Fish market at dawn, walking through stalls, breath visible | hands in jacket pockets, wet concrete, ice trays | warm sunrise vs. cool fluorescent stall lights |
+| 20 | Parked car at night on a hill overlooking city lights | steering wheel, rearview mirror, phone on dash | dashboard glow vs. distant warm city lights through windshield |
+| 21 | Greenhouse, watering plants, sleeves rolled up | watering can, soil on hands, condensation on glass | diffused warm sunlight through glass vs. deep green shadow |
+| 22 | Arcade, face lit by screen glow, mid-game | joystick grip, TOKEN on machine, reflected HUD | neon game screen glow vs. dim arcade ambient light |
+| 23 | Pier fishing at sunset, line cast, sitting on a cooler | fishing rod, cooler box, bait container | warm sunset directly ahead vs. long shadow behind |
+| 24 | Cafe kitchen (working as barista), pulling an espresso shot | portafilter, steam, apron strings | warm espresso machine lights vs. morning sun through cafe window |
+| 25 | Abandoned train car, sitting in an open doorway, legs dangling | overgrown tracks, rusty metal, wildflowers | warm golden hour flooding in vs. deep shadow inside the car |
+| 26 | Tattoo parlor, getting inked, jaw set, eyes forward | tattoo gun buzz (implied), black gloves, ink tray | bright tattoo lamp vs. dim neon parlor ambient |
+| 27 | Snowfall in a city park at night, catching a snowflake on palm | scarf, visible breath, snowflakes on shoulders | warm amber street lamp vs. cool blue snow ambient |
+| 28 | Ramen shop counter, slurping noodles, steam everywhere | chopsticks, broth steam, condensation on glasses | warm yellow ramen shop interior vs. cold rainy night outside |
+| 29 | Hotel room at 5 AM, sitting on bed edge, just woke up | sheets tangled, phone charging, curtain half-open | blue pre-dawn light through curtain vs. warm phone screen glow |
+| 30 | Construction site at lunch break, sitting on steel beam high up | hard hat beside, bento box, city panorama below | bright overhead noon sun vs. deep structural shadows |
+
+#### Duo Scene Seeds (USE FOR PAIR COMPOSITIONS — at least 1 in every 10 prompts)
+
+> **WHY**: Solo seeds dominate above. Duos drive "shipping," storytelling saves, and "who would win" comment engagement. Each seed specifies **two characters with spatial separation** to prevent NB2 face-merging.
+
+| # | Duo Scene Seed | Spatial Separation | Dual Light Source |
+|---|---|---|---|
+| D1 | Sharing headphones on a train, each with one earbud, looking opposite directions | Left seat vs right seat, phone between them on lap | warm train interior vs. dark tunnel rushing past windows |
+| D2 | Sparring in a gym, one throwing a punch, the other blocking | Left side offensive stance vs right side defensive guard | warm overhead ring light vs. cool blue gym corner shadow |
+| D3 | Studying side by side in a library, one asleep on books, the other still reading | Left character head-down on arms vs right character upright with book | warm reading lamp vs. dim institutional fluorescent |
+| D4 | Walking through a summer festival, one pointing at a stall, the other eating yakisoba | Left character walking ahead, half-turned vs right character slightly behind, eating | warm orange-red paper lanterns vs. cool night sky |
+| D5 | Rooftop at sunset, one standing at the railing, other sitting on the ground leaning against it | Left character standing tall vs right character seated low | warm golden sunset face-on vs. long cool blue shadows behind |
+| D6 | Cooking together in a small kitchen, one chopping, the other stirring a pot | Left at cutting board vs right at stove, steam between them | warm stove light vs. blue evening through kitchen window |
+| D7 | Basketball court, one holding the ball, the other guarding with hands up | Left with ball at hip vs right in defensive stance, arms wide | orange dawn light flooding court vs. long blue shadow |
+| D8 | Back-to-back in a rainy alley, both looking in opposite directions | Left facing left vs right facing right, backs touching | warm neon sign glow from left vs. cool blue rain from right |
+| D9 | Arcade, sitting side by side at a racing game, both leaning into turns | Left player leaning left vs right player leaning right | neon game screen RGB glow vs. dim arcade ambient |
+| D10 | Sitting on opposite ends of a park bench in autumn, leaves falling between them | Far left end of bench vs far right end, pile of leaves in middle gap | warm golden hour sun filtering through trees vs. cool shadow under canopy |
+
+#### Scene Generation Rules (for the LLM)
+
+1. **NEVER generate a prompt without a physical anchor.** If the character has nothing in their hands and isn't interacting with anything, the scene is dead. Add an object.
+2. **ALWAYS use dual lighting.** Single light source = flat Pinterest death. Two competing temperatures (warm vs cool) = instant cinematic depth. Every scene needs a warm source AND a cool source.
+3. **INVENT new scenes constantly.** The 30 seeds above are STARTING POINTS. You are an LLM with creative reasoning — combine environments, activities, times of day, and weather in ways NOT listed here. "Gojo fixing a motorcycle in a greenhouse during a thunderstorm" is valid if the spatial logic makes sense.
+4. **The 5-Second Rule still applies.** If you can't answer "what happened 5 seconds before this frame?" then the scene has no narrative weight. Add implied backstory through environmental details (gym bag already packed = leaving, coffee half-drunk = been here a while, hoodie damp = just came in from rain).
+5. **Props create the moment.** Tables give you categories. YOU give the scene a marshmallow, a manga volume, a half-wrapped boxing tape, a phone with a cracked screen. The more specific and human the prop, the more the viewer connects.
+6. **Duo scenes need spatial separation.** When prompting two characters, ALWAYS specify them on opposite sides of the frame ("far left" vs "far right") with a visual separator between them (a table, a gap, a railing, steam, falling leaves). This prevents NB2 from merging their features.
+
+### 4.3 Photo-to-Prompt Reverse Engineering Mode
+
+> **WHEN TO USE**: User provides a reference image they found in the wild (Pinterest, Twitter, etc.) and wants PinGPT to generate similar content. Instead of guessing, DECONSTRUCT the image systematically.
+
+**Step 1: Deconstruct the reference into the 4 layers:**
+
+| Layer | Question to Answer |
+|---|---|
+| Physical Anchor | What specific object/interaction grounds the scene? (marshmallow, coffee cup, guitar, basketball...) |
+| Spatial Logic | Where EXACTLY is the character in the space? (sitting on a camp chair, perched on a desk edge, leaning on a railing...) |
+| Dual Light Story | What two light sources compete? (campfire amber vs forest darkness, desk lamp warm vs moonlight blue...) |
+| Unspoken Narrative | What happened 5 seconds before this frame? (he burned the last one, he stayed after everyone left...) |
+
+**Step 2: Extract the visual DNA:**
+- Color temperature (warm/cool/mixed)
+- Dominant palette (amber, teal, neon, muted...)
+- Composition type (lower-third, center, rule-of-thirds...)
+- Art style (cel-shaded, painterly, semi-realistic...)
+- Level of detail (minimalist bg vs rich environmental detail)
+
+**Step 3: Generate 5 variations** that keep the VIBE but change the specifics:
+- Same light story, different environment
+- Same physical anchor category, different character
+- Same spatial logic, different time of day
+- Same mood, completely different setting
+- Same everything but swap the season
+
+**Example**: User shows campfire Gojo → Deconstruct: physical anchor = marshmallow+campfire, spatial = folding chair low angle, dual light = firelight vs forest dark, narrative = quiet night alone. → Variations: (1) Same vibe but fishing pier at sunset, (2) Same campfire but with Toji instead, (3) Same forest but dawn instead of night, (4) Same cozy isolation but ramen shop counter, (5) Same scene but winter with snow on shoulders.
 
 ---
 
 ## Phase 5: Typography Overlay (≈30% of prompts)
 
+> **BALANCE**: Typography must match the scene's mood. Don't slap 孤独 (solitude) on a campfire marshmallow scene. Use warm typography for warm scenes, dark for dark. **At least 40% of typography prompts should use warm/positive entries.**
+
+#### Dark / Intense Typography
 | Japanese | English | Best With |
 |---|---|---|
 | 強度 | intensity | gym / training |
@@ -542,29 +731,62 @@ The image should be completely clean — no watermarks, no logos, no stamps, no 
 | 沈黙 | silence | rain / contemplation |
 | 不屈 | unyielding | fighting / striking |
 | 影 | shadow | dark / silhouette |
-| 運命 | fate | wide establishing |
 | 戦士 | warrior | combat / dynamic |
-| 忍耐 | endurance | heavy lifting |
-| 暗闇 | darkness | liminal / eerie |
-| 自由 | freedom | rooftop / cliff |
-| 痛み | pain | bandaged / injured |
-| 決意 | determination | walking away |
 | 本能 | instinct | action / striking |
 
+#### Warm / Positive Typography
+| Japanese | English | Best With |
+|---|---|---|
+| 平和 | peace | serene / golden hour / nature |
+| 夢 | dream | ethereal / celestial / sleeping |
+| 約束 | promise | duo scenes / sunset / farewell |
+| 笑顔 | smile | playful / cafe / festival |
+| 旅 | journey | travel / train / walking |
+| 絆 | bond | duo compositions / friendship |
+| 自由 | freedom | rooftop / cliff / wide landscape |
+| 静寂 | tranquility | serene / quiet / nature |
+| 運命 | fate / destiny | wide establishing / dramatic |
+| 決意 | determination | walking away / sunrise |
+| 忍耐 | endurance | heavy lifting / perseverance |
+| 暖 | warmth | campfire / cafe / cooking |
+| 希望 | hope | dawn / sunrise / new beginning |
+| 居場所 | belonging | home / cozy interior / friends |
+
 **Typography phrasing for NanoBanana 2**: 
-> The image includes large, bold, semi-transparent ghosted text reading "強度" stacked vertically with "intensity." written in smaller font below it, positioned in the upper-center of the composition, partially blending into the dark background.
+> The image includes large, bold, semi-transparent ghosted text reading "[KANJI]" stacked vertically with "[english]." written in smaller font below it, positioned in the upper-center of the composition, partially blending into the background.
+
+### 5.1 Seasonal Awareness (auto-apply based on current month)
+
+> **WHY**: Pinterest is HEAVILY seasonal. Content that matches the current season gets 2-3x more engagement. Auto-bias scene selection and typography toward the current season.
+
+| Season | Months | Bias Toward | Typography Boost | Scene Seeds to Favor |
+|---|---|---|---|---|
+| Spring | Mar-May | Cherry blossoms, rain, renewal, fresh starts | 希望 (hope), 旅 (journey), 夢 (dream) | Cherry Blossom Path, Rooftop Garden, Pier at Sunrise |
+| Summer | Jun-Aug | Festivals, heat, water, vibrant energy | 自由 (freedom), 笑顔 (smile), 絆 (bond) | Summer Festival, Basketball Court Dawn, Aquarium Tunnel |
+| Autumn | Sep-Nov | Falling leaves, golden hour, nostalgia, warmth | 運命 (fate), 約束 (promise), 静寂 (tranquility) | Train Platform at Dusk, Bookstore, Cafe Window |
+| Winter | Dec-Feb | Snow, cold, warmth contrast, isolation + cozy | 孤独 (solitude), 暖 (warmth), 決意 (determination) | Snowy Shrine, Campfire, Ramen Shop, Hotel Room 5AM |
+
+**Rule**: ~40% of prompts should incorporate a seasonal element appropriate to the CURRENT MONTH. This doesn't mean every image is season-themed — it means seasonal props, weather, and settings get a natural boost.
 
 ---
 
 ## Phase 6: Output Format
 
-### Single Prompt Output
+### Batch / Single Prompt Output (Default)
+
+> **CRITICAL RULE**: If the user asks for multiple prompts (e.g., `/pingpt gojo 5`), you MUST generate exactly that many distinct, independent prompts. Do not stop at just one. Output them consecutively using the format below for EACH prompt.
 
 **🎴 PinGPT — Ready to paste into Gemini Chat:**
 
 > [Complete natural language prompt]
 
 📋 **Character**: [Name] | **Mood**: [mood] | **Color**: [grade] | **Time**: [time] | **Weather**: [weather] | **Typography**: [Yes/No]
+
+📌 **PIN CAPTION:**
+📝 **TITLE**: [scroll-stopping title, max 100 chars — character name + aesthetic + emotional hook]
+💬 **DESC**: [2-3 sentences in fan voice. Hook → scene → CTA/question. Natural keywords woven in.]
+🏷️ **TAGS**: #tag1 #tag2 ... (15-20 tags — 5 broad + 5 character + 5 niche + 3-5 trending)
+📎 **ALT**: [1 sentence describing the image for screen readers — specific, not generic]
 
 📌 **Pinterest Tags:**
 `#tag1 #tag2 #tag3 ...`
@@ -583,42 +805,7 @@ Generate 10-15 tags per prompt from these categories:
 
 ---
 
-## Phase 7: Series Mode
-
-`/pingpt series:[character] [N]` generates N connected prompts for the **same character**.
-
-### Series Rules
-
-1. **Same character, consistent description** across all prompts
-2. **Vary everything else** — environment, outfit, pose, color, time, weather
-3. **Narrative arc**:
-   - Start: intense action (gym, training, striking)
-   - Middle: contemplative pause (locker room, rest, rain)
-   - End: solitary wide shot (rooftop, walking away, cliff)
-4. **Different color grades** across series
-5. **Typography in exactly 1 prompt** (whichever fits best)
-6. **Number each**: `[1/N]`, `[2/N]`, etc.
-
-### Series Output Format
-
-```
-🎴 PinGPT Series: [Character] — [N] Images
-━━━━━━━━━━━━━━━━━━
-[1/N] — [brief scene title]
-> [Prompt 1]
-📋 Mood: [mood] | Color: [grade] | Time: [time]
-━━━━━━━━━━━━━━━━━━
-[2/N] — [brief scene title]
-> [Prompt 2]
-📋 Mood: [mood] | Color: [grade] | Time: [time]
-━━━━━━━━━━━━━━━━━━
-📌 Series Pinterest Tags:
-#tags...
-```
-
----
-
-## Phase 8: TikTok Slideshow Mode
+## Phase 7: TikTok Slideshow Mode
 
 `/tiktok [character]` generates **10 prompts** for the same character, engineered for TikTok carousel virality.
 
@@ -725,6 +912,23 @@ Generate 10-15 tags per prompt from these categories:
 
 ---
 
+## Phase 9: Photo-to-Prompt Likeness Locks (CRITICAL)
+
+When generating a prompt that transforms a user's uploaded photo into an anime or art style, preserving the **exact facial identity and physical likeness** is the most important task. If the resulting image doesn't look like the real person in the photo, the prompt failed.
+
+### The Likeness Anchor Rules
+When creating a photo transformation prompt based on an analysis, YOU MUST forcefully apply these anti-AI rendering constraints to lock the likeness:
+
+1. **Rule of Immortality**: State clearly early in the prompt: *"The person's facial structure, bone structure, skin tone, skin texture, and every distinguishing mark are IMMUTABLE. Do not alter their identity."*
+2. **Micro-Flaw Preservation**: Expressly demand that human imperfections be kept. Example: *"Keep the subtly asymmetric jawline, the exact shape of the nose bridge, under-eye texture, fine lines, and visible pores on the cheeks."*
+3. **Anti-Beautification**: Explicitly forbid AI beautification algorithms. Example: *"ZERO AI smoothing, ZERO beauty filters, ZERO symmetry correction, ZERO generic 'anime pretty' face adjustments. The face must remain perfectly authentic to the real human in the reference photo."*
+4. **Style vs. Substance**: Clarify that the style changes the *shading technique*, but not the *subject's anatomy*. Example: *"The requested art style applies ONLY to the rendering technique (brushstrokes, shading, line art) and the environment. The actual underlying physical facial features of the person must remain absolutely identical to the reference photo."*
+5. **Pose Locking**: If an original pose is requested, force the AI to mimic it perfectly: *"Mimic the exact body language, limb positioning, head tilt, and camera framing of the reference photo."*
+
+If you do not include these explicit rules in photo-based prompts, NanoBanana 2 will "prettify" the subject, rely on generic training data, and destroy their specific likeness. Be ruthless about identity preservation.
+
+---
+
 ## ⚠️ NanoBanana 2 Troubleshooting Guide
 
 These are known issues and workarounds discovered through real-world testing:
@@ -743,6 +947,46 @@ These are known issues and workarounds discovered through real-world testing:
 
 ---
 
+## 🎰 Diversity Slot Machine (MANDATORY — the Anti-Sameness Engine)
+
+> **WHY THIS EXISTS**: Without hard enforcement, the engine defaults to "sad anime boy in the dark" every time. The training patterns (dark, brooding, desaturated) are magnetic — they pull every prompt into the same visual hole. This system FORCES diversity by treating each prompt as a 6-slot randomization roll.
+
+### How It Works
+
+**Before generating ANY prompt**, mentally roll 6 independent slots. Each slot picks from its category. **The resulting 6-slot combo MUST NOT match any combo used in the last 10 prompts.** If it does — re-roll the conflicting slot(s).
+
+| Slot | Options |
+|---|---|
+| 🎭 MOOD POLE | Brooding · Confident · Serene · Fierce · Playful · Romantic · Mysterious · Nostalgic · Defiant · Triumphant |
+| 🎨 PALETTE TEMP | Cold-desaturated · Warm-golden · Neon-vivid · Monochrome · Sunset-gradient · Sakura-pink · Forest-green · Rust-copper · Teal-orange · Lavender-silver |
+| 🏠 SETTING VIBE | Urban-night · Nature-outdoor · Indoor-cozy · Gym/training · Fantasy/ethereal · Mundane-daily-life · Grand-architecture · Festival/social · Water/ocean · Liminal-space |
+| 🏃 ACTIVITY | Static-pose · In-motion · Using-object · Cooking/domestic · Sport/athletic · Creative-art · Social-interaction · Quiet-daily-ritual |
+| ☀️ TIME/LIGHT | Midnight · Golden-hour · Blue-hour · Overcast · Neon-midnight · Fluorescent · Pre-storm · Dappled-sunlight · Dawn · High-noon |
+| 📐 COMPOSITION | Lower-third-hero · Rule-of-thirds · Dead-center · Foreground-frame · Extreme-wide · Diagonal-lead · Over-shoulder · High-angle · Low-angle |
+
+### Hard Caps (Non-Negotiable)
+
+- **Max 3 out of 10 prompts** may use Brooding mood
+- **Max 3 out of 10 prompts** may use Cold-desaturated palette
+- **Max 2 out of 10 prompts** may use the same environment
+- **At least 3 out of 10 prompts** MUST use a warm palette (Golden, Sunset, Sakura, Forest, Rust)
+- **At least 2 out of 10 prompts** MUST feature an activity-based pose (Cooking, Sport, Creative, etc.)
+- **At least 1 out of 10 prompts** SHOULD feature a duo/pair composition (two characters interacting)
+
+### 🔥 High-Viral Mood+Setting Combos (Use These Aggressively)
+
+> These combos are specifically designed to break the "monochrome depression wall" pattern. Rotate through them.
+
+| Combo Name | Mood | Setting | Palette | Why It Works |
+|---|---|---|---|---|
+| Celestial Dreamscape | Mysterious/Ethereal | Floating starry ruins, galaxy clouds | Lavender/Silver | "Save-bait" for wallpaper and aesthetic boards — moves from depressed-mysterious to god-tier-mysterious |
+| Nostalgic Golden Hour | Serene/Nostalgic | Rural train station, pier at sunset, rooftop garden | Amber/Sage (Golden Amber) | Ghibli-core and lofi warmth — highest-converting long-term save play on Pinterest |
+| Electric Neon | Fierce/Defiant | Rain-soaked Shibuya alley, arcade entrance | Magenta/Cyan/Acid Green (Neon Bleed) | High-contrast neon is the only way to stop a thumb-scroller in a sea of blue-grey |
+| Sakura High-Noon | Playful/Confident | Cherry blossom path, summer festival | Soft Pink/Sky Blue (Sakura Pink) | Seasonal, basic, and works every single time — high-key lighting is the antidote to dark-dominant feeds |
+| Rival Energy / Duo Narrative | Playful/Fierce | Urban rooftop at sunset, stadium entrance, basketball court at dawn | Sunset Orange/Teal · Sunset Gradient | Two-character duo compositions — add Geto, Megumi, or rivals. Pairs create instant "shipping" and storytelling engagement that solo shots literally cannot compete with on a social algorithm |
+
+---
+
 ## Operational Rules
 
 1. **Never repeat** the same combination across consecutive prompts
@@ -755,15 +999,19 @@ These are known issues and workarounds discovered through real-world testing:
 8. **Weather ~50%** — not every prompt needs particles
 9. **Match thematically** — rain + dark alley + cold blue ✅ / cherry blossoms + parking garage ❌
 10. **Series coherence** — same character description, maximum variety everywhere else
-11. **Trained patterns are the baseline, not the ceiling** — Lower-Third composition, face obscured, single-source light with rim, desaturated cool palette are DEFAULTS. They should appear in ~40% of prompts. The other 60% should deliberately break from these defaults.
+11. **Trained patterns are the baseline, not the ceiling** — Lower-Third composition, face obscured, single-source light with rim, desaturated cool palette are DEFAULTS. They should appear in ~30% of prompts MAX. The other 70% should deliberately break from these defaults into warm, bright, active, or ethereal territory.
 12. **Always include anti-watermark language** in every single prompt
 13. **Improvise freely** — The dictionaries are a starting point, NOT a limit. Invent new poses, settings, props, and micro-details. Think of what the character would actually do — adjusting earbuds, tying hair back, cracking knuckles, scrolling a phone, taping fists, sitting on a fire escape. The more specific and human the detail, the better.
-14. **Forced diversity** — Track your last 5 prompts mentally. Never reuse the same mood, time-of-day, color grade, camera angle, or lighting setup within a 5-prompt window. Aim for maximum spread across ALL dictionaries.
+14. **SLOT MACHINE IS LAW** — Run the Diversity Slot Machine (Section above) before EVERY prompt. Track your last 10 combos. If you catch yourself defaulting to dark+brooding+cold — STOP and re-roll. The slot machine overrides your instincts.
 15. **Micro-details are mandatory** — Every prompt MUST include 1-2 specific micro-details from Section 3.5.
 16. **Props ≈40%** — roughly 4 out of every 10 prompts should feature a prop or handheld object.
-17. **Expression rotation** — Don't always hide the face. ~30% of prompts should show a visible expression from Section 3.4.
-18. **Lighting rotation** — Use Section 3.2a. Don't default to single-source + rim every time. Rotate through underlight, dual cross-light, dappled, neon wash, backlight-only.
-19. **Art style rotation** — Use Section 3.2b. ~60% cel-shading (default), ~40% variants from the 30+ style library. Rotate aggressively across Japanese, African, Korean, Chinese, World Culture, and Cinematic categories. When user selects a specific style via photo-to-prompt, apply that style faithfully.
+17. **Expression rotation** — Don't always hide the face. ~40% of prompts should show a visible expression from Section 3.4. Confident smirks, peaceful closed eyes, and playful grins are UNDERUSED.
+18. **Lighting rotation** — Use Section 3.2a. Don't default to single-source + rim every time. Rotate through underlight, dual cross-light, dappled, neon wash, backlight-only, and WARM SOURCES (golden hour sun, lantern glow, cafe lamp).
+19. **Art style rotation** — Use Section 3.2b. ~50% cel-shading (default), ~50% variants from the 30+ style library. Rotate aggressively across Japanese, African, Korean, Chinese, World Culture, and Cinematic categories. When user selects a specific style via photo-to-prompt, apply that style faithfully.
 20. **Narrative context ≈50%** — Half of all prompts should include a narrative hook from Section 3.7. This is what transforms a static pose into a *moment*.
 21. **Uniqueness fingerprint** — Before outputting a prompt, mentally check: "Would this image be distinguishable from the last 10 I generated?" If the answer is no — if swapping the character name would make it interchangeable — then the prompt is NOT unique enough. Change the lighting, the narrative, the art style, or the composition until it stands alone.
 22. **Sentence structure variety** — Don't start every paragraph the same way. Vary between: leading with action ("He slams..."), leading with environment ("Rain hammers the..."), leading with mood ("There is a stillness to..."), leading with a detail ("A single droplet of sweat..."). The prompt should read like a unique creative brief, not a form being filled out.
+23. **Warm prompt quota** — At least 3 out of every 10 prompts MUST use a warm/bright/golden palette. If you notice a cold-palette streak of 3+, the NEXT prompt MUST be warm.
+24. **Activity quota** — At least 2 out of every 10 prompts MUST show the character DOING something (cooking, playing guitar, skateboarding, running, reading, sketching) — not just standing and brooding.
+25. **Duo compositions** — At least 1 out of every 10 prompts SHOULD feature two characters in the same frame (rivals facing off, friends walking together, training partners). Describe both characters fully.
+

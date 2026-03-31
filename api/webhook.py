@@ -2060,6 +2060,9 @@ def index():
     return "🎴 PinGPT Bot is running!"
 
 
+PROCESSED_UPDATES = {}
+DEDUP_TTL = 300
+
 @app.route("/api/webhook", methods=["POST"])
 def webhook():
     token = os.environ.get("TELEGRAM_BOT_TOKEN", "")

@@ -1495,22 +1495,44 @@ def cmd_batch(token, cid, args_text, api_keys):
         # Parse output
         batch_items = []
         current_item = {}
+        current_key = None
         
-        for line in raw.split("\n"):
-            line = line.strip()
-            if line == "---BOUNDARY---" or not line:
-                continue
-            if "BATCH_" in line and "_PROMPT:" in line:
+        for line_raw in raw.split("\n"):
+            line = line_raw.strip()
+            if line == "---BOUNDARY---":
                 if current_item.get("prompt"):
                     batch_items.append(current_item)
                     current_item = {}
-                current_item["prompt"] = line.split(":", 1)[1].strip()
-            elif "BATCH_" in line and "_TITLE:" in line:
-                current_item["title"] = line.split(":", 1)[1].strip()
-            elif "BATCH_" in line and "_DESC:" in line:
-                current_item["desc"] = line.split(":", 1)[1].strip()
-            elif "BATCH_" in line and "_TAGS:" in line:
-                current_item["tags"] = line.split(":", 1)[1].strip()
+                current_key = None
+                continue
+                
+            if line.startswith("BATCH_") and ":" in line:
+                key_prefix, val = line.split(":", 1)
+                val = val.strip()
+                
+                if "_PROMPT" in key_prefix:
+                    if current_item.get("prompt") and current_key != "prompt":
+                        batch_items.append(current_item)
+                        current_item = {}
+                    current_key = "prompt"
+                    current_item["prompt"] = val
+                elif "_TITLE" in key_prefix:
+                    current_key = "title"
+                    current_item["title"] = val
+                elif "_DESC" in key_prefix:
+                    current_key = "desc"
+                    current_item["desc"] = val
+                elif "_TAGS" in key_prefix:
+                    current_key = "tags"
+                    current_item["tags"] = val
+            elif current_key:
+                # Continuation of the current key (handling multi-line prompts)
+                if not current_item[current_key]:
+                    current_item[current_key] = line_raw.strip()
+                elif line_raw.strip() == "":
+                    current_item[current_key] += "\n\n"
+                else:
+                    current_item[current_key] += " " + line_raw.strip()
                 
         if current_item and current_item.get("prompt"):
             batch_items.append(current_item)

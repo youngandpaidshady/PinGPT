@@ -188,7 +188,6 @@ PHOTO_CACHE_TTL = 300  # 5 minutes
 # ─── Model DNA Registry ──────────────────────────────────────────────────────
 # Stores generated fictional model DNA profiles
 # Key: "{chat_id}_{hash}" → value: {"name": str, "hash": str, "race": str, "gender": str, "dna": str, "created": float}
-import hashlib
 import html as html_module
 
 MODEL_STORAGE_PATH = "/tmp/models.json"
@@ -210,119 +209,6 @@ def _save_models():
         logger.error(f"Failed to save models: {e}")
 
 MODEL_REGISTRY = _load_models()
-
-RACE_PRESETS = {
-    "west_african": ("West African", "🌍", "deep brown skin with warm golden/copper undertone, broad nose with low flat bridge, full lips, coily 4C hair texture, prominent cheekbones"),
-    "east_african": ("East African", "🌍", "medium-dark brown skin with warm red undertone, narrower nose with higher bridge, angular face, coily 4A-4B hair texture, high cheekbones"),
-    "south_african": ("South African", "🌍", "brown skin with warm amber undertone, broad features, full lips, round face shape, coily 4B-4C hair texture"),
-    "south_asian": ("South Asian", "🌏", "warm brown skin with golden undertone, dark expressive eyes, straight to wavy black hair, medium nose bridge, full eyebrows"),
-    "east_asian": ("East Asian", "🌏", "light to medium skin with yellow-neutral undertone, monolid or single-fold eyes, straight black hair, low nose bridge, small mouth"),
-    "southeast_asian": ("Southeast Asian", "🌏", "warm tan to brown skin, wide-set eyes with double fold, straight to wavy dark hair, flat nose bridge, full lips"),
-    "northern_european": ("Northern European", "🌎", "fair skin with cool pink undertone, narrow nose with high bridge, thin lips, straight fine hair, light eyes"),
-    "mediterranean": ("Mediterranean", "🌎", "olive skin with warm golden undertone, dark eyes, dark wavy hair, prominent nose, thick eyebrows, strong jaw"),
-    "eastern_european": ("Eastern European", "🌎", "fair to light skin with neutral undertone, high cheekbones, straight to wavy hair, deep-set eyes, angular features"),
-    "latin_american": ("Latin American", "🌎", "warm tan to medium brown skin, dark eyes, dark straight to wavy hair, medium build nose, full lips, round face"),
-    "middle_eastern": ("Middle Eastern", "🌍", "olive to tan skin with warm undertone, dark almond eyes, thick dark eyebrows, prominent hooked or straight nose, dark wavy hair"),
-    "indigenous": ("Indigenous", "🌍", "tan to deep brown skin, high cheekbones, straight thick black hair, epicanthic eye folds, broad flat nose, round face"),
-    "mixed": ("Mixed Heritage", "🌐", "unique blended features, skin tone varies, distinctive feature combinations that transcend single ethnic classification"),
-}
-
-GENDER_OPTIONS = {
-    "male": "male",
-    "female": "female",
-    "m": "male",
-    "f": "female",
-    "man": "male",
-    "woman": "female",
-}
-
-# ─── UGC Scene Presets ────────────────────────────────────────────────────────
-UGC_SCENES = {
-    "product-hold": (
-        "holding a product naturally in one hand at chest height, "
-        "slightly angled toward camera, casual grip not stiff, "
-        "looking at camera with genuine relaxed smile, other hand relaxed at side"
-    ),
-    "unboxing": (
-        "sitting at a table opening a package, tissue paper visible, "
-        "looking down at the product with genuine excited expression, "
-        "hands actively pulling product from box, natural overhead soft lighting"
-    ),
-    "testimonial": (
-        "upper body framing, facing camera directly, mid-sentence expression, "
-        "one hand gesturing naturally while speaking, slightly leaning forward, "
-        "engaged conversational posture, warm natural lighting from window"
-    ),
-    "lifestyle": (
-        "candid lifestyle moment using the product naturally, "
-        "not looking at camera, captured mid-action, shallow depth of field, "
-        "natural environment, golden hour or soft indoor lighting"
-    ),
-    "selfie": (
-        "phone held in one hand at slight high angle for selfie, "
-        "other hand holding product near face, casual genuine smile, "
-        "slightly off-center framing, front-camera perspective with slight wide-angle"
-    ),
-    "before-after": (
-        "split composition, neutral expression on left side, "
-        "confident satisfied expression on right side, same lighting both sides, "
-        "clean simple background, clinical but warm feel"
-    ),
-    "morning-routine": (
-        "in a bright bathroom or bedroom, natural morning light from window, "
-        "wearing casual loungewear, applying or holding a product as part of routine, "
-        "relaxed sleepy-calm expression, messy hair, authentic morning vibe"
-    ),
-    "gym": (
-        "post-workout, light sweat sheen on skin, gym mirror or dark gym background, "
-        "wearing athletic wear, holding water bottle or supplement, "
-        "breathing slightly heavy, genuine tired-but-satisfied expression"
-    ),
-    "cafe": (
-        "sitting at a cafe table, warm indoor lighting, holding coffee or product, "
-        "laptop or phone on table, candid mid-sip or mid-thought expression, "
-        "blurred cafe background with warm tones, cozy atmosphere"
-    ),
-    "outdoor": (
-        "standing or walking outdoors in natural daylight, "
-        "wind slightly affecting hair, holding or wearing the product, "
-        "looking off-camera at something interesting, candid street-style shot"
-    ),
-    "cooking": (
-        "in a kitchen, hands actively preparing food or holding ingredients, "
-        "wearing casual home clothes, steam or food prep visible, "
-        "looking at what they are doing not camera, natural overhead kitchen lighting"
-    ),
-    "desk": (
-        "sitting at a clean desk, laptop open, product nearby on desk, "
-        "one hand on keyboard or holding product, focused or looking at camera, "
-        "natural window sidelight, modern workspace background"
-    ),
-}
-
-# Camera specs for hyper-realism
-CAMERA_SPECS = [
-    "shot on iPhone 15 Pro, 24mm lens, f/1.78 aperture",
-    "shot on Sony A7III, 35mm f/1.4, natural light",
-    "shot on Canon EOS R5, 50mm f/1.2, shallow depth of field",
-    "iPhone 14 Pro selfie camera, front-facing, slight wide-angle distortion",
-    "shot on Fujifilm X-T5, 23mm f/1.4, film-like color science",
-    "Google Pixel 8 Pro, natural HDR, computational photography",
-]
-
-REALISM_MODIFIERS = [
-    "visible skin pores on nose and cheeks",
-    "natural under-eye darkness and slight puffiness",
-    "subtle fabric texture and wrinkles on clothing",
-    "natural hair flyaways and stray strands",
-    "slight skin oil/shine on T-zone",
-    "genuine asymmetric smile, not perfectly symmetrical",
-    "real skin texture with micro-imperfections visible",
-    "natural catchlights in eyes from environment",
-    "subtle vein visibility on hands and temples",
-    "clothing sits naturally with weight and drape, not painted on",
-]
-
 
 
 # ─── Action / Pose Options (shown after style selection) ────────────────────
@@ -831,27 +717,116 @@ def build_tiktok_instruction(character_name):
     ), dominant_mood
 
 
+def pre_select_series_params(character_locations=None, character_poses=None, count=3):
+    """Pre-randomize unique parameters for each prompt in a series to force variety."""
+    def sample_unique(pool, n):
+        if len(pool) >= n:
+            return random.sample(pool, n)
+        result = list(pool)
+        while len(result) < n:
+            result.append(random.choice(pool))
+        random.shuffle(result)
+        return result
+
+    def blend_pools(character_pool, generic_pool, n):
+        if not character_pool:
+            return sample_unique(generic_pool, n)
+        char_picks = random.sample(character_pool, min(n, len(character_pool)))
+        result = char_picks + random.sample(generic_pool, n)
+        random.shuffle(result)
+        return result[:n]
+
+    lightings = sample_unique(LIGHTING, count)
+    colors = sample_unique(COLORS, count)
+    compositions = sample_unique(COMPOSITIONS, count)
+    cameras = sample_unique(CAMERAS, count)
+    poses = blend_pools(character_poses, POSES, count)
+    expressions = sample_unique(EXPRESSIONS, count)
+    settings = blend_pools(character_locations, SETTINGS, count)
+    times = sample_unique(TIMES, count)
+    micro = sample_unique(MICRO_DETAILS, count)
+    
+    # Enforce narrative arc camera variation
+    if count >= 3:
+        cameras[0] = random.choice(["mid-shot (waist up)", "full body with space"])
+        cameras[-1] = random.choice(["extreme wide isolation", "silhouette full body", "high angle down"])
+    
+    slide_params = []
+    weather_chance = min(count, max(1, count // 2))
+    weather_slots = random.sample(range(count), weather_chance)
+    weather_picks = random.sample(WEATHER, weather_chance)
+
+    for i in range(count):
+        weather = weather_picks[weather_slots.index(i)] if i in weather_slots else None
+        slide_params.append({
+            "lighting": lightings[i],
+            "color": colors[i],
+            "composition": compositions[i],
+            "camera": cameras[i],
+            "pose": poses[i],
+            "expression": expressions[i],
+            "setting": settings[i],
+            "time": times[i],
+            "micro_detail": micro[i],
+            "weather": weather,
+        })
+    return slide_params
+
+
 def build_series_instruction(character_name, count):
     """Build Gemini instruction for Pinterest series (story arc)."""
+    visual, outfit_range, locations, sig_poses = get_character_details(character_name)
+    slide_params = pre_select_series_params(character_locations=locations, character_poses=sig_poses, count=count)
+
+    art_style = random.choice(ART_STYLES)
+
+    if visual:
+        char_block = (
+            f"CHARACTER (use this EXACT description in EVERY prompt):\n"
+            f"- Name: {character_name}\n"
+            f"- Visual: {visual}\n"
+            f"- Outfit range (pick a DIFFERENT outfit per prompt from these): {outfit_range}\n"
+        )
+    else:
+        char_block = (
+            f"CHARACTER: {character_name}\n"
+            f"This character is NOT in the built-in roster. Use your knowledge to build an "
+            f"accurate physical description and use it IDENTICALLY in EVERY prompt.\n"
+        )
+
+    slide_lines = []
+    for i, params in enumerate(slide_params):
+        weather_str = f" | weather={params['weather']}" if params['weather'] else ""
+        slide_lines.append(
+            f"Prompt {i+1}:\n"
+            f"  lighting={params['lighting']} | color={params['color']} | "
+            f"composition={params['composition']} | camera={params['camera']}\n"
+            f"  pose={params['pose']} | expression={params['expression']} | "
+            f"setting={params['setting']} | time={params['time']}\n"
+            f"  micro-detail={params['micro_detail']}{weather_str}"
+        )
+    param_table = "\n".join(slide_lines)
+
     return (
         f"Generate {count} connected story-arc prompts for the character: {character_name}. "
-        "Follow Phase 7 (Series Mode) in the skill file.\n\n"
-        "RULES:\n"
-        "- Same character with IDENTICAL physical description across all prompts\n"
-        "- Vary everything else: environment, outfit, pose, color, time, weather\n"
-        "- Narrative arc: Start with intense action → middle is contemplative pause → end is solitary wide shot\n"
-        "- Different color grades across prompts\n"
-        "- Typography in exactly 1 prompt\n\n"
-        "OUTPUT FORMAT (follow EXACTLY):\n"
-        "For each prompt, output on its own line:\n"
-        f"SERIES_N_TITLE: [brief 2-4 word scene title]\n"
+        f"Follow Phase 7 (Series Mode) in the skill file.\n\n"
+        f"{char_block}\n"
+        f"ART STYLE (same for ALL {count} prompts): {art_style}\n\n"
+        f"PROMPT-BY-PROMPT PARAMETERS (follow EXACTLY — each prompt MUST use these specific values):\n\n"
+        f"{param_table}\n\n"
+        f"RULES:\n"
+        f"- Same character with IDENTICAL physical description across all prompts\n"
+        f"- Vary everything else according to the parameters above\n"
+        f"- Narrative arc: Start with intense action → middle is contemplative pause → end is solitary wide shot\n"
+        f"- Typography in exactly 1 prompt\n"
+        f"- Front-load the character name + physical description in each prompt\n\n"
+        f"OUTPUT FORMAT (follow EXACTLY):\n"
+        f"For each prompt, output on its own line:\n"
+        f"SERIES_N_TITLE: [catchy Pinterest title]\n"
+        f"SERIES_N_DESC: [2-3 sentence SEO description with emojis]\n"
+        f"SERIES_N_TAGS: [10 relevant Pinterest hashtags]\n"
         f"SERIES_N_PROMPT: [complete image generation prompt — raw text, no markdown]\n\n"
-        "After all prompts, output:\n"
-        "PINTEREST_CAPTION: [2-3 sentence SEO description with emojis]\n"
-        "PINTEREST_TAGS: [10 relevant Pinterest hashtags]\n"
-        "TIKTOK_CAPTION: [short catchy TikTok caption with emojis]\n"
-        "TIKTOK_TAGS: [3-5 TikTok hashtags]\n\n"
-        "Output ONLY in the format above. No extra text, no markdown."
+        f"Output ONLY in the format above. No extra text, no markdown."
     )
 
 
@@ -884,29 +859,24 @@ def parse_tiktok_output(raw):
 def parse_series_output(raw, count):
     """Parse the structured series output from Gemini."""
     prompts = []
-    captions = {}
     for line in raw.split("\n"):
         line = line.strip()
         if not line:
             continue
         for i in range(1, count + 1):
+            if len(prompts) < i:
+                prompts.append({"title": "", "desc": "", "tags": "", "prompt": ""})
+                
             if line.startswith(f"SERIES_{i}_TITLE:"):
-                if len(prompts) < i:
-                    prompts.append({"title": line.split(":", 1)[1].strip(), "prompt": ""})
+                prompts[i - 1]["title"] = line.split(":", 1)[1].strip()
+            elif line.startswith(f"SERIES_{i}_DESC:"):
+                prompts[i - 1]["desc"] = line.split(":", 1)[1].strip()
+            elif line.startswith(f"SERIES_{i}_TAGS:"):
+                prompts[i - 1]["tags"] = line.split(":", 1)[1].strip()
             elif line.startswith(f"SERIES_{i}_PROMPT:"):
-                if i - 1 < len(prompts):
-                    prompts[i - 1]["prompt"] = line.split(":", 1)[1].strip()
-                else:
-                    prompts.append({"title": "", "prompt": line.split(":", 1)[1].strip()})
-        if line.startswith("PINTEREST_CAPTION:"):
-            captions["pin_caption"] = line.split(":", 1)[1].strip()
-        elif line.startswith("PINTEREST_TAGS:"):
-            captions["pin_tags"] = line.split(":", 1)[1].strip()
-        elif line.startswith("TIKTOK_CAPTION:"):
-            captions["tik_caption"] = line.split(":", 1)[1].strip()
-        elif line.startswith("TIKTOK_TAGS:"):
-            captions["tik_tags"] = line.split(":", 1)[1].strip()
-    return prompts, captions
+                prompts[i - 1]["prompt"] = line.split(":", 1)[1].strip()
+                
+    return prompts
 
 
 def generate_captions(api_keys, prompt_text):
@@ -1196,15 +1166,17 @@ def build_photo_prompt_instruction(analysis, style_key, action_key=None):
         f"\u2501\u2501\u2501 WHAT CHANGES \u2501\u2501\u2501\n"
         f"  - Art Style: {style_name} \u2014 {style_desc}\n"
         f"  - {pose_instruction}\n\n"
-        f"\u2501\u2501\u2501 PROMPT RULES \u2501\u2501\u2501\n"
+        f"\u2501\u2501\u2501 PROMPT RULES (UGC-GRADE LIKENESS LOCKS) \u2501\u2501\u2501\n"
         f"1. START with: 'Using the uploaded photo as reference \u2014 transform/render this person in {style_name} style'\n"
-        f"2. Include: 'Keep their EXACT face, skin tone, skin texture, hair texture, facial hair, "
-        f"and every mark/blemish exactly as in the photo'\n"
-        f"3. Include: 'Do NOT alter any facial features, skin tone, or proportions'\n"
-        f"4. Only describe what CHANGES: the art style rendering, pose, setting, lighting\n"
-        f"5. Include: 'preserving exact facial structure, skin texture, and proportions'\n"
-        f"6. State '9:16 portrait orientation, no watermark, no text overlay'\n"
-        f"7. The art style changes the RENDERING, not the person's actual features\n\n"
+        f"2. Include: 'Keep their EXACT face, bone structure, skin tone, skin texture, hair texture, "
+        f"facial hair, and every distinguishing mark completely IMMUTABLE.'\n"
+        f"3. Add ANTI-BEAUTIFICATION: 'ZERO AI smoothing, ZERO beauty filters, ZERO symmetry correction. "
+        f"Maintain real human imperfections, visible pores, asymmetric features, and under-eye texturing.'\n"
+        f"4. Add RENDERING constraint: 'The art style ONLY changes the shading/rendering technique and environment. "
+        f"The subject's physical anatomy must remain perfectly identical to the real photo.'\n"
+        f"5. Only describe what CHANGES: the art style rendering, pose, setting, lighting.\n"
+        f"6. State '9:16 portrait orientation, no watermark, no text overlay, raw unprocessed film feel.'\n"
+        f"7. Do NOT describe the person's face from scratch \u2014 force the AI to copy the reference photo's identity.\n\n"
         f"Output ONLY the raw prompt text. No markdown, no metadata."
     )
 
@@ -1214,648 +1186,6 @@ def load_dna_skill():
     if DNA_FILE.exists():
         return DNA_FILE.read_text(encoding="utf-8")
     return None
-
-
-def build_custom_dna_prompt(analysis, user_request):
-    """Build a REFERENCE-IMAGE transformation prompt from user's free-form request.
-    The prompt is designed to work WITH the user's uploaded photo, not replace it."""
-    return (
-        f"Generate a REFERENCE-IMAGE transformation prompt. The user will upload their original photo "
-        f"alongside this prompt in Gemini Chat. The prompt must work WITH the uploaded photo.\n\n"
-        f"CRITICAL: The prompt must say 'the person in this photo' or 'this person' \u2014 NEVER describe "
-        f"facial features from scratch. The photo IS the identity source. "
-        f"Only describe what CHANGES.\n\n"
-        f"\u2501\u2501\u2501 USER'S REQUEST \u2501\u2501\u2501\n"
-        f"{user_request}\n\n"
-        f"\u2501\u2501\u2501 PHOTO CONTEXT (for understanding, NOT for re-describing) \u2501\u2501\u2501\n"
-        f"  - Current outfit: {analysis.get('outfit', 'not specified')}\n"
-        f"  - Current setting: {analysis.get('setting', 'not specified')}\n"
-        f"  - Current mood: {analysis.get('mood', 'neutral')}\n"
-        f"  - Build: {analysis.get('build', 'average')}\n\n"
-        f"\u2501\u2501\u2501 PROMPT FORMAT RULES \u2501\u2501\u2501\n"
-        f"1. START with: 'Using the uploaded photo as reference \u2014' then state the transformation\n"
-        f"2. Say: 'Keep their EXACT face, all skin details (pores, marks, texture, tone), hair texture, "
-        f"facial hair, and every distinguishing mark completely unchanged'\n"
-        f"3. Say: 'Do NOT alter any facial features, skin tone, blemishes, or proportions'\n"
-        f"4. Only describe what CHANGES based on the user's request (outfit, setting, pose, style, lighting)\n"
-        f"5. Include: 'preserving exact facial structure, skin texture, and proportions'\n"
-        f"6. End with: '9:16 portrait, high resolution, no watermark, no text overlay'\n"
-        f"7. NEVER describe the person's face/features from scratch \u2014 always reference the photo\n\n"
-        f"Output ONLY the raw prompt text. No markdown, no metadata, no explanation."
-    )
-
-
-
-
-def generate_model_hash(name, chat_id):
-    """Generate a short unique hash for a model."""
-    raw = f"{chat_id}_{name}_{time.time()}"
-    return hashlib.md5(raw.encode()).hexdigest()[:6]
-
-
-def generate_model_dna(api_keys, description, name):
-    """Use Gemini to generate an atomic-level DNA profile for a fictional model.
-    Accepts free-form description like 'nigerian woman', 'japanese businessman', 'mixed race girl with freckles'."""
-    from google import genai
-
-    instruction = (
-        f"You are a forensic character designer. Create an EXTREMELY detailed, hyper-specific DNA profile "
-        f"for a FICTIONAL character named '{name}'.\n\n"
-        f"USER DESCRIPTION: {description}\n"
-        f"Use this description to determine ethnicity, gender, age range, and base features. "
-        f"If gender is not specified, infer from the name. If ethnicity is vague, make creative choices.\n\n"
-        f"Generate a SINGLE DENSE PARAGRAPH that describes this UNIQUE person in extreme detail. "
-        f"This paragraph will be used as a text-to-image prompt anchor. The same paragraph must produce "
-        f"the SAME recognizable person every time it's used.\n\n"
-        f"INCLUDE ALL OF THESE (do NOT skip any):\n"
-        f"1. FACE: exact shape (oblong, oval, round, square, heart, diamond), width, length, asymmetries\n"
-        f"2. FOREHEAD: height, width, curvature, any creases or veins\n"
-        f"3. EYES: shape per eye, exact color (with flecks/rings), spacing, depth, lids (mono/double), "
-        f"canthal tilt, under-eye features (dark circles, bags, puffiness), lash length per eye\n"
-        f"4. EYEBROWS: shape, thickness gradient (thicker at head?), arch position, gap, hair direction\n"
-        f"5. NOSE: bridge width + height, tip shape + angle, nostril shape + flare, septum visibility, "
-        f"any bump or deviation, pore visibility on nose\n"
-        f"6. LIPS: upper/lower thickness ratio (e.g., 1:1.8), Cupid's bow shape, corner direction, "
-        f"exact pigmentation (darker edges? lighter center?), philtrum depth\n"
-        f"7. JAWLINE: definition level, mandible angle, chin shape + projection, any cleft\n"
-        f"8. CHEEKS: bone prominence, fullness, dimples (one side? both?), hollowness\n"
-        f"9. EARS: size, lobe type (attached/detached), any protrusion\n"
-        f"10. SKIN (CRITICAL — most detail here):\n"
-        f"    - Exact Fitzpatrick shade + undertone with description\n"
-        f"    - Texture zone map: forehead, nose, cheeks, chin (smooth, rough, porous)\n"
-        f"    - Oil/shine zones vs matte zones\n"
-        f"    - SPECIFIC blemishes with POSITIONS: acne marks, PIH spots, dark spots, moles "
-        f"(count + locations like 'small mole 1cm below left eye')\n"
-        f"    - Scars (type + location + size)\n"
-        f"    - Under-eye darkness (color: purple, blue, brown), wrinkle lines\n"
-        f"    - Age indicators: laugh lines, forehead creases, crow's feet\n"
-        f"11. HAIR: exact shade, texture type (1A-4C), curl pattern, length in inches, current style, "
-        f"hairline shape, density, any grey/white\n"
-        f"12. FACIAL HAIR: type, coverage map (patchy where?), density, color match, ingrown hairs\n"
-        f"13. NECK: thickness, length, Adam's apple, skin tone match\n"
-        f"14. BUILD: body type with specifics — shoulder width, arm size, chest/waist ratio\n"
-        f"15. DISTINGUISHING FEATURES: 2-3 things that make this person INSTANTLY recognizable "
-        f"(e.g., 'scar above right eyebrow', 'gap between front teeth', 'beauty mark on left jaw')\n\n"
-        f"RULES (UGC-GRADE HYPER-REALISM):\n"
-        f"- Make them INDISTINGUISHABLE from a real person — not AI-pretty\n"
-        f"- MANDATORY imperfections: slightly asymmetric face, visible pores, under-eye bags, "
-        f"uneven skin texture zones, at least 2 specific blemishes with positions, natural oil/shine\n"
-        f"- Give them a REAL person's face, not a model's — interesting features, not perfect proportions\n"
-        f"- Skin must have tonal variation: slightly darker/lighter zones, capillary redness, undertone shifts\n"
-        f"- Include micro-details: stray eyebrow hairs, lash clumps, lip dryness, pore size variation\n"
-        f"- Hair should have flyaways, natural texture inconsistency, not perfectly styled\n"
-        f"- The description must be UNIQUE to this one fictional person\n"
-        f"- Output a SINGLE PARAGRAPH, no line breaks, no labels, no bullet points\n"
-        f"- Start with age bracket and gender, then flow through all features\n"
-        f"- Include HAND details: finger length proportions, knuckle prominence, nail shape/length, vein visibility\n"
-        f"- Include TEETH details: alignment, gap, color (white/yellow/natural), any crookedness\n"
-        f"- Include LIP TEXTURE: chapped areas, moisture, color gradient from center to edges\n"
-        f"- Include EAR LOBES: attached vs detached, piercing holes even if no earrings\n"
-        f"- End with 3-4 distinguishing features that make them INSTANTLY recognizable\n"
-        f"- Aim for 500-700 words of pure dense description — longer = more unique = more consistent"
-    )
-
-    shuffled = list(api_keys)
-    random.shuffle(shuffled)
-    last_error = None
-    for key in shuffled:
-        try:
-            client = genai.Client(api_key=key)
-            r = client.models.generate_content(
-                model=PROMPT_MODEL,
-                contents=[{"role": "user", "parts": [{"text": instruction}]}],
-            )
-            dna = r.text.strip()
-            # Clean any markdown formatting
-            dna = dna.replace("```", "").replace("> ", "").strip()
-            if dna.startswith('"') and dna.endswith('"'):
-                dna = dna[1:-1]
-            return dna
-        except Exception as e:
-            last_error = e
-            if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
-                continue
-            raise
-    raise last_error or Exception("All API keys exhausted")
-
-
-
-def extract_dna_from_photo(api_keys, image_data, name):
-    """Extract a dense DNA paragraph from a real photo using Gemini Vision.
-    This is used when creating a model from an uploaded photo."""
-    from google import genai
-    import base64
-
-    instruction = (
-        f"You are a forensic portrait DNA analyst. Analyze this photo and create an EXTREMELY detailed, "
-        f"hyper-specific DNA profile paragraph for this person. Name them '{name}'.\n\n"
-        f"Generate a SINGLE DENSE PARAGRAPH (300-400 words) describing this EXACT person in forensic detail. "
-        f"This paragraph will be used as a text-to-image prompt anchor to recreate this person's likeness.\n\n"
-        f"INCLUDE ALL OF THESE (do NOT skip any):\n"
-        f"1. FACE: exact shape, width, length, asymmetries you can see\n"
-        f"2. FOREHEAD: height, width, any creases or lines\n"
-        f"3. EYES: shape PER EYE, exact color, spacing, depth, lid type, under-eye features\n"
-        f"4. EYEBROWS: shape, thickness, density, any gaps\n"
-        f"5. NOSE: bridge width/height, tip shape, nostril shape/flare, pore visibility\n"
-        f"6. LIPS: upper/lower thickness ratio, Cupid's bow, pigmentation, philtrum\n"
-        f"7. JAWLINE: definition, angle, chin shape/projection\n"
-        f"8. CHEEKS: bone prominence, fullness, dimples\n"
-        f"9. SKIN (most detail): exact tone + undertone, texture per zone, oil/shine zones, "
-        f"EVERY visible blemish with exact position (acne marks, dark spots, moles, PIH), "
-        f"scars, under-eye darkness\n"
-        f"10. HAIR: exact shade, texture type (1A-4C), curl pattern, length, style, hairline, density\n"
-        f"11. FACIAL HAIR: type, coverage, density, patchiness\n"
-        f"12. BUILD: body type, shoulders, neck\n"
-        f"13. DISTINGUISHING FEATURES: 2-3 instantly recognizable unique features\n\n"
-        f"RULES (UGC-GRADE HYPER-REALISM):\n"
-        f"- Describe what you ACTUALLY SEE with forensic precision, not assumptions\n"
-        f"- Include EVERY imperfection — asymmetry, marks, texture, bags, patchiness\n"
-        f"- Capture micro-details: pore size by zone, oil/shine, stray hairs, lip texture, lash clumps\n"
-        f"- Skin tonal variation: where it's slightly darker/redder/more golden\n"
-        f"- Output a SINGLE PARAGRAPH, no line breaks, no labels, no bullet points\n"
-        f"- Start with age estimate and gender, then flow through all features\n"
-        f"- Be SPECIFIC: not 'dark skin' but 'deep warm brown skin with golden copper undertone, "
-        f"slight redness around nose, matte finish on forehead with shine on nose bridge'\n"
-        f"- Position EVERY blemish: 'cluster of 3 PIH spots on left cheek near jawline'\n"
-        f"- Include HAND details if visible: finger proportions, knuckle prominence, nail shape, veins\n"
-        f"- Include TEETH details if visible: alignment, gaps, color, crookedness\n"
-        f"- Include LIP TEXTURE: chapped areas, moisture, color gradient center to edges\n"
-        f"- End with 3-4 distinguishing features that make them INSTANTLY recognizable\n"
-        f"- Aim for 500-700 words — longer = more unique = more consistent across images"
-    )
-
-    b64_image = base64.b64encode(image_data).decode("utf-8")
-
-    shuffled = list(api_keys)
-    random.shuffle(shuffled)
-    last_error = None
-    for key in shuffled:
-        try:
-            client = genai.Client(api_key=key)
-            r = client.models.generate_content(
-                model=PROMPT_MODEL,
-                contents=[{"role": "user", "parts": [
-                    {"inline_data": {"mime_type": "image/jpeg", "data": b64_image}},
-                    {"text": instruction}
-                ]}],
-            )
-            dna = r.text.strip()
-            dna = dna.replace("```", "").replace("> ", "").strip()
-            if dna.startswith('"') and dna.endswith('"'):
-                dna = dna[1:-1]
-            return dna
-        except Exception as e:
-            last_error = e
-            if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
-                continue
-            raise
-    raise last_error or Exception("All API keys exhausted")
-
-
-def _get_cached_pose(cid):
-    """Retrieve pose reference data from a recently uploaded photo in PHOTO_CACHE.
-    Returns a formatted string describing the pose, outfit, and setting, or None if no valid cache."""
-    cache_key = f"{cid}"
-    cached = PHOTO_CACHE.get(cache_key)
-    if not cached:
-        return None
-
-    # Check TTL
-    if (time.time() - cached.get("timestamp", 0)) > PHOTO_CACHE_TTL:
-        return None
-
-    analysis = cached.get("analysis")
-    if not analysis:
-        return None
-
-    # Build pose reference from analysis fields
-    parts = []
-    if isinstance(analysis, dict):
-        pose = analysis.get("pose")
-        outfit = analysis.get("outfit")
-        setting = analysis.get("setting")
-        build = analysis.get("build")
-        if pose:
-            parts.append(f"Body position: {pose}")
-        if outfit:
-            parts.append(f"Outfit: {outfit}")
-        if setting:
-            parts.append(f"Setting: {setting}")
-        if build:
-            parts.append(f"Build: {build}")
-    elif isinstance(analysis, str):
-        # Raw analysis text — extract relevant lines
-        for line in analysis.split("\n"):
-            line_stripped = line.strip()
-            for prefix in ["POSE:", "OUTFIT:", "SETTING:", "BUILD:"]:
-                if line_stripped.upper().startswith(prefix):
-                    parts.append(line_stripped)
-
-    if not parts:
-        return None
-
-    return "\n".join(parts)
-
-
-def expand_scene(user_request, api_keys):
-    """Use Gemini to expand a brief scene description into rich UGC scene details.
-    Returns enriched scene string, or original request if expansion fails."""
-    instruction = (
-        "You are a UGC (user-generated content) photography director. "
-        "The user gave a BRIEF scene description for a photo. "
-        "Expand it into a RICH, SPECIFIC, REALISTIC scene description for an image generation prompt. "
-        "Include: specific lighting (direction, color temperature, source), "
-        "clothing/outfit details, props in hands or nearby, body position/posture, "
-        "facial expression and mood, environmental details (furniture, textures, objects), "
-        "time of day cues, and any lifestyle context that makes it feel like a REAL candid moment.\n\n"
-        "Rules:\n"
-        "- Keep it under 80 words\n"
-        "- Write as a scene description, NOT instructions\n"
-        "- Make it feel like a REAL person's real life moment\n"
-        "- Include small imperfect details (messy sheets, half-empty coffee, phone charging)\n"
-        "- NO fantasy, NO studio setups — only things that happen in real life\n"
-        "- Output ONLY the expanded scene, nothing else\n\n"
-        f"Scene to expand: {user_request}"
-    )
-    try:
-        from google import genai
-        shuffled = list(api_keys)
-        random.shuffle(shuffled)
-        for key in shuffled:
-            try:
-                client = genai.Client(api_key=key)
-                r = client.models.generate_content(
-                    model=PROMPT_MODEL,
-                    contents=[{"role": "user", "parts": [{"text": instruction}]}],
-                )
-                expanded = r.text.strip()
-                if expanded and len(expanded) > 20:
-                    return expanded
-            except Exception as e:
-                if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
-                    continue
-                raise
-    except Exception as e:
-        logger.error(f"Scene expansion failed: {e}")
-    return user_request  # Fallback to original
-
-
-def build_model_prompt(model_dna, user_request, pose_ref=None, api_keys=None):
-    """Build UGC-grade hyper-realistic image prompt using stored model DNA + user's request.
-    If pose_ref is provided, it describes a reference pose to mimic.
-    If api_keys is provided, uses Gemini to expand the scene description."""
-
-    # Expand scene using AI if keys available
-    scene = user_request
-    if api_keys:
-        scene = expand_scene(user_request, api_keys)
-
-    camera = random.choice(CAMERA_SPECS)
-
-    pose_block = ""
-    if pose_ref:
-        pose_block = (
-            f"\n\nPOSE REFERENCE (mimic this EXACTLY):\n"
-            f"{pose_ref}\n"
-            f"Replicate body position, hand placement, camera angle, and framing precisely."
-        )
-
-    return (
-        f"Generate a REAL candid photo. NOT a studio portrait. NOT an AI render.\n\n"
-        f"SUBJECT IDENTITY (immutable — do NOT alter ANY feature):\n"
-        f"{model_dna}\n\n"
-        f"SCENE: {scene}\n\n"
-        f"CAMERA: {camera}. Handheld, imperfect framing — NOT centered. "
-        f"9:16 vertical.{pose_block}\n\n"
-        f"CRITICAL REALISM — what makes a REAL photo look real vs AI:\n"
-        f"SKIN: Visible open pores on nose, inner cheeks, forehead. "
-        f"Skin texture changes between zones — oilier T-zone vs matte cheeks. "
-        f"Under-eye area: thin skin showing purple/blue capillaries, slight puffiness, "
-        f"fine lines. Redness around nostrils, between brows. "
-        f"Uneven skin tone — neck color differs from face. "
-        f"NO smooth gradients. Skin looks like SKIN, not matte paint.\n\n"
-        f"FACE: Naturally asymmetric — one eye slightly more open, one eyebrow higher. "
-        f"Teeth imperfections if visible (slight crowding, not porcelain white). "
-        f"Lips have texture lines, not smooth curves.\n\n"
-        f"HAIR: Flyaways catching light, frizz halo, flat sections mixed with volume, "
-        f"roots showing differently than ends.\n\n"
-        f"BODY & CLOTHING: Natural posture with weight shifting. "
-        f"Clothes have real fabric behavior — wrinkles, bunching, uneven collar.\n\n"
-        f"ENVIRONMENT: Real depth of field with circular bokeh. Background objects partially "
-        f"visible, not abstract blur. Natural ambient light with soft shadows.\n\n"
-        f"AI TELLS TO AVOID:\n"
-        f"- Smooth skin → ADD pore texture everywhere\n"
-        f"- Symmetric face → BREAK symmetry subtly\n"
-        f"- Perfect teeth → ADD natural imperfection\n"
-        f"- Centered composition → OFFSET subject\n"
-        f"- Smooth under-eyes → ADD dark circles, fine texture\n"
-        f"- Every blemish from DNA MUST appear in described position\n\n"
-        f"Indistinguishable from a real photo. No watermark, no text, no beauty filter, RAW."
-    )
-
-
-def cmd_model(token, cid, args, api_keys):
-    """Handle /model create|use|list|delete commands."""
-    parts = args.strip().split(None, 2) if args else []
-
-    if not parts:
-        tg_send(token, cid, (
-            "\U0001f9ec <b>PinGPT Model Lab</b>\n"
-            "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
-            "<b>Create a model (natural language):</b>\n"
-            "<code>/model create Aisha nigerian woman</code>\n"
-            "<code>/model create Kenji japanese businessman</code>\n"
-            "<code>/model create Luna mixed race girl with freckles</code>\n\n"
-            "<b>Use a model (just type #hash):</b>\n"
-            "<code>#a7f2 smiling in gym</code>\n"
-            "<code>#a7f2 LinkedIn headshot in blazer</code>\n\n"
-            "<b>UGC scenes (auto-detected):</b>\n"
-            "<code>#a7f2 product-hold with coffee cup</code>\n"
-            "<code>#a7f2 testimonial about skincare</code>\n"
-            "<code>#a7f2 selfie with protein shake</code>\n"
-            "<code>#a7f2 morning-routine with face serum</code>\n"
-            "<code>#a7f2 unboxing new headphones</code>\n"
-            "<code>#a7f2 cafe working on laptop</code>\n\n"
-            "<b>Other:</b>\n"
-            "<code>/model list</code> \u2014 see your models\n"
-            "<code>/model delete #a7f2</code> \u2014 remove a model"
-        ))
-        return
-
-    action = parts[0].lower()
-
-    # ── CREATE ──
-    if action == "create":
-        if len(parts) < 2:
-            tg_send(token, cid, (
-                "\u26a0\ufe0f Usage: <code>/model create Name description</code>\n\n"
-                "<b>From text (fictional):</b>\n"
-                "<code>/model create Aisha nigerian woman</code>\n"
-                "<code>/model create Kenji japanese businessman</code>\n\n"
-                "<b>From photo (copy a face):</b>\n"
-                "1. Send a photo first\n"
-                "2. Then: <code>/model create Tracy</code>\n"
-                "The bot extracts the face DNA from your photo!"
-            ))
-            return
-
-        name = parts[1]
-        description = parts[2] if len(parts) > 2 else None
-        model_hash = generate_model_hash(name, cid)
-
-        # Check if there's a pending photo to extract DNA from
-        cache_key = f"{cid}"
-        has_photo = (cache_key in PHOTO_CACHE and
-                     (time.time() - PHOTO_CACHE[cache_key]["timestamp"]) < PHOTO_CACHE_TTL and
-                     PHOTO_CACHE[cache_key].get("image_data"))
-
-        if has_photo and not description:
-            # ── PHOTO MODE: extract DNA from uploaded photo ──
-            tg_send(token, cid, (
-                f"\U0001f4f8 <b>Extracting face DNA from your photo...</b>\n"
-                f"Model: {name}\n"
-                f"Hash: <code>#{model_hash}</code>"
-            ))
-            tg_typing(token, cid)
-
-            try:
-                dna = extract_dna_from_photo(api_keys, PHOTO_CACHE[cache_key]["image_data"], name)
-            except Exception as e:
-                tg_send(token, cid, f"\u274c DNA extraction failed: {str(e)[:200]}")
-                return
-
-            source = "photo"
-        else:
-            # ── TEXT MODE: generate fictional DNA ──
-            if not description:
-                description = name  # Use name as hint
-            tg_send(token, cid, (
-                f"\U0001f9ec <b>Generating DNA for {name}...</b>\n"
-                f"<i>{description[:100]}</i>\n"
-                f"Hash: <code>#{model_hash}</code>"
-            ))
-            tg_typing(token, cid)
-
-            try:
-                dna = generate_model_dna(api_keys, description, name)
-            except Exception as e:
-                tg_send(token, cid, f"\u274c DNA generation failed: {str(e)[:200]}")
-                return
-
-            source = "generated"
-
-        # Store in registry
-        registry_key = f"{cid}_{model_hash}"
-        MODEL_REGISTRY[registry_key] = {
-            "name": name,
-            "hash": model_hash,
-            "description": description or "from photo",
-            "source": source,
-            "dna": dna,
-            "created": time.time(),
-        }
-        # Also store by name for easy lookup
-        name_key = f"{cid}_{name.lower()}"
-        MODEL_REGISTRY[name_key] = MODEL_REGISTRY[registry_key]
-        _save_models()
-
-        # Send DNA + usage instructions (no captions)
-        source_label = "\U0001f4f8 Extracted from photo" if source == "photo" else "\U0001f9ec Generated"
-        dna_preview = dna[:600] + "..." if len(dna) > 600 else dna
-        tg_send(token, cid, (
-            f"\u2705 <b>Model '{name}' spawned!</b>\n"
-            f"Hash: <code>#{model_hash}</code> \u2014 {source_label}\n"
-            f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
-            f"<b>Now use your model:</b>\n"
-            f"Tap a scene below or type <code>#{model_hash} your request</code>"
-        ))
-        # Send DNA preview as plain text to avoid HTML parsing issues
-        tg_send(token, cid, f"DNA:\n{dna_preview}", parse_mode="")
-        # Show scene picker buttons
-        send_model_scene_picker(token, cid, model_hash, name)
-        return
-
-    # ── USE ──
-    elif action == "use":
-        if len(parts) < 3:
-            tg_send(token, cid, "\u26a0\ufe0f Usage: <code>/model use #hash your request</code>\nExample: <code>/model use #a7f2 smiling at camera in gym</code>")
-            return
-
-        model_ref = parts[1]
-        user_request = parts[2] if len(parts) > 2 else "standing naturally"
-
-        # Lookup by hash or name
-        model_data = None
-        if model_ref.startswith("#"):
-            hash_val = model_ref[1:]
-            registry_key = f"{cid}_{hash_val}"
-            model_data = MODEL_REGISTRY.get(registry_key)
-        else:
-            name_key = f"{cid}_{model_ref.lower()}"
-            model_data = MODEL_REGISTRY.get(name_key)
-
-        if not model_data:
-            tg_send(token, cid, f"\u274c Model '{model_ref}' not found. Use <code>/model list</code> to see your models.")
-            return
-
-        tg_send(token, cid, (
-            f"\U0001f9ec <b>Using {model_data['name']} (#{model_data['hash']})</b>\n"
-            f"<i>{user_request[:100]}</i>"
-        ))
-        tg_typing(token, cid)
-
-        prompt = build_model_prompt(model_data["dna"], user_request, api_keys=api_keys)
-        tg_send(token, cid, (
-            f"\U0001f3b4 <b>PinGPT \u2014 Model Prompt</b>\n"
-            f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
-            f"<code>{prompt}</code>\n\n"
-            f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
-            f"\U0001f512 <i>DNA locked \u2014 #{model_data['hash']} \u2192 paste into Gemini Chat!</i>"
-        ))
-
-        return
-
-    # ── LIST ──
-    elif action == "list":
-        # Find all models for this chat (avoid duplicates from name_key)
-        seen_hashes = set()
-        models = []
-        for key, val in MODEL_REGISTRY.items():
-            if key.startswith(f"{cid}_") and val["hash"] not in seen_hashes:
-                seen_hashes.add(val["hash"])
-                models.append(val)
-
-        if not models:
-            tg_send(token, cid, "\U0001f4ed No models yet. Create one with <code>/model create Name description</code>")
-            return
-
-        lines = []
-        for m in sorted(models, key=lambda x: x["created"], reverse=True):
-            desc = m.get("description", m.get("race", ""))[:40]
-            lines.append(
-                f"  <code>#{m['hash']}</code> \u2014 <b>{m['name']}</b> "
-                f"(<i>{desc}</i>)"
-            )
-
-        tg_send(token, cid, (
-            f"\U0001f9ec <b>Your Models ({len(models)})</b>\n"
-            f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
-            + "\n".join(lines)
-            + "\n\n\U0001f4cb Tap a model or type <code>#hash your request</code>"
-        ))
-        # Add USE buttons for each model
-        if models:
-            use_buttons = []
-            row = []
-            for m in sorted(models, key=lambda x: x["created"], reverse=True)[:6]:
-                row.append({"text": f"\u25b6\ufe0f {m['name']}", "callback_data": f"mscene:{m['hash']}:custom"})
-                if len(row) == 2:
-                    use_buttons.append(row)
-                    row = []
-            if row:
-                use_buttons.append(row)
-            tg_send_with_keyboard(token, cid, "\U0001f447 <b>Quick use:</b>", use_buttons)
-        return
-
-    # ── DELETE ──
-    elif action == "delete":
-        if len(parts) < 2:
-            tg_send(token, cid, "\u26a0\ufe0f Usage: <code>/model delete #hash</code>")
-            return
-
-        model_ref = parts[1]
-        hash_val = model_ref[1:] if model_ref.startswith("#") else model_ref
-
-        # Find and remove
-        registry_key = f"{cid}_{hash_val}"
-        model_data = MODEL_REGISTRY.get(registry_key)
-
-        if not model_data:
-            # Try by name
-            name_key = f"{cid}_{model_ref.lower()}"
-            model_data = MODEL_REGISTRY.get(name_key)
-            if model_data:
-                hash_val = model_data["hash"]
-                registry_key = f"{cid}_{hash_val}"
-
-        if not model_data:
-            tg_send(token, cid, f"\u274c Model '{model_ref}' not found.")
-            return
-
-        # Remove both hash key and name key
-        name = model_data["name"]
-        MODEL_REGISTRY.pop(registry_key, None)
-        MODEL_REGISTRY.pop(f"{cid}_{name.lower()}", None)
-        _save_models()
-        tg_send(token, cid, f"\U0001f5d1\ufe0f Model '<b>{name}</b>' (#{hash_val}) deleted.")
-        return
-
-    else:
-        tg_send(token, cid, "\u274c Unknown action. Use: <code>create</code>, <code>use</code>, <code>list</code>, or <code>delete</code>")
-
-
-def generate_custom_dna_response(token, cid, api_keys, user_request):
-    """Generate a prompt from ANY free-form text request + cached photo DNA."""
-    cache_key = f"{cid}"
-    cached = PHOTO_CACHE.get(cache_key)
-    if not cached:
-        tg_send(token, cid, "\u23f0 Session expired. Please send your photo again.")
-        return
-
-    analysis = cached["analysis"]
-
-    # Load skill + DNA skill for system context
-    skill = load_skill()
-    dna_skill = load_dna_skill()
-    system_context = ""
-    if skill:
-        system_context += skill + "\n\n---\n\n"
-    if dna_skill:
-        system_context += dna_skill + "\n\n---\n\n"
-    if not system_context:
-        tg_send(token, cid, "\u274c skill files not found.")
-        return
-
-    tg_send(token, cid, f"\ud83e\udde0 <b>Processing your request...</b>\n<i>{user_request[:100]}</i>")
-    tg_typing(token, cid)
-
-    instruction = build_custom_dna_prompt(analysis, user_request)
-
-    from google import genai
-    shuffled = list(api_keys)
-    random.shuffle(shuffled)
-    last_error = None
-    for key in shuffled:
-        try:
-            client = genai.Client(api_key=key)
-            r = client.models.generate_content(
-                model=PROMPT_MODEL,
-                contents=[{"role": "user", "parts": [{"text": f"{system_context}{instruction}"}]}],
-            )
-            prompt = r.text.strip().replace("```", "").replace("> ", "").strip()
-            if prompt.startswith('"') and prompt.endswith('"'):
-                prompt = prompt[1:-1]
-
-            tg_send(token, cid, (
-                f"\ud83c\udfb4 <b>PinGPT \u2014 Custom DNA Prompt</b>\n"
-                f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
-                f"<code>{prompt}</code>\n\n"
-                f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
-                f"\ud83d\udd12 <i>DNA locked \u2192 paste into Gemini Chat!</i>"
-            ))
-
-            # Generate captions
-            captions = generate_captions(api_keys, prompt)
-            send_captions(token, cid, captions)
-            return
-        except Exception as e:
-            last_error = e
-            if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
-                continue
-            tg_send(token, cid, f"\u274c API error: {str(e)[:200]}")
-            return
-
-    tg_send(token, cid, f"\u274c All API keys exhausted: {str(last_error)[:150]}")
 
 
 def tg_send_inline_keyboard(token, chat_id, text, buttons, parse_mode="HTML"):
@@ -1904,44 +1234,6 @@ def cleanup_photo_cache():
     expired = [k for k, v in PHOTO_CACHE.items() if now - v.get("timestamp", 0) > PHOTO_CACHE_TTL]
     for k in expired:
         del PHOTO_CACHE[k]
-
-
-def _get_cached_pose(cid):
-    """Extract pose reference from recently uploaded photo analysis.
-    Returns a detailed pose description string, or None if no recent photo."""
-    cache_key = f"{cid}"
-    cached = PHOTO_CACHE.get(cache_key)
-    if not cached:
-        return None
-    # Check TTL
-    if time.time() - cached.get("timestamp", 0) > PHOTO_CACHE_TTL:
-        return None
-    analysis = cached.get("analysis", {})
-    if not analysis:
-        return None
-    # Build comprehensive pose reference from all relevant fields
-    parts = []
-    pose = analysis.get("pose", "")
-    if pose:
-        parts.append(f"Body position: {pose}")
-    build = analysis.get("build", "")
-    if build:
-        parts.append(f"Build: {build}")
-    outfit = analysis.get("outfit", "")
-    if outfit:
-        parts.append(f"Outfit: {outfit}")
-    setting = analysis.get("setting", "")
-    if setting:
-        parts.append(f"Setting/background: {setting}")
-    lighting = analysis.get("lighting", "")
-    if lighting:
-        parts.append(f"Lighting: {lighting}")
-    mood = analysis.get("mood", "")
-    if mood:
-        parts.append(f"Expression/mood: {mood}")
-    if not parts:
-        return None
-    return "\n".join(parts)
 
 
 def tg_send(token, chat_id, text, parse_mode="HTML"):
@@ -2314,34 +1606,35 @@ def cmd_series(token, cid, args_text, api_keys):
         tg_send(token, cid, f"❌ API error: {str(e)[:200]}")
         return
 
-    prompts, captions = parse_series_output(raw, count)
+    prompts = parse_series_output(raw, count)
 
     # Send header
     tg_send(token, cid, f"🎴 <b>PinGPT Series: {character} — {count} Images</b>\n━━━━━━━━━━━━━━━━━━")
 
-    # Send each prompt
+    # Send each prompt & caption sequentially
     for i, item in enumerate(prompts):
         title = item.get("title", "")
+        desc = item.get("desc", "")
+        tags = item.get("tags", "")
         prompt = item.get("prompt", "")
         if not prompt:
             continue
+            
+        # Send prompt message
         tg_send(token, cid, (
-            f"🎴 <b>[{i+1}/{count}]</b> — {title}\n\n"
+            f"🎴 <b>[{i+1}/{count}]</b>\n\n"
             f"<code>{prompt}</code>"
         ))
+        
+        # Send Pinterest metadata in separate message right below
+        cap_lines = []
+        if title: cap_lines.append(f"📌 <b>{title}</b>")
+        if desc: cap_lines.append(f"{desc}")
+        if tags: cap_lines.append(f"<code>{tags}</code>")
+        if cap_lines:
+            tg_send(token, cid, "\n".join(cap_lines))
 
-    # Send captions
-    cap_lines = ["━━━━━━━━━━━━━━━━━━"]
-    if captions.get("pin_caption"):
-        cap_lines.append(f"📌 <b>Pinterest:</b> {captions['pin_caption']}")
-    if captions.get("pin_tags"):
-        cap_lines.append(f"<code>{captions['pin_tags']}</code>")
-    if captions.get("tik_caption"):
-        cap_lines.append(f"\n🎵 <b>TikTok:</b> {captions['tik_caption']}")
-    if captions.get("tik_tags"):
-        cap_lines.append(f"<code>{captions['tik_tags']}</code>")
-    cap_lines.append(f"\n✅ Done! {count}-part series generated.")
-    tg_send(token, cid, "\n".join(cap_lines))
+    tg_send(token, cid, f"✅ Done! {count}-part series generated.")
 
 
 def cmd_crop_help(token, cid):
@@ -2681,49 +1974,6 @@ def send_browse_styles(token, cid):
         tg_send(token, cid, "\n".join(lines))
 
 
-# ─── Model Scene Picker ──────────────────────────────────────────────────────
-MODEL_PENDING = {}  # {chat_id: {"hash": str, "scene": str}} — awaiting product/context input
-PROCESSED_UPDATES = {}  # {update_id: timestamp} — dedup Telegram retries
-DEDUP_TTL = 120  # seconds to remember processed updates
-
-def send_model_scene_picker(token, cid, model_hash, model_name):
-    """Send inline keyboard with UGC scene options for a model."""
-    buttons = [
-        [
-            {"text": "📦 Product Hold", "callback_data": f"mscene:{model_hash}:product-hold"},
-            {"text": "📸 Selfie", "callback_data": f"mscene:{model_hash}:selfie"},
-        ],
-        [
-            {"text": "🗣 Testimonial", "callback_data": f"mscene:{model_hash}:testimonial"},
-            {"text": "🌅 Lifestyle", "callback_data": f"mscene:{model_hash}:lifestyle"},
-        ],
-        [
-            {"text": "📦 Unboxing", "callback_data": f"mscene:{model_hash}:unboxing"},
-            {"text": "🏋 Gym", "callback_data": f"mscene:{model_hash}:gym"},
-        ],
-        [
-            {"text": "☕ Cafe", "callback_data": f"mscene:{model_hash}:cafe"},
-            {"text": "🌤 Outdoor", "callback_data": f"mscene:{model_hash}:outdoor"},
-        ],
-        [
-            {"text": "🛏 Morning Routine", "callback_data": f"mscene:{model_hash}:morning-routine"},
-            {"text": "💻 Desk", "callback_data": f"mscene:{model_hash}:desk"},
-        ],
-        [
-            {"text": "🍳 Cooking", "callback_data": f"mscene:{model_hash}:cooking"},
-            {"text": "↔️ Before/After", "callback_data": f"mscene:{model_hash}:before-after"},
-        ],
-        [
-            {"text": "✍️ Custom (type anything)", "callback_data": f"mscene:{model_hash}:custom"},
-        ],
-    ]
-    tg_send_with_keyboard(token, cid, (
-        f"\U0001f3ac <b>Pick a scene for {model_name}:</b>\n"
-        f"<code>#{model_hash}</code>"
-    ), buttons)
-
-
-
 def handle_callback_query(token, cid, callback_query, api_keys):
     """Handle inline button taps for style selection → action selection → generation."""
     cb_id = callback_query.get("id", "")
@@ -2731,66 +1981,6 @@ def handle_callback_query(token, cid, callback_query, api_keys):
 
     if data == "noop":
         tg_answer_callback(token, cb_id, "↑ Category header")
-        return
-
-    # MODEL SCENE CALLBACKS: mscene:{hash}:{scene_key}
-    if data.startswith("mscene:"):
-        parts = data.split(":", 2)
-        if len(parts) == 3:
-            _, model_hash, scene_key = parts
-            registry_key = f"{cid}_{model_hash}"
-            model_data = MODEL_REGISTRY.get(registry_key)
-            if not model_data:
-                tg_answer_callback(token, cb_id, "Model not found")
-                return
-
-            if scene_key == "custom":
-                # Store pending state, wait for user text
-                MODEL_PENDING[str(cid)] = {"hash": model_hash, "name": model_data["name"]}
-                tg_answer_callback(token, cb_id, "Type your scene description!")
-                tg_send(token, cid, (
-                    f"\u270d\ufe0f <b>Type what you want {model_data['name']} doing:</b>\n\n"
-                    f"Examples:\n"
-                    f"\u2022 <i>smiling at camera on a rooftop at sunset</i>\n"
-                    f"\u2022 <i>holding a green smoothie in a modern kitchen</i>\n"
-                    f"\u2022 <i>LinkedIn headshot in navy blazer</i>"
-                ))
-                return
-
-            scene_desc = UGC_SCENES.get(scene_key, "standing naturally")
-            scene_name = scene_key.replace("-", " ").title()
-            tg_answer_callback(token, cb_id, f"{scene_name} \u2714")
-
-            # Check if scene needs a product
-            needs_product = scene_key in ("product-hold", "unboxing", "selfie", "morning-routine")
-            if needs_product:
-                MODEL_PENDING[str(cid)] = {
-                    "hash": model_hash,
-                    "name": model_data["name"],
-                    "scene": scene_key,
-                }
-                tg_send(token, cid, (
-                    f"\U0001f4e6 <b>What product or item?</b>\n\n"
-                    f"Examples:\n"
-                    f"\u2022 <i>coffee cup</i>\n"
-                    f"\u2022 <i>face serum bottle</i>\n"
-                    f"\u2022 <i>protein shake</i>\n"
-                    f"\u2022 <i>wireless headphones</i>"
-                ))
-                return
-
-            # No product needed — generate directly
-            tg_typing(token, cid)
-            user_request = f"{scene_name} scene"
-            # Check for cached pose reference
-            pose_ref = _get_cached_pose(cid)
-            prompt = build_model_prompt(model_data["dna"], user_request, pose_ref=pose_ref, api_keys=api_keys)
-            tg_send(token, cid, (
-                f"\U0001f3b4 <b>PinGPT \u2014 {model_data['name']} \u00d7 {scene_name}</b>\n"
-                f"\U0001f512 <i>DNA locked \u2014 #{model_hash} \u2192 paste into Gemini!</i>"
-            ))
-            # Send prompt as plain text — avoids all HTML parsing issues
-            tg_send(token, cid, prompt, parse_mode="")
         return
 
     # ACTION CALLBACKS: action:{style_key}:{action_key}
@@ -2831,459 +2021,7 @@ def handle_callback_query(token, cid, callback_query, api_keys):
         tg_answer_callback(token, cb_id, "Unknown style")
 
 
-
-
-def generate_model_hash(name, chat_id):
-    """Generate a short unique hash for a model."""
-    raw = f"{chat_id}_{name}_{time.time()}"
-    return hashlib.md5(raw.encode()).hexdigest()[:6]
-
-
-def generate_model_dna(api_keys, description, name):
-    """Use Gemini to generate an atomic-level DNA profile for a fictional model.
-    Accepts free-form description like 'nigerian woman', 'japanese businessman', 'mixed race girl with freckles'."""
-    from google import genai
-
-    instruction = (
-        f"You are a forensic character designer. Create an EXTREMELY detailed, hyper-specific DNA profile "
-        f"for a FICTIONAL character named '{name}'.\n\n"
-        f"USER DESCRIPTION: {description}\n"
-        f"Use this description to determine ethnicity, gender, age range, and base features. "
-        f"If gender is not specified, infer from the name. If ethnicity is vague, make creative choices.\n\n"
-        f"Generate a SINGLE DENSE PARAGRAPH that describes this UNIQUE person in extreme detail. "
-        f"This paragraph will be used as a text-to-image prompt anchor. The same paragraph must produce "
-        f"the SAME recognizable person every time it's used.\n\n"
-        f"INCLUDE ALL OF THESE (do NOT skip any):\n"
-        f"1. FACE: exact shape (oblong, oval, round, square, heart, diamond), width, length, asymmetries\n"
-        f"2. FOREHEAD: height, width, curvature, any creases or veins\n"
-        f"3. EYES: shape per eye, exact color (with flecks/rings), spacing, depth, lids (mono/double), "
-        f"canthal tilt, under-eye features (dark circles, bags, puffiness), lash length per eye\n"
-        f"4. EYEBROWS: shape, thickness gradient (thicker at head?), arch position, gap, hair direction\n"
-        f"5. NOSE: bridge width + height, tip shape + angle, nostril shape + flare, septum visibility, "
-        f"any bump or deviation, pore visibility on nose\n"
-        f"6. LIPS: upper/lower thickness ratio (e.g., 1:1.8), Cupid's bow shape, corner direction, "
-        f"exact pigmentation (darker edges? lighter center?), philtrum depth\n"
-        f"7. JAWLINE: definition level, mandible angle, chin shape + projection, any cleft\n"
-        f"8. CHEEKS: bone prominence, fullness, dimples (one side? both?), hollowness\n"
-        f"9. EARS: size, lobe type (attached/detached), any protrusion\n"
-        f"10. SKIN (CRITICAL — most detail here):\n"
-        f"    - Exact Fitzpatrick shade + undertone with description\n"
-        f"    - Texture zone map: forehead, nose, cheeks, chin (smooth, rough, porous)\n"
-        f"    - Oil/shine zones vs matte zones\n"
-        f"    - SPECIFIC blemishes with POSITIONS: acne marks, PIH spots, dark spots, moles "
-        f"(count + locations like 'small mole 1cm below left eye')\n"
-        f"    - Scars (type + location + size)\n"
-        f"    - Under-eye darkness (color: purple, blue, brown), wrinkle lines\n"
-        f"    - Age indicators: laugh lines, forehead creases, crow's feet\n"
-        f"11. HAIR: exact shade, texture type (1A-4C), curl pattern, length in inches, current style, "
-        f"hairline shape, density, any grey/white\n"
-        f"12. FACIAL HAIR: type, coverage map (patchy where?), density, color match, ingrown hairs\n"
-        f"13. NECK: thickness, length, Adam's apple, skin tone match\n"
-        f"14. BUILD: body type with specifics — shoulder width, arm size, chest/waist ratio\n"
-        f"15. DISTINGUISHING FEATURES: 2-3 things that make this person INSTANTLY recognizable "
-        f"(e.g., 'scar above right eyebrow', 'gap between front teeth', 'beauty mark on left jaw')\n\n"
-        f"RULES (UGC-GRADE HYPER-REALISM):\n"
-        f"- Make them INDISTINGUISHABLE from a real person — not AI-pretty\n"
-        f"- MANDATORY imperfections: slightly asymmetric face, visible pores, under-eye bags, "
-        f"uneven skin texture zones, at least 2 specific blemishes with positions, natural oil/shine\n"
-        f"- Give them a REAL person's face, not a model's — interesting features, not perfect proportions\n"
-        f"- Skin must have tonal variation: slightly darker/lighter zones, capillary redness, undertone shifts\n"
-        f"- Include micro-details: stray eyebrow hairs, lash clumps, lip dryness, pore size variation\n"
-        f"- Hair should have flyaways, natural texture inconsistency, not perfectly styled\n"
-        f"- The description must be UNIQUE to this one fictional person\n"
-        f"- Output a SINGLE PARAGRAPH, no line breaks, no labels, no bullet points\n"
-        f"- Start with age bracket and gender, then flow through all features\n"
-        f"- End with the 2-3 distinguishing features that make them INSTANTLY recognizable\n"
-        f"- Aim for 350-450 words of pure dense description — more detail = more consistency"
-    )
-
-    shuffled = list(api_keys)
-    random.shuffle(shuffled)
-    last_error = None
-    for key in shuffled:
-        try:
-            client = genai.Client(api_key=key)
-            r = client.models.generate_content(
-                model=PROMPT_MODEL,
-                contents=[{"role": "user", "parts": [{"text": instruction}]}],
-            )
-            dna = r.text.strip()
-            # Clean any markdown formatting
-            dna = dna.replace("```", "").replace("> ", "").strip()
-            if dna.startswith('"') and dna.endswith('"'):
-                dna = dna[1:-1]
-            return dna
-        except Exception as e:
-            last_error = e
-            if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
-                continue
-            raise
-    raise last_error or Exception("All API keys exhausted")
-
-
-
-def extract_dna_from_photo(api_keys, image_data, name):
-    """Extract a dense DNA paragraph from a real photo using Gemini Vision.
-    This is used when creating a model from an uploaded photo."""
-    from google import genai
-    import base64
-
-    instruction = (
-        f"You are a forensic portrait DNA analyst. Analyze this photo and create an EXTREMELY detailed, "
-        f"hyper-specific DNA profile paragraph for this person. Name them '{name}'.\n\n"
-        f"Generate a SINGLE DENSE PARAGRAPH (300-400 words) describing this EXACT person in forensic detail. "
-        f"This paragraph will be used as a text-to-image prompt anchor to recreate this person's likeness.\n\n"
-        f"INCLUDE ALL OF THESE (do NOT skip any):\n"
-        f"1. FACE: exact shape, width, length, asymmetries you can see\n"
-        f"2. FOREHEAD: height, width, any creases or lines\n"
-        f"3. EYES: shape PER EYE, exact color, spacing, depth, lid type, under-eye features\n"
-        f"4. EYEBROWS: shape, thickness, density, any gaps\n"
-        f"5. NOSE: bridge width/height, tip shape, nostril shape/flare, pore visibility\n"
-        f"6. LIPS: upper/lower thickness ratio, Cupid's bow, pigmentation, philtrum\n"
-        f"7. JAWLINE: definition, angle, chin shape/projection\n"
-        f"8. CHEEKS: bone prominence, fullness, dimples\n"
-        f"9. SKIN (most detail): exact tone + undertone, texture per zone, oil/shine zones, "
-        f"EVERY visible blemish with exact position (acne marks, dark spots, moles, PIH), "
-        f"scars, under-eye darkness\n"
-        f"10. HAIR: exact shade, texture type (1A-4C), curl pattern, length, style, hairline, density\n"
-        f"11. FACIAL HAIR: type, coverage, density, patchiness\n"
-        f"12. BUILD: body type, shoulders, neck\n"
-        f"13. DISTINGUISHING FEATURES: 2-3 instantly recognizable unique features\n\n"
-        f"RULES (UGC-GRADE HYPER-REALISM):\n"
-        f"- Describe what you ACTUALLY SEE with forensic precision, not assumptions\n"
-        f"- Include EVERY imperfection — asymmetry, marks, texture, bags, patchiness\n"
-        f"- Capture micro-details: pore size by zone, oil/shine, stray hairs, lip texture, lash clumps\n"
-        f"- Skin tonal variation: where it's slightly darker/redder/more golden\n"
-        f"- Output a SINGLE PARAGRAPH, no line breaks, no labels, no bullet points\n"
-        f"- Start with age estimate and gender, then flow through all features\n"
-        f"- Be SPECIFIC: not 'dark skin' but 'deep warm brown skin with golden copper undertone, "
-        f"slight redness around nose, matte finish on forehead with shine on nose bridge'\n"
-        f"- Position EVERY blemish: 'cluster of 3 PIH spots on left cheek near jawline'\n"
-        f"- End with the 2-3 distinguishing features\n"
-        f"- Aim for 350-450 words — more detail = more consistency across images"
-    )
-
-    b64_image = base64.b64encode(image_data).decode("utf-8")
-
-    shuffled = list(api_keys)
-    random.shuffle(shuffled)
-    last_error = None
-    for key in shuffled:
-        try:
-            client = genai.Client(api_key=key)
-            r = client.models.generate_content(
-                model=PROMPT_MODEL,
-                contents=[{"role": "user", "parts": [
-                    {"inline_data": {"mime_type": "image/jpeg", "data": b64_image}},
-                    {"text": instruction}
-                ]}],
-            )
-            dna = r.text.strip()
-            dna = dna.replace("```", "").replace("> ", "").strip()
-            if dna.startswith('"') and dna.endswith('"'):
-                dna = dna[1:-1]
-            return dna
-        except Exception as e:
-            last_error = e
-            if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
-                continue
-            raise
-    raise last_error or Exception("All API keys exhausted")
-
-
-# NOTE: build_model_prompt is defined earlier in the file (around line 1415).
-# This duplicate was removed to avoid overriding the canonical version which
 # supports pose_ref parameter for pose mimicry feature.
-
-
-def cmd_model(token, cid, args, api_keys):
-    """Handle /model create|use|list|delete commands."""
-    parts = args.strip().split(None, 2) if args else []
-
-    if not parts:
-        tg_send(token, cid, (
-            "\U0001f9ec <b>PinGPT Model Lab</b>\n"
-            "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
-            "<b>Create a model (natural language):</b>\n"
-            "<code>/model create Aisha nigerian woman</code>\n"
-            "<code>/model create Kenji japanese businessman</code>\n"
-            "<code>/model create Luna mixed race girl with freckles</code>\n\n"
-            "<b>Use a model (just type #hash):</b>\n"
-            "<code>#a7f2 smiling in gym</code>\n"
-            "<code>#a7f2 LinkedIn headshot in blazer</code>\n\n"
-            "<b>UGC scenes (auto-detected):</b>\n"
-            "<code>#a7f2 product-hold with coffee cup</code>\n"
-            "<code>#a7f2 testimonial about skincare</code>\n"
-            "<code>#a7f2 selfie with protein shake</code>\n"
-            "<code>#a7f2 morning-routine with face serum</code>\n"
-            "<code>#a7f2 unboxing new headphones</code>\n"
-            "<code>#a7f2 cafe working on laptop</code>\n\n"
-            "<b>Other:</b>\n"
-            "<code>/model list</code> \u2014 see your models\n"
-            "<code>/model delete #a7f2</code> \u2014 remove a model"
-        ))
-        return
-
-    action = parts[0].lower()
-
-    # ── CREATE ──
-    if action == "create":
-        if len(parts) < 2:
-            tg_send(token, cid, (
-                "\u26a0\ufe0f Usage: <code>/model create Name description</code>\n\n"
-                "<b>From text (fictional):</b>\n"
-                "<code>/model create Aisha nigerian woman</code>\n"
-                "<code>/model create Kenji japanese businessman</code>\n\n"
-                "<b>From photo (copy a face):</b>\n"
-                "1. Send a photo first\n"
-                "2. Then: <code>/model create Tracy</code>\n"
-                "The bot extracts the face DNA from your photo!"
-            ))
-            return
-
-        name = parts[1]
-        description = parts[2] if len(parts) > 2 else None
-        model_hash = generate_model_hash(name, cid)
-
-        # Check if there's a pending photo to extract DNA from
-        cache_key = f"{cid}"
-        has_photo = (cache_key in PHOTO_CACHE and
-                     (time.time() - PHOTO_CACHE[cache_key]["timestamp"]) < PHOTO_CACHE_TTL and
-                     PHOTO_CACHE[cache_key].get("image_data"))
-
-        if has_photo and not description:
-            # ── PHOTO MODE: extract DNA from uploaded photo ──
-            tg_send(token, cid, (
-                f"\U0001f4f8 <b>Extracting face DNA from your photo...</b>\n"
-                f"Model: {name}\n"
-                f"Hash: <code>#{model_hash}</code>"
-            ))
-            tg_typing(token, cid)
-
-            try:
-                dna = extract_dna_from_photo(api_keys, PHOTO_CACHE[cache_key]["image_data"], name)
-            except Exception as e:
-                tg_send(token, cid, f"\u274c DNA extraction failed: {str(e)[:200]}")
-                return
-
-            source = "photo"
-        else:
-            # ── TEXT MODE: generate fictional DNA ──
-            if not description:
-                description = name  # Use name as hint
-            tg_send(token, cid, (
-                f"\U0001f9ec <b>Generating DNA for {name}...</b>\n"
-                f"<i>{description[:100]}</i>\n"
-                f"Hash: <code>#{model_hash}</code>"
-            ))
-            tg_typing(token, cid)
-
-            try:
-                dna = generate_model_dna(api_keys, description, name)
-            except Exception as e:
-                tg_send(token, cid, f"\u274c DNA generation failed: {str(e)[:200]}")
-                return
-
-            source = "generated"
-
-        # Store in registry
-        registry_key = f"{cid}_{model_hash}"
-        MODEL_REGISTRY[registry_key] = {
-            "name": name,
-            "hash": model_hash,
-            "description": description or "from photo",
-            "source": source,
-            "dna": dna,
-            "created": time.time(),
-        }
-        # Also store by name for easy lookup
-        name_key = f"{cid}_{name.lower()}"
-        MODEL_REGISTRY[name_key] = MODEL_REGISTRY[registry_key]
-        _save_models()
-
-        # Send DNA + usage instructions (no captions)
-        source_label = "\U0001f4f8 Extracted from photo" if source == "photo" else "\U0001f9ec Generated"
-        dna_preview = dna[:600] + "..." if len(dna) > 600 else dna
-        tg_send(token, cid, (
-            f"\u2705 <b>Model '{name}' spawned!</b>\n"
-            f"Hash: <code>#{model_hash}</code> \u2014 {source_label}\n"
-            f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
-            f"<b>DNA:</b>\n"
-            f"<i>{html_escape(dna_preview)}</i>\n\n"
-            f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
-            f"<b>Now use your model:</b>\n"
-            f"Tap a scene below or type <code>#{model_hash} your request</code>"
-        ))
-        # Show scene picker buttons
-        send_model_scene_picker(token, cid, model_hash, name)
-        return
-
-    # ── USE ──
-    elif action == "use":
-        if len(parts) < 3:
-            tg_send(token, cid, "\u26a0\ufe0f Usage: <code>/model use #hash your request</code>\nExample: <code>/model use #a7f2 smiling at camera in gym</code>")
-            return
-
-        model_ref = parts[1]
-        user_request = parts[2] if len(parts) > 2 else "standing naturally"
-
-        # Lookup by hash or name
-        model_data = None
-        if model_ref.startswith("#"):
-            hash_val = model_ref[1:]
-            registry_key = f"{cid}_{hash_val}"
-            model_data = MODEL_REGISTRY.get(registry_key)
-        else:
-            name_key = f"{cid}_{model_ref.lower()}"
-            model_data = MODEL_REGISTRY.get(name_key)
-
-        if not model_data:
-            tg_send(token, cid, f"\u274c Model '{model_ref}' not found. Use <code>/model list</code> to see your models.")
-            return
-
-        tg_send(token, cid, (
-            f"\U0001f9ec <b>Using {model_data['name']} (#{model_data['hash']})</b>\n"
-            f"<i>{user_request[:100]}</i>"
-        ))
-        tg_typing(token, cid)
-
-        prompt = build_model_prompt(model_data["dna"], user_request)
-        tg_send(token, cid, (
-            f"\U0001f3b4 <b>PinGPT \u2014 Model Prompt</b>\n"
-            f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
-            f"<code>{prompt}</code>\n\n"
-            f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
-            f"\U0001f512 <i>DNA locked \u2014 #{model_data['hash']} \u2192 paste into Gemini Chat!</i>"
-        ))
-
-        captions = generate_captions(api_keys, prompt)
-        send_captions(token, cid, captions)
-        return
-
-    # ── LIST ──
-    elif action == "list":
-        # Find all models for this chat (avoid duplicates from name_key)
-        seen_hashes = set()
-        models = []
-        for key, val in MODEL_REGISTRY.items():
-            if key.startswith(f"{cid}_") and val["hash"] not in seen_hashes:
-                seen_hashes.add(val["hash"])
-                models.append(val)
-
-        if not models:
-            tg_send(token, cid, "\U0001f4ed No models yet. Create one with <code>/model create Name description</code>")
-            return
-
-        lines = []
-        for m in sorted(models, key=lambda x: x["created"], reverse=True):
-            desc = m.get("description", m.get("race", ""))[:40]
-            lines.append(
-                f"  <code>#{m['hash']}</code> \u2014 <b>{m['name']}</b> "
-                f"(<i>{desc}</i>)"
-            )
-
-        tg_send(token, cid, (
-            f"\U0001f9ec <b>Your Models ({len(models)})</b>\n"
-            f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n"
-            + "\n".join(lines)
-            + "\n\n\U0001f4cb Tap a model or type <code>#hash your request</code>"
-        ))
-        # Add USE buttons for each model
-        if models:
-            use_buttons = []
-            row = []
-            for m in sorted(models, key=lambda x: x["created"], reverse=True)[:6]:
-                row.append({"text": f"\u25b6\ufe0f {m['name']}", "callback_data": f"mscene:{m['hash']}:custom"})
-                if len(row) == 2:
-                    use_buttons.append(row)
-                    row = []
-            if row:
-                use_buttons.append(row)
-            tg_send_with_keyboard(token, cid, "\U0001f447 <b>Quick use:</b>", use_buttons)
-        return
-
-    # ── DELETE ──
-    elif action == "delete":
-        if len(parts) < 2:
-            tg_send(token, cid, "\u26a0\ufe0f Usage: <code>/model delete #hash</code>")
-            return
-
-        model_ref = parts[1]
-        hash_val = model_ref[1:] if model_ref.startswith("#") else model_ref
-
-        # Find and remove
-        registry_key = f"{cid}_{hash_val}"
-        model_data = MODEL_REGISTRY.get(registry_key)
-
-        if not model_data:
-            # Try by name
-            name_key = f"{cid}_{model_ref.lower()}"
-            model_data = MODEL_REGISTRY.get(name_key)
-            if model_data:
-                hash_val = model_data["hash"]
-                registry_key = f"{cid}_{hash_val}"
-
-        if not model_data:
-            tg_send(token, cid, f"\u274c Model '{model_ref}' not found.")
-            return
-
-        # Remove both hash key and name key
-        name = model_data["name"]
-        MODEL_REGISTRY.pop(registry_key, None)
-        MODEL_REGISTRY.pop(f"{cid}_{name.lower()}", None)
-        _save_models()
-        tg_send(token, cid, f"\U0001f5d1\ufe0f Model '<b>{name}</b>' (#{hash_val}) deleted.")
-        return
-
-    else:
-        tg_send(token, cid, "\u274c Unknown action. Use: <code>create</code>, <code>use</code>, <code>list</code>, or <code>delete</code>")
-
-
-def generate_custom_dna_response(token, cid, api_keys, user_request):
-    """Generate a prompt from cached photo DNA + any free-form user request."""
-    cache_key = f"{cid}"
-    cached = PHOTO_CACHE.get(cache_key)
-    if not cached:
-        tg_send(token, cid, "⏰ Session expired. Please send your photo again.")
-        return
-
-    analysis = cached["analysis"]
-
-    # Load DNA skill for system context
-    dna_skill = load_dna_skill()
-    skill = load_skill()
-    system_context = ""
-    if dna_skill:
-        system_context += dna_skill + "\n\n"
-    if skill:
-        system_context += skill
-
-    if not system_context:
-        tg_send(token, cid, "❌ skill files not found.")
-        return
-
-    tg_send(token, cid, f"🧠 <b>Processing:</b> <i>{user_request[:100]}</i>\n🔒 Face DNA locked... ⏳")
-    tg_typing(token, cid)
-
-    instruction = build_custom_dna_prompt(analysis, user_request)
-    try:
-        prompt = call_gemini(api_keys, system_context, instruction)
-    except Exception as e:
-        tg_send(token, cid, f"❌ API error: {str(e)[:200]}")
-        return
-
-    tg_send(token, cid, (
-        f"🎴 <b>PinGPT Prompt — Custom DNA</b>\n"
-        f"━━━━━━━━━━━━━━━━━━━━━\n\n"
-        f"<code>{prompt}</code>\n\n"
-        f"━━━━━━━━━━━━━━━━━━━━━\n"
-        f"🔒 <i>Face DNA locked → paste into Gemini Chat!</i>\n"
-        f"💡 <i>Send another request or a new photo!</i>"
-    ))
-
-    # Generate and send captions
-    captions = generate_captions(api_keys, prompt)
-    send_captions(token, cid, captions)
 
 
 def register_menu(token):
@@ -3409,76 +2147,7 @@ def webhook():
         cmd_batch(token, cid, args, api_keys)
     elif cmd == "/pingpt":
         cmd_pingpt(token, cid, args, api_keys)
-    elif cmd == "/model":
-        cmd_model(token, cid, args, api_keys)
-    elif text.startswith("#") and len(text) > 2:
-        # #hash shortcut
-        hash_parts = text.split(None, 1)
-        hash_val = hash_parts[0][1:]  # Remove #
-        registry_key = f"{cid}_{hash_val}"
-        model_data = MODEL_REGISTRY.get(registry_key)
-        if model_data:
-            if len(hash_parts) > 1:
-                # Has a request: #hash smiling in gym → generate directly
-                try:
-                    user_request = hash_parts[1]
-                    # Check for cached pose reference from recent photo upload
-                    pose_ref = _get_cached_pose(cid)
-                    pose_label = "\n📐 <i>Pose reference detected from your photo!</i>" if pose_ref else ""
-                    tg_send(token, cid, (
-                        f"\U0001f9ec <b>Using {model_data['name']} (#{model_data['hash']})</b>\n"
-                        f"<i>{user_request[:100]}</i>{pose_label}"
-                    ))
-                    tg_typing(token, cid)
-                    prompt = build_model_prompt(model_data["dna"], user_request, pose_ref=pose_ref, api_keys=api_keys)
-                    tg_send(token, cid, (
-                        f"\U0001f3b4 <b>PinGPT \u2014 Model Prompt</b>\n"
-                        f"\U0001f512 <i>DNA locked \u2014 #{model_data['hash']} \u2192 paste into Gemini!</i>"
-                    ))
-                    # Send prompt as plain text — avoids all HTML parsing issues
-                    tg_send(token, cid, prompt, parse_mode="")
-                except Exception as e:
-                    logger.error(f"#hash prompt error: {e}")
-                    tg_send(token, cid, f"\u274c Prompt generation failed: {str(e)[:200]}", parse_mode="")
-            else:
-                # No request: #hash alone → show scene picker buttons
-                send_model_scene_picker(token, cid, hash_val, model_data["name"])
-        else:
-            tg_send(token, cid, f"\u274c Model <code>#{hash_val}</code> not found. Use <code>/model list</code>.")
     elif not text.startswith("/"):
-        # Check if user has a pending model scene context
-        pending_key = str(cid)
-        if pending_key in MODEL_PENDING:
-            pending = MODEL_PENDING.pop(pending_key)
-            model_hash = pending["hash"]
-            model_name = pending["name"]
-            registry_key = f"{cid}_{model_hash}"
-            model_data = MODEL_REGISTRY.get(registry_key)
-            if model_data:
-                scene_key = pending.get("scene")
-                if scene_key:
-                    # Product/context for a scene
-                    scene_desc = UGC_SCENES.get(scene_key, "")
-                    user_request = f"{scene_key.replace('-', ' ')} with {text}. {scene_desc}"
-                else:
-                    # Custom free-text scene
-                    user_request = text
-
-                tg_send(token, cid, (
-                    f"\U0001f9ec <b>Using {model_name} (#{model_hash})</b>\n"
-                    f"<i>{user_request[:100]}</i>"
-                ))
-                tg_typing(token, cid)
-                pose_ref = _get_cached_pose(cid)
-                prompt = build_model_prompt(model_data["dna"], user_request, pose_ref=pose_ref, api_keys=api_keys)
-                tg_send(token, cid, (
-                    f"\U0001f3b4 <b>PinGPT \u2014 {model_name}</b>\n"
-                    f"\U0001f512 <i>DNA locked \u2014 #{model_hash} \u2192 paste into Gemini!</i>"
-                ))
-                # Send prompt as plain text — avoids all HTML parsing issues
-                tg_send(token, cid, prompt, parse_mode="")
-                # Done — user can type #hash for another scene
-            return
 
         # Check if user has a pending photo session
         cache_key = f"{cid}"

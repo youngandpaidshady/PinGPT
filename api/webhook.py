@@ -1447,14 +1447,21 @@ def cmd_discover(token, cid, api_keys):
 
 
 def cmd_batch(token, cid, args_text, api_keys):
-    parts = (args_text or "").strip().split(None, 1)
-    count, rest = 3, ""
+    parts = (args_text or "").strip().split()
+    count = 3
+    rest_parts = []
+    
     if parts:
-        try:
+        if parts[0].isdigit():
             count = int(parts[0])
-            rest = parts[1] if len(parts) > 1 else ""
-        except ValueError:
-            rest = args_text or ""
+            rest_parts = parts[1:]
+        elif parts[-1].isdigit():
+            count = int(parts[-1])
+            rest_parts = parts[:-1]
+        else:
+            rest_parts = parts
+    
+    rest = " ".join(rest_parts)
     count = max(1, min(count, 5))
 
     skill = load_skill()
@@ -1463,29 +1470,36 @@ def cmd_batch(token, cid, args_text, api_keys):
         return
 
     tg_send(token, cid, f"🎴 Generating {count} prompts... ⏳")
+    tg_typing(token, cid)
     params = parse_args(rest)
+    char = params["character"] or random.choice(CHARACTERS)
 
-    original_params = parse_args(rest)
-    for i in range(count):
-        tg_typing(token, cid)
-        # Randomize ALL unset params per-prompt for maximum variety
-        if not original_params["character"]: params["character"] = random.choice(CHARACTERS)
-        if not original_params["mood"]:      params["mood"] = random.choice(MOODS)
-        if not original_params["setting"]:   params["setting"] = random.choice(SETTINGS)
-        if not original_params["color"]:     params["color"] = random.choice(COLORS)
-        if not original_params["time"]:      params["time"] = random.choice(TIMES)
-        if not original_params["outfit"]:    params["outfit"] = random.choice(OUTFITS)
-        if not original_params["lighting"]:  params["lighting"] = random.choice(LIGHTING)
-        if not original_params["style"]:     params["style"] = random.choice(ART_STYLES)
-        if not original_params["weather"]:
-            params["weather"] = random.choice(WEATHER) if random.random() < 0.5 else None
-        try:
-            prompt = call_gemini(api_keys, skill, build_instruction(params))
+    instruction = (
+        f"Generate EXACTLY {count} completely distinct anime image prompts for Character: {char}.\n"
+        "STRICT RULE: Separate EACH prompt with the exact string '---PROMPT_BOUNDARY---'.\n"
+        "Ensure every prompt is highly unique in composition, lighting, setting, and mood.\n"
+        "Do NOT include any markdown formatting, blockquotes, metadata, or Pinterest tags. "
+        "Output ONLY the pure natural language prompt text for each."
+    )
+    if params["color"]: instruction += f"\nColor Grade constraint for all: {params['color']}"
+    if params["setting"]: instruction += f"\nSetting/Environment constraint for all: {params['setting']}"
+    if params["time"]: instruction += f"\nTime of day constraint for all: {params['time']}"
+
+    try:
+        raw_output = call_gemini(api_keys, skill, instruction)
+        prompts = [p.strip().replace("`", "") for p in raw_output.split("---PROMPT_BOUNDARY---") if p.strip()]
+        
+        # Verify we got something back
+        if not prompts:
+            tg_send(token, cid, "❌ Gemini failed to output properly formatted prompts.")
+            return
+
+        for i, prompt in enumerate(prompts[:count]):
             tg_send(token, cid, f"🎴 <b>[{i+1}/{count}]</b>\n\n<code>{prompt}</code>")
-        except Exception as e:
-            tg_send(token, cid, f"❌ [{i+1}/{count}] Error: {str(e)[:150]}")
-
-    tg_send(token, cid, f"✅ Done! {count} prompts generated.")
+        
+        tg_send(token, cid, f"✅ Done! {min(len(prompts), count)} prompts generated.")
+    except Exception as e:
+        tg_send(token, cid, f"❌ Error: {str(e)[:150]}")
 
 
 def cmd_tiktok(token, cid, args_text, api_keys):
@@ -2149,7 +2163,12 @@ def webhook():
     elif cmd == "/batch":
         cmd_batch(token, cid, args, api_keys)
     elif cmd == "/pingpt":
-        cmd_pingpt(token, cid, args, api_keys)
+        # Check if the last argument is a digit, indicating a batch request
+        parts = args.split() if args else []
+        if parts and parts[-1].isdigit() and 1 < int(parts[-1]) <= 5:
+            cmd_batch(token, cid, args, api_keys)
+        else:
+            cmd_pingpt(token, cid, args, api_keys)
     elif not text.startswith("/"):
 
         # Check if user has a pending photo session
@@ -2164,7 +2183,11 @@ def webhook():
                 generate_custom_dna_response(token, cid, api_keys, text)
         else:
             # No photo pending: treat plain text as /pingpt
-            cmd_pingpt(token, cid, text, api_keys)
+            parts = text.split()
+            if parts and parts[-1].isdigit() and 1 < int(parts[-1]) <= 5:
+                cmd_batch(token, cid, text, api_keys)
+            else:
+                cmd_pingpt(token, cid, text, api_keys)
 
     return Response("OK", status=200)
 

@@ -1476,28 +1476,67 @@ def cmd_batch(token, cid, args_text, api_keys):
 
     instruction = (
         f"Generate EXACTLY {count} completely distinct anime image prompts for Character: {char}.\n"
-        "STRICT RULE: Separate EACH prompt with the exact string '---PROMPT_BOUNDARY---'.\n"
         "Ensure every prompt is highly unique in composition, lighting, setting, and mood.\n"
-        "Do NOT include any markdown formatting, blockquotes, metadata, or Pinterest tags. "
-        "Output ONLY the pure natural language prompt text for each."
+        "For EACH prompt, you must also generate a Pinterest SEO caption.\n"
+        "Output EXACTLY in this format for each generated item (1 to N):\n\n"
+        "BATCH_{N}_PROMPT: [pure natural language prompt text with no markdown]\n"
+        "BATCH_{N}_TITLE: [short catchy Pinterest title, 5-8 words]\n"
+        "BATCH_{N}_DESC: [2-3 sentence SEO description with emojis]\n"
+        "BATCH_{N}_TAGS: [10 relevant hashtags starting with #]\n"
+        "---BOUNDARY---"
     )
     if params["color"]: instruction += f"\nColor Grade constraint for all: {params['color']}"
     if params["setting"]: instruction += f"\nSetting/Environment constraint for all: {params['setting']}"
     if params["time"]: instruction += f"\nTime of day constraint for all: {params['time']}"
 
     try:
-        raw_output = call_gemini(api_keys, skill, instruction)
-        prompts = [p.strip().replace("`", "") for p in raw_output.split("---PROMPT_BOUNDARY---") if p.strip()]
+        raw = call_gemini(api_keys, skill, instruction)
         
-        # Verify we got something back
-        if not prompts:
-            tg_send(token, cid, "❌ Gemini failed to output properly formatted prompts.")
+        # Parse output
+        batch_items = []
+        current_item = {}
+        
+        for line in raw.split("\n"):
+            line = line.strip()
+            if line == "---BOUNDARY---" or not line:
+                continue
+            if "BATCH_" in line and "_PROMPT:" in line:
+                if current_item.get("prompt"):
+                    batch_items.append(current_item)
+                    current_item = {}
+                current_item["prompt"] = line.split(":", 1)[1].strip()
+            elif "BATCH_" in line and "_TITLE:" in line:
+                current_item["title"] = line.split(":", 1)[1].strip()
+            elif "BATCH_" in line and "_DESC:" in line:
+                current_item["desc"] = line.split(":", 1)[1].strip()
+            elif "BATCH_" in line and "_TAGS:" in line:
+                current_item["tags"] = line.split(":", 1)[1].strip()
+                
+        if current_item and current_item.get("prompt"):
+            batch_items.append(current_item)
+
+        if not batch_items:
+            tg_send(token, cid, "❌ Gemini failed to output properly formatted batch prompts.")
             return
 
-        for i, prompt in enumerate(prompts[:count]):
-            tg_send(token, cid, f"🎴 <b>[{i+1}/{count}]</b>\n\n<code>{prompt}</code>")
+        for i, item in enumerate(batch_items[:count]):
+            prompt_text = item.get("prompt", "")
+            if not prompt_text:
+                continue
+                
+            # Send Prompt message
+            tg_send(token, cid, f"🎴 <b>[{i+1}/{count}]</b>\n\n<code>{prompt_text}</code>")
+            
+            # Send Captions message (simulating send_captions layout)
+            caption_lines = ["📌 <b>Pinterest</b>"]
+            if item.get("title"): caption_lines.append(f"<b>Title:</b> {item['title']}")
+            if item.get("desc"): caption_lines.append(f"{item['desc']}")
+            if item.get("tags"): caption_lines.append(f"<code>{item['tags']}</code>")
+            
+            if len(caption_lines) > 1:
+                tg_send(token, cid, "\n".join(caption_lines))
         
-        tg_send(token, cid, f"✅ Done! {min(len(prompts), count)} prompts generated.")
+        tg_send(token, cid, f"✅ Done! {min(len(batch_items), count)} prompts generated.")
     except Exception as e:
         tg_send(token, cid, f"❌ Error: {str(e)[:150]}")
 

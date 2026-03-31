@@ -184,7 +184,8 @@ The anime rendering style uses **clean outlines** with **flat color fills**. Sha
 | Cramped Studio Apartment | Tiny cluttered room — unmade futon, stacked manga, blue laptop glow, city light through thin curtains. |
 | Hospital Corridor | Sterile white hallway, flickering fluorescent, wheeled bed against wall, antiseptic green-tinted light. |
 | Abandoned Temple | Overgrown stone temple, moss on pillars, broken roof revealing sky, incense smoke lingering. |
-| Late-Night Convenience Store | Bright buzzing interior of a konbini at 2 AM. Shelved snacks, magazine rack, floor-to-ceiling glass windows showing dark street outside. |
+| Late-Night Convenience Store | Bright buzzing interior of a konbini at 2 AM. 
+Shelved snacks, magazine rack, floor-to-ceiling glass windows showing dark street outside. |
 | Elevator Interior | Cramped metal elevator, mirrored back wall, single overhead light, floor indicator glowing. |
 | Fire Escape Landing | Rusty metal fire escape, brick wall behind, view of alley below, hanging laundry on nearby lines. |
 | Cherry Blossom Path | A sunlit path lined with cherry blossom trees in full bloom. Pink petals carpeting the ground. Warm golden afternoon light filtering through branches. |
@@ -524,6 +525,16 @@ The anime rendering style uses **clean outlines** with **flat color fills**. Sha
 ---
 
 ## Phase 4: NanoBanana 2 Prompt Construction
+
+### ⚠️ PROMPT CONSTRUCTION PRIORITY ORDER (NON-NEGOTIABLE)
+
+> **THIS IS THE MOST IMPORTANT SECTION IN THE ENTIRE SKILL FILE.** The dictionaries and tables in Phases 1-3 are INGREDIENTS. This section teaches you to COOK. Follow this exact priority order:
+
+**Step 1 — CONSTRUCT THE SCENE (Section 4.2) FIRST.** Before touching any dictionary, answer: "What is the character doing RIGHT NOW, and what happened 5 seconds ago?" Build a cinematic micro-story using: Physical Anchor (object in hands) → Spatial Logic (exact position in space) → Dual Light Story (two competing light temperatures) → Unspoken Narrative (implied backstory). If you skip this step, the prompt WILL produce generic aesthetic wallpaper, not a viral Pinterest moment.
+
+**Step 2 — LOCK THE VISUAL STYLE.** Every prompt MUST specify this composite look: The character is rendered in **clean anime cel-shading with defined black outlines and flat color fills** (anime screenshot quality), composited over a **photorealistic background with heavy bokeh and soft focus**. This anime-on-real-world mixed-media look is THE signature Pinterest aesthetic. If you omit this, NanoBanana 2 defaults to either full photorealism or full illustration — both wrong.
+
+**Step 3 — ONLY THEN apply dictionary elements** (mood, color grade, outfit, weather, composition, typography) from Phases 1-3 as seasoning on the already-constructed scene.
 
 ### Critical NanoBanana 2 Rules
 

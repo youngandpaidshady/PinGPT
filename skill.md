@@ -111,6 +111,8 @@ Every prompt MUST produce this specific composite:
 10. **Foreground Depth Layering**: In **70-80% of prompts**, include a foreground element partially obscuring the character — blurred objects, steam, rain on glass, a doorframe edge, shelf items, out-of-focus flowers, counter edges. This creates cinematic depth layers that separate your images from flat AI compositions.
 11. **Scroll-Stop Element**: Every image must have **ONE dominant visual anchor point** that creates immediate contrast — a bright object against darkness, a splash of warm color in a cold scene, eyes catching light in shadow, a neon reflection in a puddle. This is what stops the scroll in 0.3 seconds on the Pinterest feed.
 12. **Mandatory Dual-Source Lighting**: Never use flat, even daylight or single-source studio light. You MUST specify AT LEAST TWO contrasting light sources by color and direction (e.g., "warm amber desk lamp under-lighting face VS cold blue moonlight from window rim-lighting hair").
+13. **Environmental Bleed (MANDATORY)**: The environment must physically interact with the character in at least ONE way — rain-damp hair sticking to forehead, chalk dust on fingertips, steam fogging glasses, snow melting on shoulders, neon painting one side of face in color, petal stuck to sleeve, condensation from a cold glass wetting their hand. If the environment and character exist in separate visual layers with no physical overlap, the composite looks like a sticker on a stock photo. **The world must TOUCH them.**
+14. **Fandom Hook (1-2 out of every 5 prompts)**: Reference a canonical moment or relationship through VISUAL METAPHOR, not literal recreation. Use your knowledge of the character's story arc to create an image that makes fans feel "wait... is that a reference to—" without spelling it out. Examples: Gojo in any glass enclosure subtly echoes the Prison Realm. Eren looking at the ocean parallels his freedom-seeking. Levi holding a teacup references his entire personality. These drive comments, shares, and Save-to-Board behavior.
 
 ---
 
@@ -410,9 +412,9 @@ The character's shadows MUST match the background's light color temperature. Thi
 
 ---
 
-## 7. Prompt Templates (ROTATE — max 80 words per prompt)
+## 7. Prompt Templates (ROTATE — max 95 words per prompt)
 
-> **HARD CAP: 80 words.** Shorter prompts = better coherence from NanoBanana 2. Every word must earn its place. Ruthlessly cut adjectives that don't change the image.
+> **HARD CAP: 95 words.** Shorter prompts = better coherence from NanoBanana 2. Every word must earn its place. Ruthlessly cut adjectives that don't change the image. The cap was raised from 80 to accommodate richer scene intelligence (environmental bleed, dual lighting details, behavioral signatures) without gutting spatial logic.
 
 ### Structure A: ACTION-FIRST
 
@@ -503,6 +505,21 @@ Clean anime cel-shading composited over photorealistic background with heavy bok
 - **Fish Out of Water quota**: At least 2/10 prompts must place a character in a scene that contradicts their archetype
 - **Cultural moment quota**: At least 2/10 prompts must include a culturally specific micro-action (see Section 4.5 Virality Injection Rules)
 
+### 🚫 Batch Anti-Repetition Mandate (CRITICAL)
+
+When generating multiple prompts in a batch, you MUST NOT repeat ANY of the following across prompts:
+
+| Element | Rule |
+|---|---|
+| **Outfit** | Every prompt in a batch must use a DIFFERENT outfit from the character's wardrobe. If the wardrobe has 5 options, use 5 different ones. NEVER repeat an outfit within a batch. |
+| **Shadow color** | Vary shadow lock colors across the batch. Never use the same shadow color more than twice. |
+| **Template opening** | Rotate between Action-first, Environment-first, and Detail-first. Never use the same template more than twice in a 5-prompt batch. |
+| **Color palette** | Never use the same color grade in consecutive prompts. |
+| **Expression** | Never describe the same expression twice in a batch. |
+| **Accessory state** | For characters with signature accessories (blindfold, glasses, scarf), vary the position/state in every prompt. Gojo's blindfold: on, around neck, pushed to forehead, absent (sunglasses instead), pulled down over one eye. |
+
+**Before outputting each prompt in a batch**, mentally check: *"Have I already used this outfit / shadow color / template / expression / accessory state?"* If yes, change it.
+
 ---
 
 ## 10. Output Format
@@ -577,12 +594,15 @@ Rotate through these patterns randomly. If you catch yourself using the same for
 4. **Shadow Lock check** — before finalizing, ask: "Do the character's shadows match the background light?" If unspecified, add explicit shadow color
 5. **Scroll-Stop check** — before finalizing, ask: "Is there ONE visual element that would stop a thumb scrolling at full speed?" If no, add a bright-against-dark contrast point or a color splash
 6. **User parameters override** all randomization
-7. **Max 80 words** per prompt — specificity over length. If over 80, cut the weakest adjective.
+7. **Max 95 words** per prompt — specificity over length. If over 95, cut the weakest adjective.
 8. **Improvise freely** — dictionaries are starting points, invent new scenes constantly
 9. **Uniqueness check** — before outputting, ask: "Would this be distinguishable from the last 5 prompts?" If no, change the scene.
 10. **Sentence variety** — vary between action-first, environment-first, detail-first openings
-11. **Signature outfits 60-80%** of the time for character recognition
+11. **Signature outfits 60%** of the time for character recognition, 40% scene-appropriate wardrobe variants
 12. **Micro-details mandatory** — every prompt needs 1-2
 13. **Dual lighting mandatory** — every prompt needs two competing light temperatures
 14. **Emotional tension in 3/5** — most prompts should place the character in a moment that contradicts their canon persona
 15. **Foreground depth in 4-5/10** — include a blurred foreground element for cinematic layering
+16. **Environmental bleed mandatory** — the environment must physically touch the character in at least one way
+17. **Fandom hook in 1-2/5** — reference canonical moments through visual metaphor
+18. **Anti-repetition in batches** — never repeat outfit, shadow color, template, expression, or accessory state within a batch

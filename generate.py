@@ -15,6 +15,7 @@ import sys
 import argparse
 import base64
 import time
+import random
 from pathlib import Path
 from datetime import datetime
 
@@ -42,6 +43,7 @@ ASPECT_RATIO = "9:16"
 IMAGE_SIZE = "4K"
 OUTPUT_DIR = Path(__file__).parent / "output"
 SKILL_FILE = Path(__file__).parent / "skill.md"
+SCENE_SEEDS_FILE = Path(__file__).parent / "scene_seeds.txt"
 
 # ─── Character & Option Lists (for interactive menu) ─────────────────────────
 
@@ -98,6 +100,24 @@ def load_skill():
         print(f"❌ skill.md not found at {SKILL_FILE}")
         sys.exit(1)
     return SKILL_FILE.read_text(encoding="utf-8")
+
+
+def load_scene_seeds():
+    """Load scene seeds from scene_seeds.txt. Returns list of seed strings."""
+    if not SCENE_SEEDS_FILE.exists():
+        return []
+    lines = SCENE_SEEDS_FILE.read_text(encoding="utf-8").strip().splitlines()
+    return [line.strip() for line in lines if line.strip()]
+
+
+def get_random_scene_seed(seeds, used_seeds=None):
+    """Pick a random scene seed, avoiding recently used ones."""
+    if not seeds:
+        return None
+    available = [s for s in seeds if s not in (used_seeds or set())]
+    if not available:
+        available = seeds  # Reset if all used
+    return random.choice(available)
 
 
 def print_header():
@@ -260,7 +280,7 @@ def interactive_mode():
 
 # ─── Core Pipeline ────────────────────────────────────────────────────────────
 
-def build_user_instruction(args):
+def build_user_instruction(args, scene_seed=None, batch_memory=None, emotional_beat=None):
     parts = ["Generate a single PinGPT prompt following all the rules in the skill file."]
 
     if args.character:
@@ -281,6 +301,36 @@ def build_user_instruction(args):
         parts.append("Include Japanese typography overlay.")
     if args.discover:
         parts.append("Use web search to discover a currently trending anime character.")
+
+    # Scene Seed Injection
+    if scene_seed:
+        parts.append(f"\n🎲 SCENE SEED (use as your starting environment): {scene_seed}")
+        parts.append("Adapt this scene seed — don't copy it literally. Let the frozen moment inspire your scene construction.")
+
+    # Emotional Arc Beat
+    if emotional_beat:
+        parts.append(f"\n🎭 EMOTIONAL BEAT: {emotional_beat}")
+        parts.append("The emotional core of this prompt must center on this beat. Build the scene to serve this emotion.")
+
+    # Anti-Repetition Memory (batch context)
+    if batch_memory and any(batch_memory.values()):
+        blacklist = ["\n🚫 BATCH MEMORY — DO NOT REUSE ANY OF THESE:"]
+        if batch_memory.get("outfits"):
+            blacklist.append(f"  Outfits already used: {', '.join(batch_memory['outfits'])}")
+        if batch_memory.get("shadow_colors"):
+            blacklist.append(f"  Shadow colors already used: {', '.join(batch_memory['shadow_colors'])}")
+        if batch_memory.get("palettes"):
+            blacklist.append(f"  Color palettes already used: {', '.join(batch_memory['palettes'])}")
+        if batch_memory.get("expressions"):
+            blacklist.append(f"  Expressions already used: {', '.join(batch_memory['expressions'])}")
+        if batch_memory.get("templates"):
+            blacklist.append(f"  Template openings already used: {', '.join(batch_memory['templates'])}")
+        if batch_memory.get("accessory_states"):
+            blacklist.append(f"  Accessory states already used: {', '.join(batch_memory['accessory_states'])}")
+        if batch_memory.get("environments"):
+            blacklist.append(f"  Environments already used: {', '.join(batch_memory['environments'])}")
+        blacklist.append("  You MUST use DIFFERENT values for ALL of the above.")
+        parts.append("\n".join(blacklist))
 
     parts.append(
         "\nOutput ONLY the raw prompt text that will be sent to the image generator. "
@@ -310,6 +360,143 @@ def generate_prompt(client, skill_text, user_instruction):
         prompt = prompt[1:-1]
 
     return prompt
+
+
+def critique_prompt(client, prompt, skill_text):
+    """Self-critique loop: send prompt back for rule-compliance check and auto-fix."""
+    print("  🔍  Self-critique pass...")
+
+    critique_instruction = (
+        "You are a PinGPT quality checker. Review the following image generation prompt "
+        "against the skill.md rules. Check for and FIX:\n"
+        "1. Word count — must be under 95 words. If over, cut the weakest adjectives.\n"
+        "2. Dual-source lighting — must have TWO explicitly named light sources with colors.\n"
+        "3. Physical anchor — character must be interacting with an object or surface.\n"
+        "4. Environmental bleed — environment must physically touch the character.\n"
+        "5. Shadow lock — shadows must be specified with a color matching the light.\n"
+        "6. No flat poses — character must NOT be just 'standing'.\n"
+        "7. Typography ban — must end with the NO text/typography/kanji/watermarks line.\n"
+        "\nOutput ONLY the corrected prompt. If no corrections needed, output the original unchanged.\n"
+        "No explanations, no commentary, just the prompt text.\n\n"
+        f"PROMPT TO REVIEW:\n{prompt}"
+    )
+
+    try:
+        response = client.models.generate_content(
+            model=PROMPT_MODEL,
+            contents=[
+                {
+                    "role": "user",
+                    "parts": [{"text": critique_instruction}]
+                }
+            ],
+        )
+        corrected = response.text.strip()
+        corrected = corrected.replace("```", "").replace("> ", "").strip()
+        if corrected.startswith('"') and corrected.endswith('"'):
+            corrected = corrected[1:-1]
+
+        old_wc = len(prompt.split())
+        new_wc = len(corrected.split())
+        if old_wc != new_wc:
+            print(f"  ✂️  Critique: {old_wc} → {new_wc} words")
+        else:
+            print(f"  ✅  Critique: no changes needed ({new_wc} words)")
+        return corrected
+    except Exception as e:
+        print(f"  ⚠️  Critique failed ({e}), using original prompt")
+        return prompt
+
+
+def generate_emotional_arc(client, character, count):
+    """Pre-generate an emotional arc for a batch of prompts."""
+    print(f"  🎭  Generating emotional arc ({count} beats)...")
+
+    arc_instruction = (
+        f"You are creating an emotional arc for {count} Pinterest anime images of {character}. "
+        f"Generate exactly {count} one-sentence emotional beats that tell a mini narrative arc. "
+        f"Each beat should describe a DIFFERENT emotional state — the arc should progress, not repeat. "
+        f"Think of it as a story: start with one emotional state, evolve through tension/contradiction, "
+        f"and land somewhere unexpected.\n\n"
+        f"Output exactly {count} lines, one beat per line. No numbering, no dashes, just the sentence.\n\n"
+        f"Example for 5 beats:\n"
+        f"Confident performance — the mask is perfect, nobody suspects\n"
+        f"First crack — a moment of stillness where the smile doesn't reach the eyes\n"
+        f"Exposed vulnerability — caught off-guard by something tender\n"
+        f"Quiet acceptance — neither performing nor hiding, just existing\n"
+        f"New resolve — the mask goes back on, but different now, chosen not automatic"
+    )
+
+    try:
+        response = client.models.generate_content(
+            model=PROMPT_MODEL,
+            contents=[{"role": "user", "parts": [{"text": arc_instruction}]}],
+        )
+        beats = [line.strip() for line in response.text.strip().splitlines() if line.strip()]
+        if len(beats) >= count:
+            beats = beats[:count]
+        else:
+            beats.extend([None] * (count - len(beats)))
+        for i, beat in enumerate(beats):
+            if beat:
+                print(f"    Beat {i+1}: {beat[:60]}..." if len(beat) > 60 else f"    Beat {i+1}: {beat}")
+        return beats
+    except Exception as e:
+        print(f"  ⚠️  Arc generation failed ({e}), proceeding without arc")
+        return [None] * count
+
+
+def extract_used_elements(prompt):
+    """Extract elements from a generated prompt for anti-repetition tracking."""
+    text = prompt.lower()
+    elements = {}
+
+    # Extract shadow color
+    import re
+    shadow_match = re.search(r"shadows cast in ([^.]+)", text)
+    if shadow_match:
+        elements["shadow_color"] = shadow_match.group(1).strip()
+
+    # Extract template type
+    first_30 = text[:30]
+    if any(word in first_30 for word in ["vertical", "9:16"]):
+        elements["template"] = "Environment-first"
+    elif text.strip().startswith(prompt.split()[0].lower()) and any(word in first_30 for word in ["leaning", "crouching", "sitting", "standing", "perched", "lying"]):
+        elements["template"] = "Action-first"
+    else:
+        elements["template"] = "Detail-first"
+
+    # Extract outfit keywords (rough match)
+    outfit_keywords = []
+    for kw in ["linen shirt", "turtleneck", "jacket", "uniform", "suit", "hoodie",
+               "shirtless", "shorts", "compression", "joggers", "blazer", "vest",
+               "cargo", "henley", "crewneck", "apron", "cape"]:
+        if kw in text:
+            outfit_keywords.append(kw)
+    elements["outfit"] = " + ".join(outfit_keywords) if outfit_keywords else "unknown"
+
+    # Extract expression
+    expr_match = re.search(r"expression[:\s]+([^.]+)", text)
+    if expr_match:
+        elements["expression"] = expr_match.group(1).strip()[:40]
+    else:
+        for expr_kw in ["smirk", "grin", "calm", "wistful", "tired", "satisfied",
+                        "contemplative", "focused", "serene", "melancholic", "bored",
+                        "confident", "unreadable", "peaceful", "intense"]:
+            if expr_kw in text:
+                elements["expression"] = expr_kw
+                break
+
+    # Extract palette
+    palette_match = re.search(r"(teal.*?orange|cold blue|golden amber|neon bleed|sakura pink|desaturated cool|rust.*?copper|warm sepia|monochrome|muted steel)", text)
+    if palette_match:
+        elements["palette"] = palette_match.group(1).strip()
+
+    # Extract environment (first sentence usually)
+    first_sentence = prompt.split(".")[0] if "." in prompt else prompt[:80]
+    elements["environment"] = first_sentence[:60]
+
+    return elements
 
 
 def generate_image(client, prompt, index=0):
@@ -360,11 +547,21 @@ def generate_image(client, prompt, index=0):
     return None
 
 
-def run_single(client, skill_text, args, index=0):
-    user_instruction = build_user_instruction(args)
+def run_single(client, skill_text, args, index=0, scene_seed=None,
+               batch_memory=None, emotional_beat=None, use_critique=True):
+    user_instruction = build_user_instruction(
+        args,
+        scene_seed=scene_seed,
+        batch_memory=batch_memory,
+        emotional_beat=emotional_beat,
+    )
     prompt = generate_prompt(client, skill_text, user_instruction)
 
-    print(f"  📝  Prompt preview: {prompt[:100]}...")
+    # Self-critique loop
+    if use_critique:
+        prompt = critique_prompt(client, prompt, skill_text)
+
+    print(f"  📝  Prompt ({len(prompt.split())}w): {prompt[:100]}...")
     print()
 
     filepath = generate_image(client, prompt, index)
@@ -461,15 +658,69 @@ Examples:
     print(f"  ✓ Resolution: {IMAGE_SIZE} @ {ASPECT_RATIO}")
     print(f"  ✓ Output → {OUTPUT_DIR}/\n")
 
+    # Load scene seeds
+    scene_seeds = load_scene_seeds()
+    if scene_seeds:
+        print(f"  ✓ Loaded {len(scene_seeds)} scene seeds")
+
     # Execute
     if mode == "3" and args.series:
         run_series(client, skill_text, args.series, args.count)
     else:
         total = args.batch
+
+        # Pre-generate emotional arc for batches
+        emotional_beats = [None] * total
+        if total > 1 and args.character:
+            emotional_beats = generate_emotional_arc(client, args.character, total)
+
+        # Anti-repetition memory
+        batch_memory = {
+            "outfits": [],
+            "shadow_colors": [],
+            "palettes": [],
+            "expressions": [],
+            "templates": [],
+            "accessory_states": [],
+            "environments": [],
+        }
+
+        used_seeds = set()
+
         for i in range(total):
             if total > 1:
                 print(f"\n  ─── Image {i+1}/{total} ───")
-            run_single(client, skill_text, args, i)
+
+            # Pick a scene seed (avoid repeats)
+            seed = get_random_scene_seed(scene_seeds, used_seeds) if scene_seeds else None
+            if seed:
+                used_seeds.add(seed)
+                print(f"  🎲  Scene seed: {seed[:60]}..." if len(seed) > 60 else f"  🎲  Scene seed: {seed}")
+
+            prompt, filepath = run_single(
+                client, skill_text, args, i,
+                scene_seed=seed,
+                batch_memory=batch_memory if total > 1 else None,
+                emotional_beat=emotional_beats[i],
+                use_critique=True,
+            )
+
+            # Update anti-repetition memory from generated prompt
+            if total > 1 and prompt:
+                elements = extract_used_elements(prompt)
+                if elements.get("outfit"):
+                    batch_memory["outfits"].append(elements["outfit"])
+                if elements.get("shadow_color"):
+                    batch_memory["shadow_colors"].append(elements["shadow_color"])
+                if elements.get("palette"):
+                    batch_memory["palettes"].append(elements["palette"])
+                if elements.get("expression"):
+                    batch_memory["expressions"].append(elements["expression"])
+                if elements.get("template"):
+                    batch_memory["templates"].append(elements["template"])
+                if elements.get("environment"):
+                    batch_memory["environments"].append(elements["environment"])
+
             if i < total - 1:
                 time.sleep(1)
         print(f"\n  🎴  Done! {total} image(s) → {OUTPUT_DIR}/\n")

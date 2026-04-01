@@ -29,6 +29,7 @@ CHARACTERS = [
     "Baki Hanma", "Yuji Itadori", "Aqua Hoshino", "Rin Itoshi",
     "Megumi Fushiguro", "Shoto Todoroki", "Loid Forger", "Killua Zoldyck",
     "Sebastian Michaelis", "Jinshi", "Izuku Midoriya", "Sung Jinwoo",
+    "Nanami Kento", "Aki Hayakawa",
 ]
 
 MOODS = [
@@ -474,7 +475,142 @@ CHARACTER_DETAILS = {
         ["double dungeon entrance — massive stone gate with ominous red glow", "shadow monarch throne room — dark void with army of shadows kneeling", "Seoul city skyline at night — gate appearing in the sky above", "Hunter Association headquarters — modern Korean office building", "E-rank dungeon — dark cave with glowing blue crystals", "Jeju Island raid — devastated beach with ant corpses", "hospital room — recovering from near death, moonlight through window", "Korean street market at night — neon hangul signs", "shadow army summoning — purple energy erupting from ground", "final battle arena — dimensional rift tearing open the sky"],
         ["Arise command — hand extended toward fallen enemy, shadows rising", "shadow army marching behind him — thousands of shadow soldiers following", "dual wielding daggers — Baruka's Daggers crossed in combat stance", "leveling up — status window floating before him, glowing text", "standing in dungeon entrance alone — E-rank turned S-rank energy", "shadow exchange — dissolving into shadow, reappearing behind enemy", "Domain of the Monarch — purple energy domain expanding outward", "walking past kneeling shadow army — sovereign inspection", "protecting mother in hospital — human vulnerability amid power", "eyes glowing purple in darkness — only his eyes visible in shadow"]
     ),
+    "nanami kento": (
+        "tall well-built man with a clean-cut salaryman physique — broad shoulders under a perfectly fitted suit, muscular but lean, the build of someone who maintains discipline in everything. Short neat blonde hair parted to the side with the front swept back, sharp brown eyes with heavy dark tired circles underneath from overwork, rectangular frameless glasses (sometimes removed), strong square jaw, handsome but perpetually exhausted face, clean-shaven, a faint diagonal scar across the bridge of his nose, tanned skin",
+        "work: perfectly tailored tan/khaki suit jacket with dark dress shirt and patterned tie, brown leather belt, polished shoes — meticulous · combat: suit jacket removed, dress shirt sleeves rolled up past forearms, tie loosened, leather wrapped around fists · casual: dark button-down untucked over slacks, glasses removed showing tired eyes",
+        ["Tokyo financial district at night — glass office towers reflecting streetlights", "Shibuya Station platform — waiting for the last train, bench and tracks", "Jujutsu High corridor — reluctant return from corporate life", "Malaysian beach at sunset — brief moment of peace from backstory", "convenience store at 2am — fluorescent aisles, buying bread alone", "cursed spirit encounter site — abandoned office building", "empty crosswalk at night — rainy Shinjuku intersection", "bakery cafe — where he buys his daily bread, warm interior", "office cubicle — overtime alone, desk lamp the only light", "Shibuya underground — the final battle corridor"],
+        ["checking wristwatch — signature gesture, impatient precision", "adjusting tie while walking — professional habit, eyes ahead", "carrying bread in paper bag — post-work routine, quiet domesticity", "ratio technique activation — hands creating ratio lines in the air", "loosening tie after battle — exhaustion behind composure", "reading newspaper on train — mundane commute, glasses on", "blunt sword strike — wrapped blade extending with cursed energy", "standing at crosswalk waiting — perfectly still amid chaos", "removing glasses and rubbing bridge of nose — fatigue", "walking away from explosion — doesn't look back, overtime is over"]
+    ),
+    "aki hayakawa": (
+        "tall lean young man with a weary hunter's build — slim but sinewy, narrow frame suggesting endurance over power, the body of someone who's been fighting since childhood. Medium-length dark blue-black hair tied in a short messy topknot with loose strands framing his face, sharp narrow blue eyes with a haunted thousand-yard stare, angular face with hollow cheeks, aristocratic nose, thin lips usually pressed together in resignation, pale skin, faint dark circles",
+        "work: dark suit with white shirt and black tie — Public Safety uniform, clean and proper · combat: shirt untucked, tie loosened, sword drawn · casual: dark sweater over collared shirt, more relaxed but still guarded · rain: long dark coat over suit, collar up, hair wet and down from topknot",
+        ["Public Safety Division office — utilitarian desk, folders stacked", "Tokyo apartment shared with Denji and Power — messy but his corner is neat", "graveyard visit — family tombstones, quiet and alone", "rainy Tokyo intersection — umbrella, pedestrians blurred", "convenience store late at night — buying instant noodles", "rooftop of PSA building — smoking alone, city below", "hospital corridor — visiting injured colleagues", "Aki's childhood home in Hokkaido — snow and emptiness", "dark alley during devil encounter — rain and blood", "train platform in rain — waiting for something that won't come"],
+        ["smoking cigarette — leaning against wall or railing, thousand-yard stare", "drawing sword from back scabbard — Kon summoning stance", "standing in rain not caring — hair plastered to face, emotionally numb", "pouring another cup of instant noodles — domestic routine, lonely", "tying hair up into topknot — getting ready for work", "reading mission file — stoic concentration at desk", "walking home alone — hands in coat pockets, head down", "petting Fox Devil — rare moment of tenderness", "lighting cigarette in the rain — cupping hand around flame", "staring out window at snow — remembering family, hollow eyes"]
+    ),
 }
+
+
+# ─── Last Train — Urban Noir Data Pools ───────────────────────────────────────
+
+LASTTRAIN_ENVIRONMENTS = [
+    "empty subway car — warm orange interior light, black tunnel rushing past windows, plastic seats empty, overhead handles swaying",
+    "late-night express train — long empty car, fluorescent tubes flickering blue-white, rain hammering on windows, distorted city lights outside",
+    "train window reflection — ghostly reflection overlaid on rain-streaked black glass, blurred neon city beyond",
+    "empty platform at midnight — deserted platform, single bench, harsh overhead fluorescent, tracks vanishing into dark tunnel",
+    "standing by closed train doors — forehead nearly touching glass, breath fogging, dark tunnel with occasional light flashes",
+    "seated alone in last car — only passenger, slouched in corner seat, jacket draped on seat beside, phone face-down",
+    "train vestibule between cars — narrow rattling space, wind from gaps, metal walls vibrating",
+    "station stairwell — ascending empty station stairs, fluorescent green-white wash, wet footprints on tile",
+    "train crossing at night — standing behind crossing gate, red warning light painting face, express train blurring past",
+    "platform bench after last train — sitting on empty platform bench, silence, distant hum, single overhead light buzzing",
+    "underground passage connecting platforms — tiled tunnel, echoing footsteps, one broken fluorescent light",
+    "platform edge at 11:47pm — standing behind yellow line, last train headlights approaching from tunnel darkness",
+    "rain-soaked station exit — half-covered awning, umbrella-less, city lights smeared through downpour",
+    "ticket gate at midnight — tapping card on empty turnstile, station staff booth dark and closed",
+]
+
+LASTTRAIN_OUTFITS = [
+    "dark fitted suit, white dress shirt, tie loosened, top button undone, jacket slightly rumpled",
+    "dark suit jacket open, dress shirt untucked, no tie — pulled off an hour ago",
+    "suit jacket draped over one arm, dark vest over white shirt, sleeves rolled to forearms",
+    "long dark overcoat over suit, collar turned up, hands buried in pockets",
+    "suit soaked from rain, fabric clinging, hair wet and pushed back, water dripping from jaw",
+    "blazer over dark turtleneck, no tie, more relaxed but still sharp",
+    "dress shirt only, top two buttons open, jacket slung over shoulder by one finger",
+    "dark three-piece suit with vest buttoned, pocket watch chain barely visible — the one who keeps it together",
+]
+
+LASTTRAIN_POSES = [
+    "forehead resting against train window, one palm flat on cold glass, eyes unfocused on rain streaking outside",
+    "slouched in train seat, legs extended across empty row, head tilted back against wall, eyes half-closed",
+    "one hand loosely gripping subway pole, body swaying with the car, staring at the reflection of empty seats",
+    "back against closed train doors, one hand in pocket, the other holding a loosened tie like a rope",
+    "seated sideways, elbow on armrest, chin resting in palm, watching own ghostly reflection in black window",
+    "mid-gesture of loosening or pulling off tie, one hand at collar, jaw clenched, eyes tired",
+    "slumped against wall, phone in hand illuminating face from below, thumb hovering over an unsent message",
+    "briefcase on floor between feet, elbows on knees, head bowed, fingers interlocked — weight of the day",
+    "one hand pushing wet hair back from forehead, water dripping from jaw, just stepped in from rain",
+    "one earphone in, head resting against window, eyes closed, the other earphone dangling at chest",
+    "leaning against platform railing, transit card between two fingers, watching empty tracks",
+    "standing under station clock reading 11:58, hands in coat pockets, waiting for nothing",
+]
+
+LASTTRAIN_LIGHTING = [
+    "warm orange interior train light against pitch-black tunnel rushing past windows",
+    "cold blue-white overhead fluorescent against neon pink and cyan bleeding through rain-streaked windows",
+    "phone screen casting warm glow upward on face against harsh cold fluorescent above",
+    "distant platform lamp warm amber against approaching train headlights cold white",
+    "half face lit by interior light, half face a dark reflection with city lights behind",
+    "warm interior against rain-distorted neon magenta cyan yellow streaking across wet glass",
+    "single overhead fluorescent tube buzzing cold white above, warm amber station lights beyond the window",
+    "red crossing gate light painting half the face crimson, other half blue from distant platform lamp",
+]
+
+LASTTRAIN_VIBES = [
+    "End of the Line — exhaustion, resignation, the weight of today",
+    "Missing Someone — staring at reflection seeing someone else, phone with unread message",
+    "Quiet Defiance — tired but unbroken, jaw set, eyes forward",
+    "Coming Undone — tie loosened, composure cracking, raw and human",
+    "3AM Clarity — that strange peace after midnight where everything feels clear",
+    "The Commute Nobody Sees — the version of themselves they only show on empty trains",
+    "Running From Something — took the wrong train on purpose, doesn't want to go home yet",
+    "After the Call — someone just hung up, phone still warm in pocket, jaw tight",
+]
+
+LASTTRAIN_MICRO = [
+    "rain streaking diagonally across window",
+    "ghostly reflection in black window overlapping city lights",
+    "earphone wire dangling from collar",
+    "crumpled paper ticket in breast pocket",
+    "loosened tie knot pulled to sternum",
+    "collar damp with rain",
+    "condensation fogging window near face",
+    "sleeve pushed up showing wristwatch reading 11:47",
+    "wet fingerprints on glass",
+    "fluorescent tube flickering overhead",
+    "breath visible in cold car",
+    "transit card between fingers",
+    "empty seat beside with a jacket draped on it — nobody sat there",
+    "crumpled convenience store receipt on seat beside",
+    "umbrella dripping into a small puddle at his feet",
+]
+
+LASTTRAIN_SHADOWS = [
+    "rich burnt sienna",
+    "cool grey-green",
+    "deep magenta-black",
+    "warm amber upcast with deep navy elsewhere",
+    "deep navy",
+    "cool steel blue",
+    "muted teal",
+]
+
+LASTTRAIN_PALETTES = [
+    "Desaturated Cool — muted steel blues, dark grays, near-blacks",
+    "Neon Bleed — dark base with neon pink and cyan reflections on wet surfaces",
+    "Cold Blue — icy blue wash, steel highlights",
+    "Warm Amber — golden interior warmth against cold exterior",
+    "Faded Film — slightly desaturated with warm grain, analog photography feel",
+    "Teal and Orange — cinematic complementary split between cold exterior and warm interior",
+]
+
+# Character priority ranking for /lasttrain — ranked by noir-train mood fit
+LASTTRAIN_BEST_CHARS = [
+    "Nanami Kento",     # THE salaryman — this IS his canon. Suit, overtime, exhaustion.
+    "Aki Hayakawa",     # Chain-smoker commuter, thousand-yard stare, suit, hollow eyes
+    "Levi Ackerman",    # Stoic with immaculate posture even when exhausted, insomnia
+    "Toji Fushiguro",   # The assassin off-duty — dangerous man in mundane transit
+    "Loid Forger",      # The spy commuting between identities — which one is real?
+    "Eren Yeager",      # Post-timeskip brooder, man-bun, coat, freedom trapped in a box
+    "Megumi Fushiguro", # Natural introvert, dark energy, hands in pockets always
+    "Sung Jinwoo",      # Shadow monarch in all-black, supernatural power in mundane setting
+]
+
+LASTTRAIN_HASHTAGS = (
+    "#lasttrain #latenight #animenoir #midnightvibes #trainaesthetic "
+    "#urbananime #lonewolf #animeboy #darkaesthetic #rainynight "
+    "#animewallpaper #suitedanime #noiraesthetic #3am #emptytrain"
+)
 
 
 # ─── Per-Slide Pre-Selection Pools ────────────────────────────────────────────
@@ -1487,6 +1623,7 @@ def cmd_start(token, cid):
         "<b>🎴 CREATE</b>\n"
         "• /pingpt — Generate a single prompt (auto-randomized)\n"
         "• /pingpt Toji mood:dark — Specify character + params\n"
+        "• /lasttrain Nanami 3 — 🚇 Urban noir train aesthetic\n"
         "• /custom Zoro — Any anime character, even unlisted\n"
         "• /discover — AI picks a trending character\n\n"
         "<b>🎬 CONTENT PACKS</b>\n"
@@ -1883,6 +2020,278 @@ def cmd_daily(token, cid, api_keys):
         f"⏰ <b>Post at 07:00 + 14:00 UTC</b>\n"
         f"📊 Check analytics tonight at 20:00 UTC"
     ))
+
+
+def build_lasttrain_instruction(character_name, count):
+    """Build Gemini instruction for Last Train urban noir batch."""
+    visual, outfit_range, locations, sig_poses = get_character_details(character_name)
+
+    # Pre-select unique params for each prompt to force variety
+    def sample_unique(pool, n):
+        if len(pool) >= n:
+            return random.sample(pool, n)
+        result = list(pool)
+        while len(result) < n:
+            result.append(random.choice(pool))
+        random.shuffle(result)
+        return result
+
+    envs = sample_unique(LASTTRAIN_ENVIRONMENTS, count)
+    outfits = sample_unique(LASTTRAIN_OUTFITS, count)
+    poses = sample_unique(LASTTRAIN_POSES, count)
+    lights = sample_unique(LASTTRAIN_LIGHTING, count)
+    vibes = sample_unique(LASTTRAIN_VIBES, count)
+    micros = sample_unique(LASTTRAIN_MICRO, count)
+    shadows = sample_unique(LASTTRAIN_SHADOWS, count)
+    palettes = sample_unique(LASTTRAIN_PALETTES, count)
+
+    # Character block
+    if visual:
+        char_block = (
+            f"CHARACTER (use this EXACT description in EVERY prompt):\n"
+            f"- Name: {character_name}\n"
+            f"- Visual: {visual}\n"
+        )
+    else:
+        char_block = (
+            f"CHARACTER: {character_name}\n"
+            f"This character is NOT in the built-in roster. Use your knowledge to build an "
+            f"accurate physical description and use it IDENTICALLY in EVERY prompt.\n"
+        )
+
+    # Per-prompt parameter table
+    prompt_lines = []
+    for i in range(count):
+        prompt_lines.append(
+            f"Prompt {i+1}:\n"
+            f"  environment: {envs[i]}\n"
+            f"  outfit: {outfits[i]}\n"
+            f"  pose: {poses[i]}\n"
+            f"  lighting: {lights[i]}\n"
+            f"  emotional vibe: {vibes[i]}\n"
+            f"  micro-detail: {micros[i]}\n"
+            f"  shadow color: {shadows[i]}\n"
+            f"  palette: {palettes[i]}"
+        )
+    param_table = "\n\n".join(prompt_lines)
+
+    return (
+        f"Generate {count} LAST TRAIN urban noir prompts for: {character_name}.\n\n"
+        f"AESTHETIC LOCK: Dark-suited anime male alone on empty late-night trains and subway cars. "
+        f"Rain-streaked windows with ghostly reflections. Fluorescent buzz overhead. City lights bleeding "
+        f"through wet glass. Introspective, melancholic, lone-wolf energy. The moment between leaving "
+        f"somewhere and arriving nowhere. Every image should feel like a freeze-frame from an anime "
+        f"film's most emotionally charged commute scene.\n\n"
+        f"{char_block}\n"
+        f"PROMPT-BY-PROMPT PARAMETERS (follow EXACTLY):\n\n"
+        f"{param_table}\n\n"
+        f"SCENE NARRATIVE INTELLIGENCE (MANDATORY):\n"
+        f"Every prompt must be a cinematic micro-story on a train or platform.\n"
+        f"Before writing each prompt, answer: 'What is the character doing RIGHT NOW, and what happened 5 seconds ago?'\n\n"
+        f"The 4-Layer Formula (ALL REQUIRED):\n"
+        f"1. PHYSICAL ANCHOR — character must be physically interacting with the train environment "
+        f"(gripping pole, leaning on glass, slouched in seat, pulling tie). Nothing passive.\n"
+        f"2. SPATIAL LOGIC — exact body position. NOT 'on a train' but 'slumped in the corner seat, "
+        f"head tilted against rain-streaked window, one leg extended across the empty row.'\n"
+        f"3. DUAL LIGHT STORY — TWO competing light sources. Interior train warm vs tunnel darkness. "
+        f"Fluorescent cold vs neon bleed from outside. Phone glow vs overhead harsh light.\n"
+        f"4. UNSPOKEN NARRATIVE — environmental storytelling. Briefcase unopened = gave up working. "
+        f"Tie half-pulled = been undressing mentally since he left. Phone face-down = someone he won't text back.\n\n"
+        f"ADDITIONAL RULES:\n"
+        f"- Front-load character name + physical description\n"
+        f"- Specify shadow color from the parameters above\n"
+        f"- End with: 'Clean anime cel-shading composited over photorealistic background with heavy bokeh. Grainy film texture. "
+        f"ABSOLUTELY NO text, NO typography, NO subtitles, NO kanji, NO watermarks, NO signatures, clean image.'\n"
+        f"- Max 95 words per prompt\n"
+        f"- At least 1 prompt MUST feature a reflection-in-window composition\n"
+        f"- At least 1 prompt MUST use warm amber palette for emotional contrast\n\n"
+        f"CAPTION RULES (Last Train vibe):\n"
+        f"- TITLE: all lowercase, intimate, emotional. Like a confession whispered on a train. Max 100 chars.\n"
+        f"  Good: 'he takes the last train because nobody asks where he's been'\n"
+        f"  Good: '11:47pm. last stop.'\n"
+        f"  Bad: 'Anime Boy Dark Train Aesthetic Wallpaper HD'\n"
+        f"- DESC: 2-3 sentences in fan voice — reference the universal experience of late-night commutes, "
+        f"being alone with thoughts. Intimate, not marketing. Max 2 emojis.\n"
+        f"- TAGS: 20 hashtags (5 broad + 5 character + 5 train/noir vibe + 5 trending)\n\n"
+        f"OUTPUT FORMAT (follow EXACTLY):\n"
+        f"BATCH_{{N}}_PROMPT: [raw prompt text]\n"
+        f"BATCH_{{N}}_TITLE: [lowercase train-vibe title]\n"
+        f"BATCH_{{N}}_DESC: [fan-voice description]\n"
+        f"BATCH_{{N}}_TAGS: [20 hashtags]\n"
+        f"---BOUNDARY---\n\n"
+        f"Output ONLY in the format above. No extra text, no markdown."
+    )
+
+
+def cmd_lasttrain(token, cid, args_text, api_keys):
+    """Last Train — urban noir suited anime males on late-night trains."""
+    skill = load_skill()
+    if not skill:
+        tg_send(token, cid, "\u274c skill.md not found.")
+        return
+
+    # Parse: /lasttrain toji 5  or  /lasttrain any 5  or  /lasttrain 3  or  /lasttrain
+    parts = (args_text or "").strip().split()
+    count = 3  # default
+    character = None
+    multi_char = False  # True = rotate different characters per prompt
+
+    if parts:
+        try:
+            count = int(parts[-1])
+            name_parts = parts[:-1]
+        except ValueError:
+            name_parts = parts
+        if name_parts:
+            name = " ".join(name_parts)
+            if name.lower() == "any":
+                multi_char = True
+            else:
+                character = next((c for c in CHARACTERS if name.lower() in c.lower()), name)
+
+    count = max(1, min(count, 10))  # clamp 1-10
+
+    # ── Multi-character rotation: each prompt gets a DIFFERENT character ──
+    if multi_char:
+        char_picks = random.sample(LASTTRAIN_BEST_CHARS, min(count, len(LASTTRAIN_BEST_CHARS)))
+        roster_display = " \u2022 ".join(char_picks)
+        tg_send(token, cid, (
+            f"\U0001f687 <b>Last Train \u2014 Urban Noir Rotation</b>\n"
+            f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
+            f"Generating {count} prompts across <b>{count} characters</b>... \u23f3\n\n"
+            f"<i>{roster_display}</i>\n\n"
+            f"<i>\U0001f327 rain on glass. fluorescent hum. last stop.</i>"
+        ))
+        tg_typing(token, cid)
+
+        all_generated = 0
+        for i, char in enumerate(char_picks):
+            tg_typing(token, cid)
+            instruction = build_lasttrain_instruction(char, 1)
+            try:
+                raw = call_gemini(api_keys, skill, instruction)
+                batch_items = _parse_batch_output(raw)
+                if batch_items:
+                    item = batch_items[0]
+                    prompt_text = item.get("prompt", "")
+                    if prompt_text:
+                        all_generated += 1
+                        tg_send(token, cid, (
+                            f"\U0001f687 <b>[{i+1}/{count}]</b> {char}\n\n"
+                            f"<code>{prompt_text}</code>"
+                        ))
+                        _send_lasttrain_captions(token, cid, item)
+            except Exception as e:
+                tg_send(token, cid, f"\u274c {char} error: {str(e)[:150]}")
+
+        tg_send(token, cid, (
+            f"\u2705 <b>Last Train rotation complete!</b> {all_generated}/{count} prompts across {count} characters.\n\n"
+            f"\U0001f4cb <b>Next steps:</b>\n"
+            f"1. Paste each prompt into NanoBanana 2\n"
+            f"2. Upload to Pinterest with captions above\n\n"
+            f"\U0001f3f7 <b>Board suggestion:</b> Last Train / Urban Noir Anime"
+        ))
+        return
+
+    # ── Single character mode ──
+    if not character:
+        character = random.choice(LASTTRAIN_BEST_CHARS[:6])
+
+    tg_send(token, cid, (
+        f"\U0001f687 <b>Last Train \u2014 Urban Noir</b>\n"
+        f"\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n"
+        f"Generating {count} train noir prompt{'s' if count > 1 else ''} for <b>{character}</b>... \u23f3\n\n"
+        f"<i>\U0001f327 rain on glass. fluorescent hum. last stop.</i>"
+    ))
+    tg_typing(token, cid)
+
+    instruction = build_lasttrain_instruction(character, count)
+
+    try:
+        raw = call_gemini(api_keys, skill, instruction)
+        batch_items = _parse_batch_output(raw)
+
+        if not batch_items:
+            tg_send(token, cid, "\u274c Gemini failed to output properly formatted prompts.")
+            return
+
+        for i, item in enumerate(batch_items[:count]):
+            prompt_text = item.get("prompt", "")
+            if not prompt_text:
+                continue
+            tg_send(token, cid, (
+                f"\U0001f687 <b>[{i+1}/{count}]</b> Last Train\n\n"
+                f"<code>{prompt_text}</code>"
+            ))
+            _send_lasttrain_captions(token, cid, item)
+
+        tg_send(token, cid, (
+            f"\u2705 <b>Last Train batch complete!</b> {min(len(batch_items), count)} prompts generated.\n\n"
+            f"\U0001f4cb <b>Next steps:</b>\n"
+            f"1. Paste each prompt into NanoBanana 2\n"
+            f"2. Upload to Pinterest with captions above\n\n"
+            f"\U0001f3f7 <b>Board suggestion:</b> Last Train / Urban Noir Anime"
+        ))
+    except Exception as e:
+        tg_send(token, cid, f"\u274c Error: {str(e)[:150]}")
+
+
+def _parse_batch_output(raw):
+    """Parse BATCH_N_* output format (shared by cmd_lasttrain, cmd_batch, etc.)."""
+    batch_items = []
+    current_item = {}
+    current_key = None
+
+    for line_raw in raw.split("\n"):
+        line = line_raw.strip()
+        if line == "---BOUNDARY---":
+            if current_item.get("prompt"):
+                batch_items.append(current_item)
+                current_item = {}
+            current_key = None
+            continue
+
+        if line.startswith("BATCH_") and ":" in line:
+            key_prefix, val = line.split(":", 1)
+            val = val.strip()
+            if "_PROMPT" in key_prefix:
+                if current_item.get("prompt") and current_key != "prompt":
+                    batch_items.append(current_item)
+                    current_item = {}
+                current_key = "prompt"
+                current_item["prompt"] = val
+            elif "_TITLE" in key_prefix:
+                current_key = "title"
+                current_item["title"] = val
+            elif "_DESC" in key_prefix:
+                current_key = "desc"
+                current_item["desc"] = val
+            elif "_TAGS" in key_prefix:
+                current_key = "tags"
+                current_item["tags"] = val
+        elif current_key:
+            if not current_item.get(current_key):
+                current_item[current_key] = line_raw.strip()
+            elif line_raw.strip() == "":
+                current_item[current_key] += "\n\n"
+            else:
+                current_item[current_key] += " " + line_raw.strip()
+
+    if current_item and current_item.get("prompt"):
+        batch_items.append(current_item)
+    return batch_items
+
+
+def _send_lasttrain_captions(token, cid, item):
+    """Send formatted Pinterest captions for a Last Train prompt."""
+    caption_lines = ["\U0001f4cc <b>Pinterest</b>"]
+    if item.get("title"): caption_lines.append(f"<b>Title:</b> {item['title']}")
+    if item.get("desc"): caption_lines.append(f"{item['desc']}")
+    tags = item.get("tags", "")
+    if tags:
+        caption_lines.append(f"<code>{tags}</code>")
+    if len(caption_lines) > 1:
+        tg_send(token, cid, "\n".join(caption_lines))
 
 
 def cmd_tiktok(token, cid, args_text, api_keys):
@@ -2431,6 +2840,7 @@ def register_menu(token):
     commands = [
         {"command": "daily", "description": "📅 Daily pin batch (15 pins + captions)"},
         {"command": "pingpt", "description": "🎴 Generate a single prompt"},
+        {"command": "lasttrain", "description": "🚇 Urban noir train aesthetic"},
         {"command": "styles", "description": "🎨 Browse 30+ animation styles"},
         {"command": "custom", "description": "✏️ Any anime character"},
         {"command": "discover", "description": "🔍 Trending character pick"},
@@ -2552,6 +2962,8 @@ def webhook():
         cmd_batch(token, cid, args, api_keys)
     elif cmd == "/daily":
         cmd_daily(token, cid, api_keys)
+    elif cmd == "/lasttrain":
+        cmd_lasttrain(token, cid, args, api_keys)
     elif cmd == "/pingpt":
         # Check if the last argument is a digit, indicating a batch request
         parts = args.split() if args else []

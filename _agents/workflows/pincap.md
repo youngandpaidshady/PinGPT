@@ -64,3 +64,12 @@ View the file at c:\Users\Administrator\Desktop\PinGPT\skill.md
 4. **Hashtags** — 5 broad + 5 character + 5 niche + 3-5 trending
 5. **Alt text** — specific, not "anime boy" but "anime illustration of Gojo at a ramen counter, warm lighting"
 6. **BANNED** — No kanji titles (覚悟 — resolve). No `[Character] + [Aesthetic] + [Hook]` formula. These patterns get accounts flagged.
+
+## Automated Pinterest Publishing via Browser Subagent
+
+If the user requests the agent to automatically publish the generated `/pincap` captions to Pinterest:
+1. **NO NATIVE UPLOADS:** Do NOT attempt to use the browser subagent to upload local image files. Pinterest's native file picker blocks automation. Instruct the user to manually drag-and-drop the images to create bulk drafts on the Pinterest Pin Creation page first.
+2. **ACTIVE PAGE TAKEOVER:** Send the browser subagent to the CURRENT active Pinterest drafts page. Do not navigate to a new URL.
+3. **EXPLICIT WAITS:** Pinterest uses a complex React UI. The subagent MUST use explicit delays (minimum 2+ seconds) between clicking a field to focus it, verifying the cursor, typing the text, and clicking the next UI element. Otherwise, keystrokes will randomly drop.
+4. **BOARD VERIFICATION:** The subagent MUST explicitly verify that the correct board is selected from the dropdown before clicking Publish.
+5. **DRAFT MATCHING (CRITICAL RETRAINING):** You are strictly FORBIDDEN from using tiny UI thumbnails for visual matching, as this causes hallucinated miscaptions. You MUST read the default Title (which automatically inherits the original file name). If the original file name is stripped or unavailable, you MUST click into the draft to view the full resolution image before attempting to match it against captions.md. Never guess based on a thumbnail.

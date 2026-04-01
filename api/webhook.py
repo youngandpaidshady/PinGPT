@@ -19,6 +19,7 @@ PROMPT_MODEL = "gemini-2.5-flash"
 # skill.md lives in project root (one level up from api/)
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 SKILL_FILE = PROJECT_ROOT / "skill.md"
+SKILL_TIKTOK_FILE = PROJECT_ROOT / "skill_tiktok.md"
 DNA_FILE = PROJECT_ROOT / "dna.md"
 
 # ─── Data ─────────────────────────────────────────────────────────────────────
@@ -78,6 +79,22 @@ ART_STYLES = [
     "clean cel-shading", "clean cel-shading", "clean cel-shading",
     "clean cel-shading", "ink wash", "sketchy lineart", "watercolor bleed",
 ]
+
+# ─── Daily Rotation Schedule ──────────────────────────────────────────────────
+# Day-of-week (0=Mon) → 3 character slots. None = random/discover pick.
+
+DAILY_ROTATION = {
+    0: ["Satoru Gojo", "Megumi Fushiguro", "Toji Fushiguro"],
+    1: ["Levi Ackerman", "Eren Yeager", "Sung Jinwoo"],
+    2: ["Satoru Gojo", "Yuji Itadori", "Killua Zoldyck"],
+    3: ["Toji Fushiguro", "Megumi Fushiguro", "Aqua Hoshino"],
+    4: ["Eren Yeager", "Satoru Gojo", "Rin Itoshi"],
+    5: [None, "Levi Ackerman", "Megumi Fushiguro"],
+    6: ["Satoru Gojo", "Toji Fushiguro", None],
+}
+
+DAY_NAMES = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+DAILY_PINS_PER_CHAR = 5
 
 # ─── Style Library (30+ styles across cultures & aesthetics) ──────────────────
 # key → (emoji, display_name, keywords[], prompt_description)
@@ -297,6 +314,65 @@ TIKTOK_SOUNDS = {
 }
 TIKTOK_SOUNDS_FLAT = [s for group in TIKTOK_SOUNDS.values() for s in group]
 
+# ─── Save-Optimization CTAs (inject into ~40% of pin descriptions) ────────────
+SAVE_CTA_POOL = [
+    "save this for your lock screen later",
+    "this one's worth the screenshot",
+    "save before it gets lost in your feed",
+    "pin this — future you will thank you",
+    "your phone wallpaper is begging for this",
+    "save if this stopped your scroll",
+    "bookmark this vibe",
+    "coming back to this one later",
+    "saving this for the aesthetic folder",
+    "this deserves a spot on your home screen",
+    "save this before pinterest buries it",
+    "add this to the collection 🤍",
+    "if you scrolled back up, you already know — save it",
+]
+
+# ─── Pinterest SEO Keywords (high-volume search terms per character) ──────────
+PINTEREST_SEARCH_KEYWORDS = {
+    "satoru gojo": ["gojo wallpaper", "gojo aesthetic dark", "gojo pfp", "gojo phone wallpaper", "gojo anime art", "gojo iphone wallpaper", "gojo dark edit", "gojo blindfold"],
+    "toji fushiguro": ["toji wallpaper", "toji aesthetic", "toji fushiguro pfp", "toji dark edit", "toji gym anime", "toji phone wallpaper", "toji fushiguro fanart"],
+    "eren yeager": ["eren wallpaper", "eren yeager aesthetic", "eren freedom", "eren pfp dark", "eren phone wallpaper", "attack on titan wallpaper", "eren dark edit"],
+    "levi ackerman": ["levi wallpaper", "levi ackerman aesthetic", "levi pfp", "levi dark edit", "levi captain wallpaper", "levi phone wallpaper", "levi cleaning"],
+    "baki hanma": ["baki wallpaper", "baki gym aesthetic", "baki muscle anime", "baki phone wallpaper", "baki dark edit"],
+    "yuji itadori": ["itadori wallpaper", "yuji aesthetic", "jjk wallpaper", "itadori pfp", "itadori phone wallpaper"],
+    "aqua hoshino": ["aqua hoshino wallpaper", "oshi no ko aesthetic", "aqua dark edit", "aqua phone wallpaper", "aqua star eye"],
+    "rin itoshi": ["rin itoshi wallpaper", "blue lock wallpaper", "rin itoshi aesthetic", "rin dark edit", "blue lock phone wallpaper"],
+    "megumi fushiguro": ["megumi wallpaper", "megumi aesthetic dark", "megumi pfp", "fushiguro phone wallpaper", "megumi dark edit"],
+    "shoto todoroki": ["todoroki wallpaper", "todoroki aesthetic", "todoroki phone wallpaper", "todoroki pfp", "mha wallpaper"],
+    "loid forger": ["loid forger wallpaper", "spy x family aesthetic", "loid pfp", "loid phone wallpaper"],
+    "killua zoldyck": ["killua wallpaper", "killua aesthetic", "killua pfp dark", "killua phone wallpaper", "hxh wallpaper"],
+    "sung jinwoo": ["sung jinwoo wallpaper", "solo leveling wallpaper", "jinwoo dark edit", "solo leveling phone wallpaper", "shadow monarch wallpaper"],
+    "sebastian michaelis": ["sebastian wallpaper", "black butler aesthetic", "sebastian pfp", "kuroshitsuji wallpaper"],
+    "jinshi": ["jinshi wallpaper", "apothecary diaries aesthetic", "jinshi pfp", "jinshi phone wallpaper"],
+    "izuku midoriya": ["deku wallpaper", "midoriya aesthetic", "deku dark edit", "mha phone wallpaper", "deku pfp"],
+    "denji": ["denji wallpaper", "chainsaw man wallpaper", "denji aesthetic", "denji pfp", "csm phone wallpaper"],
+    "guts": ["guts wallpaper", "berserk wallpaper", "guts dark edit", "berserk phone wallpaper", "guts aesthetic"],
+    "ryomen sukuna": ["sukuna wallpaper", "sukuna dark edit", "sukuna aesthetic", "sukuna phone wallpaper", "jjk sukuna"],
+    "yuta okkotsu": ["yuta wallpaper", "yuta okkotsu aesthetic", "yuta dark edit", "yuta phone wallpaper"],
+}
+
+# ─── Funnel Link CTAs (inject into ~30% of pin descriptions) ──────────────────
+FUNNEL_LINK = os.environ.get("FUNNEL_LINK", "")
+FUNNEL_LINK_CTAS = [
+    "🔗 free wallpaper pack → {link}",
+    "grab the full collection → {link}",
+    "📲 more wallpapers at {link}",
+    "want the full pack? → {link}",
+    "🖼️ HD downloads → {link}",
+    "free download collection → {link}",
+]
+
+# ─── Wallpaper-Optimized Tags ─────────────────────────────────────────────────
+WALLPAPER_TAGS = [
+    "#animewallpaper", "#phonewallpaper", "#lockscreenwallpaper", "#iphonewallpaper",
+    "#animelockscreen", "#darkwallpaper", "#aestheticwallpaper", "#animepfp",
+    "#wallpaperanime", "#animebackground",
+]
+
 # ─── Character Detail Lookup ──────────────────────────────────────────────────
 # Mirrors the roster from skill.md — visual signatures + outfit ranges + series locations + signature poses
 # Key = lowercased character name, value = (visual_signature, outfit_range, series_locations, signature_poses)
@@ -489,6 +565,14 @@ def load_skill():
         if path.exists():
             return path.read_text(encoding="utf-8")
     return None
+
+
+def load_tiktok_skill():
+    """Load TikTok-specific carousel pacing rules from skill_tiktok.md."""
+    for path in [SKILL_TIKTOK_FILE, Path(__file__).parent / "skill_tiktok.md"]:
+        if path.exists():
+            return path.read_text(encoding="utf-8")
+    return ""
 
 
 def parse_args(text):
@@ -695,17 +779,37 @@ def build_tiktok_instruction(character_name):
         f"DOMINANT MOOD: {dominant_mood}\n\n"
         f"SLIDE-BY-SLIDE PARAMETERS (follow EXACTLY — each slide MUST use these specific values):\n\n"
         f"{param_table}\n\n"
+        f"SCENE NARRATIVE INTELLIGENCE (MANDATORY — applies to EVERY slide prompt):\n"
+        f"Every prompt must be a cinematic micro-story, not an aesthetic combination.\n"
+        f"Before writing each prompt, answer: 'What is the character doing RIGHT NOW, and what happened 5 seconds ago?'\n\n"
+        f"The 4-Layer Formula (ALL REQUIRED in every slide):\n"
+        f"1. PHYSICAL ANCHOR — a hyper-specific object the character is holding or interacting with "
+        f"(marshmallow on stick, chopsticks mid-lift, paperback face-down, basketball under arm, guitar pick between teeth). "
+        f"If nothing is in their hands and they aren't touching anything, the scene is DEAD — rewrite it.\n"
+        f"2. SPATIAL LOGIC — exact body position in space. NOT 'in a gym' but 'hunched forward on a weight bench, elbows on knees.' "
+        f"NOT 'at a cafe' but 'seated sideways at a rain-streaked window booth, one hand on a fogged glass.' Precision = cinematic framing.\n"
+        f"3. DUAL LIGHT STORY — TWO competing light sources with different color temperatures "
+        f"(firelight amber vs forest darkness, desk lamp warm vs moonlight blue through blinds, ramen shop yellow vs rain-streaked neon outside). "
+        f"NEVER single-temperature lighting.\n"
+        f"4. UNSPOKEN NARRATIVE — implied through environmental details, not stated directly "
+        f"(gym bag already packed = about to leave, coffee half-drunk = been here a while, hoodie damp = just came in from rain, "
+        f"paperback abandoned face-down = lost interest 20 mins ago).\n\n"
+        f"QUALITY CHECK — if any prompt looks like these, REWRITE IT:\n"
+        f"BAD: '[Character] standing in a forest at night' — static, no moment, no anchor\n"
+        f"BAD: '[Character] in a gym with dramatic lighting' — aesthetic combo, not a scene\n"
+        f"GOOD: '[Character] wrapping hand tape on a weight bench, single overhead light casting harsh shadows while blue window glow rims his shoulders, gym bag already packed by the door'\n\n"
         f"RULES:\n"
         f"- Use the character's EXACT visual description (hair, eyes, build, scars, facial features) in EVERY prompt — "
         f"character recognition comes from physical features, not clothes\n"
         f"- Pick a DIFFERENT outfit from the character's outfit range for each slide (match to the setting)\n"
         f"- Each prompt must be a complete, standalone NanoBanana 2 image generation prompt in natural language\n"
         f"- Always state '9:16 portrait orientation' in each prompt\n"
-        f"- Include anti-watermark language in each prompt\n"
         f"- Front-load the character name + physical description in each prompt\n"
         f"- Include 1-2 micro-details from the parameter above in each prompt\n"
         f"- Vary sentence structure — don't start every prompt the same way\n"
-        f"- Include narrative context (implied story) in at least 5 of the 10 slides\n\n"
+        f"- Always specify shadow colors matching the light source (warm light = burnt sienna shadows, NOT generic black)\n"
+        f"- End every prompt with: 'Clean anime cel-shading composited over photorealistic background with heavy bokeh. Grainy film texture.'\n"
+        f"- Max 100 words per prompt — every word must earn its place\n\n"
         f"OUTPUT FORMAT (follow EXACTLY):\n"
         f"For each slide, output on its own line:\n"
         f"SLIDE_N_TITLE: [brief 2-4 word scene title]\n"
@@ -808,22 +912,46 @@ def build_series_instruction(character_name, count):
     param_table = "\n".join(slide_lines)
 
     return (
-        f"Generate {count} connected story-arc prompts for the character: {character_name}. "
-        f"Follow Phase 7 (Series Mode) in the skill file.\n\n"
+        f"Generate {count} connected story-arc prompts for the character: {character_name}.\n\n"
         f"{char_block}\n"
         f"ART STYLE (same for ALL {count} prompts): {art_style}\n\n"
         f"PROMPT-BY-PROMPT PARAMETERS (follow EXACTLY — each prompt MUST use these specific values):\n\n"
         f"{param_table}\n\n"
-        f"RULES:\n"
+        f"SERIES RULES:\n"
         f"- Same character with IDENTICAL physical description across all prompts\n"
-        f"- Vary everything else according to the parameters above\n"
+        f"- Each prompt tells a DIFFERENT moment in a mini story arc\n"
         f"- Narrative arc: Start with intense action → middle is contemplative pause → end is solitary wide shot\n"
-        f"- Typography in exactly 1 prompt\n"
-        f"- Front-load the character name + physical description in each prompt\n\n"
+        f"- Different color grades across series\n"
+        f"- Vary everything else according to the parameters above\n"
+        f"- Every prompt MUST be a SCENE, not an aesthetic combo\n\n"
+        f"SCENE NARRATIVE INTELLIGENCE (MANDATORY — applies to EVERY prompt):\n"
+        f"Every prompt must be a cinematic micro-story, not an aesthetic combination.\n"
+        f"Before writing each prompt, answer: 'What is the character doing RIGHT NOW, and what happened 5 seconds ago?'\n\n"
+        f"The 4-Layer Formula (ALL REQUIRED in every prompt):\n"
+        f"1. PHYSICAL ANCHOR — a hyper-specific object the character is holding or interacting with "
+        f"(marshmallow on stick, chopsticks mid-lift, paperback face-down, basketball under arm). "
+        f"If nothing is in their hands and they aren't touching anything, the scene is DEAD — rewrite it.\n"
+        f"2. SPATIAL LOGIC — exact body position in space. NOT 'in a gym' but 'hunched forward on a weight bench, elbows on knees.' "
+        f"Precision = cinematic framing.\n"
+        f"3. DUAL LIGHT STORY — TWO competing light sources with different color temperatures "
+        f"(firelight amber vs forest darkness, desk lamp warm vs moonlight blue through blinds). "
+        f"NEVER single-temperature lighting.\n"
+        f"4. UNSPOKEN NARRATIVE — implied through environmental details, not stated directly "
+        f"(gym bag already packed = about to leave, coffee half-drunk = been here a while, hoodie damp = just came in from rain).\n\n"
+        f"QUALITY CHECK — if any prompt looks like these, REWRITE IT:\n"
+        f"BAD: '[Character] standing in a forest at night' — static, no moment\n"
+        f"BAD: '[Character] in a gym with dramatic lighting' — aesthetic combo, not a scene\n"
+        f"GOOD: '[Character] closing a paperback with one thumb, afternoon light through dusty cafe windows, shadows cast in warm amber'\n\n"
+        f"ADDITIONAL RULES:\n"
+        f"- Front-load the character name + physical description in each prompt\n"
+        f"- Always specify shadow colors matching the light source (warm light = burnt sienna shadows, NOT generic black)\n"
+        f"- End every prompt with: 'Clean anime cel-shading composited over photorealistic background with heavy bokeh. Grainy film texture.'\n"
+        f"- Max 100 words per prompt — every word must earn its place\n"
+        f"- NO text overlays or typography in any prompt\n\n"
         f"OUTPUT FORMAT (follow EXACTLY):\n"
         f"For each prompt, output on its own line:\n"
-        f"SERIES_N_TITLE: [catchy Pinterest title]\n"
-        f"SERIES_N_DESC: [2-3 sentence SEO description with emojis]\n"
+        f"SERIES_N_TITLE: [catchy Pinterest title — lowercase aesthetic, max 100 chars]\n"
+        f"SERIES_N_DESC: [2-3 sentence SEO description in fan voice with emojis, max 2 emojis]\n"
         f"SERIES_N_TAGS: [10 relevant Pinterest hashtags]\n"
         f"SERIES_N_PROMPT: [complete image generation prompt — raw text, no markdown]\n\n"
         f"Output ONLY in the format above. No extra text, no markdown."
@@ -879,16 +1007,60 @@ def parse_series_output(raw, count):
     return prompts
 
 
+def _get_seo_keywords_for_prompt(prompt_text):
+    """Extract character name from prompt and return SEO keywords."""
+    prompt_lower = prompt_text.lower()
+    for char_name, keywords in PINTEREST_SEARCH_KEYWORDS.items():
+        if char_name in prompt_lower or char_name.split()[0] in prompt_lower:
+            return char_name, keywords
+    return None, []
+
+
 def generate_captions(api_keys, prompt_text):
-    """Generate Pinterest + TikTok captions from a generated prompt."""
+    """Generate Pinterest + TikTok captions from a generated prompt (SEO-first)."""
+    char_name, seo_keywords = _get_seo_keywords_for_prompt(prompt_text)
+
+    # Build SEO instruction block
+    seo_block = ""
+    if seo_keywords:
+        top_kws = random.sample(seo_keywords, min(3, len(seo_keywords)))
+        seo_block = (
+            f"\n\nSEO KEYWORDS (you MUST naturally include at least ONE of these in the title): "
+            f"{', '.join(top_kws)}\n"
+        )
+
+    # Save CTA injection (~40% chance)
+    save_block = ""
+    if random.random() < 0.4:
+        save_cta = random.choice(SAVE_CTA_POOL)
+        save_block = f"\nInclude this save CTA naturally at the end of the Pinterest description: \"{save_cta}\"\n"
+
+    # Funnel link injection (~30% chance, only if FUNNEL_LINK is set)
+    funnel_block = ""
+    if FUNNEL_LINK and random.random() < 0.3:
+        funnel_cta = random.choice(FUNNEL_LINK_CTAS).replace("{link}", FUNNEL_LINK)
+        funnel_block = f"\nAppend this EXACTLY at the end of the Pinterest description: {funnel_cta}\n"
+
+    # Wallpaper tags to inject
+    extra_tags = random.sample(WALLPAPER_TAGS, 3)
+    tags_inject = " ".join(extra_tags)
+
     instruction = (
         "Based on this anime image prompt, generate social media captions.\n\n"
         f"Prompt: {prompt_text}\n\n"
+        "RULES:\n"
+        "- TITLE: lowercase, emotional, sounds like a tweet NOT an SEO keyword dump. Max 100 chars.\n"
+        "  The title must naturally incorporate a search-intent keyword (wallpaper, aesthetic, pfp, edit).\n"
+        "  Good: 'that gojo wallpaper energy at 3am'\n"
+        "  Bad: 'Gojo Satoru Dark Anime Aesthetic Wallpaper HD'\n"
+        "- DESC: 2-3 sentences in fan voice. Relatable, NOT robotic. Max 2 emojis.\n"
+        "- TAGS: 15-20 hashtags (5 broad + 5 character + 5 niche + 3-5 wallpaper/save tags)\n"
+        f"{seo_block}{save_block}{funnel_block}\n"
         "Output EXACTLY in this format (no extra text):\n"
-        "PINTEREST_TITLE: [short catchy title, 5-8 words]\n"
-        "PINTEREST_DESC: [2-3 sentence SEO description with emojis]\n"
-        "PINTEREST_TAGS: [10 relevant hashtags starting with #]\n"
-        "TIKTOK_CAPTION: [short catchy caption with emojis, 1-2 lines]\n"
+        "PINTEREST_TITLE: [title]\n"
+        "PINTEREST_DESC: [description]\n"
+        f"PINTEREST_TAGS: [15-20 hashtags — MUST include these: {tags_inject}]\n"
+        "TIKTOK_CAPTION: [short caption with emojis, 1-2 lines]\n"
         "TIKTOK_TAGS: [10 trending TikTok hashtags starting with #]"
     )
     try:
@@ -1305,7 +1477,9 @@ def cmd_start(token, cid):
     tg_send(token, cid, (
         "🎴 <b>PinGPT v3.0 — Anime Prompt Engine</b>\n"
         "━━━━━━━━━━━━━━━━━━━━━\n\n"
-        "<b>📸 PHOTO → PROMPT (NEW!)</b>\n"
+        "<b>📅 DAILY MODE</b>\n"
+        "• /daily — Full daily batch (15 pins + captions)\n\n"
+        "<b>📸 PHOTO → PROMPT</b>\n"
         "• Send any photo → AI analyzes it\n"
         "• Pick from 30+ styles (Japanese, African, Korean, Cinematic...)\n"
         "• Or type a keyword: samurai, cyberpunk, ghibli...\n"
@@ -1325,7 +1499,7 @@ def cmd_start(token, cid):
         "• /help — All parameters, examples, tips\n\n"
         "<b>🛠 TOOLS</b>\n"
         "• /crop — Remove NanoBanana 2 watermark (reply to image)\n\n"
-        "💡 <i>Send a photo or type /pingpt to start!</i>"
+        "💡 <i>Send a photo or type /daily to start your day!</i>"
     ))
 
 
@@ -1563,12 +1737,164 @@ def cmd_batch(token, cid, args_text, api_keys):
         tg_send(token, cid, f"❌ Error: {str(e)[:150]}")
 
 
+def cmd_daily(token, cid, api_keys):
+    """Daily pin production — sends today's rotation and generates 15 pins."""
+    from datetime import datetime, timezone, timedelta
+
+    now = datetime.now(timezone.utc)
+    day_idx = now.weekday()  # 0=Mon
+    day_name = DAY_NAMES[day_idx]
+    date_str = now.strftime("%b %d")
+    slots = DAILY_ROTATION.get(day_idx, DAILY_ROTATION[0])
+
+    # Resolve None slots → random character
+    resolved = []
+    for s in slots:
+        if s is None:
+            pick = random.choice(CHARACTERS)
+            resolved.append((pick, True))   # (name, is_wildcard)
+        else:
+            resolved.append((s, False))
+
+    total = DAILY_PINS_PER_CHAR * len(resolved)
+    slot_lines = []
+    for i, (name, wild) in enumerate(resolved, 1):
+        tag = " 🎲" if wild else ""
+        slot_lines.append(f"  {i}. <b>{name}</b> × {DAILY_PINS_PER_CHAR} pins{tag}")
+
+    briefing = (
+        f"📅 <b>Daily Pin Drop — {day_name} {date_str}</b>\n"
+        f"━━━━━━━━━━━━━━━━━━━━━\n\n"
+        f"<b>Today's Rotation:</b>\n"
+        + "\n".join(slot_lines) + "\n\n"
+        f"🎯 <b>Total: {total} pins</b>\n\n"
+        f"⏳ <i>Generating batch now...</i>\n\n"
+        f"📌 Post at:\n"
+        f"  • <b>07:00 UTC</b> — Batch 1 (8 pins)\n"
+        f"  • <b>14:00 UTC</b> — Batch 2 (7 pins)"
+    )
+    tg_send(token, cid, briefing)
+
+    # Generate each character's batch
+    skill = load_skill()
+    if not skill:
+        tg_send(token, cid, "❌ skill.md not found.")
+        return
+
+    all_generated = 0
+    for slot_idx, (char_name, is_wild) in enumerate(resolved, 1):
+        label = f"🎲 Wildcard: {char_name}" if is_wild else char_name
+        tg_send(token, cid, f"\n━ <b>Slot {slot_idx}/3 — {label}</b> ━")
+        tg_typing(token, cid)
+
+        count = DAILY_PINS_PER_CHAR
+        instruction = (
+            f"Generate EXACTLY {count} completely distinct anime image prompts for Character: {char_name}.\n"
+            "Ensure every prompt is highly unique in composition, lighting, setting, and mood.\n"
+            "For EACH prompt, you must also generate a humanized Pinterest caption.\n\n"
+            "CAPTION RULES:\n"
+            "- TITLE: all lowercase, emotional, max 100 chars. Sounds like a tweet, NOT SEO.\n"
+            "  Good: 'the last train home never felt this heavy'\n"
+            "  Bad: 'Megumi Fushiguro Dark Anime Aesthetic Wallpaper'\n"
+            "- NO character name in title.\n"
+            "- DESC: 2-3 sentences in fan voice, relatable moment + save CTA. Max 2 emojis.\n"
+            "- TAGS: 20 hashtags (5 broad + 5 character + 5 vibe + 5 trending)\n\n"
+            "Output EXACTLY in this format for each generated item (1 to N):\n\n"
+            "BATCH_{N}_PROMPT: [pure natural language prompt text with no markdown]\n"
+            "BATCH_{N}_TITLE: [humanized lowercase pinterest title]\n"
+            "BATCH_{N}_DESC: [2-3 sentence fan-voice description]\n"
+            "BATCH_{N}_TAGS: [20 relevant hashtags starting with #]\n"
+            "---BOUNDARY---"
+        )
+
+        try:
+            raw = call_gemini(api_keys, skill, instruction)
+
+            # Parse batch output (same logic as cmd_batch)
+            batch_items = []
+            current_item = {}
+            current_key = None
+
+            for line_raw in raw.split("\n"):
+                line = line_raw.strip()
+                if line == "---BOUNDARY---":
+                    if current_item.get("prompt"):
+                        batch_items.append(current_item)
+                        current_item = {}
+                    current_key = None
+                    continue
+
+                if line.startswith("BATCH_") and ":" in line:
+                    key_prefix, val = line.split(":", 1)
+                    val = val.strip()
+                    if "_PROMPT" in key_prefix:
+                        if current_item.get("prompt") and current_key != "prompt":
+                            batch_items.append(current_item)
+                            current_item = {}
+                        current_key = "prompt"
+                        current_item["prompt"] = val
+                    elif "_TITLE" in key_prefix:
+                        current_key = "title"
+                        current_item["title"] = val
+                    elif "_DESC" in key_prefix:
+                        current_key = "desc"
+                        current_item["desc"] = val
+                    elif "_TAGS" in key_prefix:
+                        current_key = "tags"
+                        current_item["tags"] = val
+                elif current_key:
+                    if not current_item[current_key]:
+                        current_item[current_key] = line_raw.strip()
+                    elif line_raw.strip() == "":
+                        current_item[current_key] += "\n\n"
+                    else:
+                        current_item[current_key] += " " + line_raw.strip()
+
+            if current_item and current_item.get("prompt"):
+                batch_items.append(current_item)
+
+            for i, item in enumerate(batch_items[:count]):
+                prompt_text = item.get("prompt", "")
+                if not prompt_text:
+                    continue
+                all_generated += 1
+                num = (slot_idx - 1) * count + i + 1
+                tg_send(token, cid, f"🎴 <b>[{num}/{total}]</b>\n\n<code>{prompt_text}</code>")
+
+                caption_lines = ["📌 <b>Pinterest</b>"]
+                if item.get("title"): caption_lines.append(f"<b>Title:</b> {item['title']}")
+                if item.get("desc"): caption_lines.append(f"{item['desc']}")
+                if item.get("tags"): caption_lines.append(f"<code>{item['tags']}</code>")
+                if len(caption_lines) > 1:
+                    tg_send(token, cid, "\n".join(caption_lines))
+
+        except Exception as e:
+            tg_send(token, cid, f"❌ Slot {slot_idx} error: {str(e)[:150]}")
+
+    # Final summary
+    tg_send(token, cid, (
+        f"\n✅ <b>Daily batch complete!</b>\n"
+        f"━━━━━━━━━━━━━━━━━━━━━\n\n"
+        f"🎴 {all_generated}/{total} prompts generated\n\n"
+        f"📋 <b>Next steps:</b>\n"
+        f"1. Paste each prompt into NanoBanana 2\n"
+        f"2. Cherry-pick best {total} images\n"
+        f"3. Upload to Pinterest with captions above\n\n"
+        f"⏰ <b>Post at 07:00 + 14:00 UTC</b>\n"
+        f"📊 Check analytics tonight at 20:00 UTC"
+    ))
+
+
 def cmd_tiktok(token, cid, args_text, api_keys):
     """TikTok 10-slide carousel with viral pacing + pre-selected variety."""
     skill = load_skill()
     if not skill:
         tg_send(token, cid, "❌ skill.md not found.")
         return
+
+    # Load TikTok-specific carousel pacing rules and combine with main skill
+    tiktok_skill = load_tiktok_skill()
+    combined_skill = skill + "\n\n---\n\n" + tiktok_skill if tiktok_skill else skill
 
     # Parse character name (or pick random)
     parts = (args_text or "").strip().split()
@@ -1583,7 +1909,7 @@ def cmd_tiktok(token, cid, args_text, api_keys):
 
     instruction, dominant_mood = build_tiktok_instruction(character)
     try:
-        raw = call_gemini(api_keys, skill, instruction)
+        raw = call_gemini(api_keys, combined_skill, instruction)
     except Exception as e:
         tg_send(token, cid, f"❌ API error: {str(e)[:200]}")
         return
@@ -2103,6 +2429,7 @@ def register_menu(token):
     """Register bot commands menu with Telegram (called once on /start)."""
     import urllib.request
     commands = [
+        {"command": "daily", "description": "📅 Daily pin batch (15 pins + captions)"},
         {"command": "pingpt", "description": "🎴 Generate a single prompt"},
         {"command": "styles", "description": "🎨 Browse 30+ animation styles"},
         {"command": "custom", "description": "✏️ Any anime character"},
@@ -2223,6 +2550,8 @@ def webhook():
         cmd_series(token, cid, args, api_keys)
     elif cmd == "/batch":
         cmd_batch(token, cid, args, api_keys)
+    elif cmd == "/daily":
+        cmd_daily(token, cid, api_keys)
     elif cmd == "/pingpt":
         # Check if the last argument is a digit, indicating a batch request
         parts = args.split() if args else []

@@ -114,41 +114,120 @@ Every prompt MUST produce this specific composite:
 
 ---
 
-## 4. Character Roster
+## 4. Character Identity & Scene Intelligence
+
+> **CORE PRINCIPLE**: You (the LLM) already know these characters — their personalities, canonical behavior, signature habits, emotional arcs, and cultural context. **USE THAT KNOWLEDGE.** The roster below provides only what you CAN'T infer: exact visual descriptions (for the image model) and curated Pinterest-aesthetic outfit wardrobes. Everything else — how they move, what they'd do in a scene, their emotional contradictions — **you generate from your own knowledge of the character.**
+
+### Character Intelligence Framework
+
+For EVERY prompt, apply this framework:
+
+1. **Visual Lock (from roster below)** — Always include 2-3 Visual Signature traits. These are the physical features the image model needs to draw the character correctly. Non-negotiable.
+
+2. **Outfit Selection (from roster below)** — Pick from their curated wardrobe. 🔒 Signature outfit 60% of the time. Scene-appropriate variant 40%. These are aesthetic choices optimized for Pinterest, not just canon accuracy.
+
+3. **Behavioral Signature (YOU generate this)** — Using your knowledge of the character's canon personality, generate a body language habit or physical tell that this specific character would do unconsciously, regardless of scene. Ask: *"What would THIS character — not any character — be doing with their hands, their posture, their eyes right now?"* It must be something only they would do.
+
+4. **Emotional Contradiction (YOU generate this)** — In 3 out of every 5 prompts, place the character in a moment that **contradicts their known persona**. You know their arc — use it. The stoic one smiling. The powerful one being vulnerable. The cold one being gentle. This dissonance is what drives comments and saves. Ask: *"What emotion would SURPRISE fans if they saw this character feeling it?"*
+
+5. **Scene-Specific Action (YOU generate this)** — Given the environment, ask: *"What would THIS character specifically be doing in this space that no other character would do the same way?"* Levi in a gym wouldn't lift weights — he'd wipe down equipment. Toji in a flower shop wouldn't browse — he'd pick thorns off a stem with his teeth. Denji at a buffet wouldn't eat politely — he'd be stuffing food in with both hands, tears of joy. **The action must be character-authentic.**
+
+6. **Cultural & Canon Anchoring (YOU generate this)** — Weave in details from the character's source material that fans would recognize: a specific item they carry, a habit from their backstory, clothing damage consistent with their story, a gesture that references their relationships. These easter eggs drive engagement from the fandom.
+
+### ⚠️ CRITICAL: Character Knowledge Mandate
+
+**You are NOT a random scene generator that swaps character names.** You are an engine with deep knowledge of every character's:
+- **Personality** — how they carry themselves, their default emotional state, their quirks
+- **Backstory** — what shaped them, what wounds they carry, what they've lost
+- **Relationships** — who matters to them, who they've lost, what they protect
+- **Signature habits** — canonical gestures, items, behaviors fans associate with them
+- **Emotional range** — what emotions they show vs. hide, and what it means when that breaks
+
+**USE ALL OF THIS** when constructing prompts. A prompt for Toji should FEEL different from a prompt for Gojo at every level — not just the face description and outfit, but the pose, the energy, the micro-details, the implied story.
+
+---
 
 ### Tier 1 — Top Performers
 
-| Character | Series | Visual Signature | Outfit Range |
-|---|---|---|---|
-| Toji Fushiguro | Jujutsu Kaisen | muscular man with messy black hair, lip scar, sharp jawline, heavy-lidded green eyes | gym: shirtless with hand wraps · city: dark jacket or long coat · casual: white crewneck · combat: black athletic shirt, white cargo pants |
-| Satoru Gojo | Jujutsu Kaisen | tall lean man with spiky white hair, bright blue eyes, black blindfold, charismatic smirk | combat: dark navy high-collar jujutsu uniform · casual: black jacket, sunglasses pushed up · relaxed: open white shirt, rolled sleeves |
-| Eren Yeager | Attack on Titan | lean muscular man with long dark hair in man bun, intense gray-green eyes | post-timeskip: dark brown long coat over black shirt · casual: dark hoodie, scarf · combat: Survey Corps jacket with harness |
-| Levi Ackerman | Attack on Titan | short but muscular with sharp undercut black hair, cold grey eyes, stoic | combat: Survey Corps green cape, white cravat, leather harness · downtime: crisp white button-up, sleeves rolled · casual: dark turtleneck |
-| Baki Hanma | Baki | extremely muscular young man with wild reddish-brown hair, battle scars | fighting: shirtless, dark shorts · gym: tight white tank top, dark pants · casual: oversized jacket, open |
-| Nanami Kento | Jujutsu Kaisen | broad-shouldered man with neat slicked-back blond hair, tired amber eyes, stoic, glasses or sunglasses | office: tailored tan dress shirt, loosened tie, dark slacks · combat: dark navy jujutsu uniform · casual: clean button-up, sleeves rolled |
+| Character | Series | Visual Signature |
+|---|---|---|
+| Toji Fushiguro | Jujutsu Kaisen | muscular man with messy black hair, lip scar, sharp jawline, heavy-lidded green eyes |
+| Satoru Gojo | Jujutsu Kaisen | tall lean man with spiky white hair, bright blue eyes, black blindfold, charismatic smirk |
+| Eren Yeager | Attack on Titan | lean muscular man with long dark hair in loose man bun, intense gray-green eyes, sharp cheekbones |
+| Levi Ackerman | Attack on Titan | short but muscular with sharp undercut black hair, cold grey eyes, perpetually stoic expression |
+| Baki Hanma | Baki | extremely muscular young man with wild reddish-brown hair, battle scars across torso and arms |
+| Nanami Kento | Jujutsu Kaisen | broad-shouldered man with neat slicked-back blond hair, tired amber eyes behind glasses or sunglasses, stoic |
+
+#### Tier 1 Outfit Wardrobes
+
+**Toji Fushiguro**:
+🔒 shirtless, dark training shorts, one hand wrap coming loose, sweat-damp waistband · street: dark henley unbuttoned at collar, dog tags swinging, dark cargo pants · night out: fitted black leather jacket open over bare chest, silver chain · casual: white crewneck pushed up to elbows, dark jeans, worn combat boots · combat: black compression shirt, white cargo pants, utility belt
+
+**Satoru Gojo**:
+🔒 dark navy high-collar jujutsu uniform, blindfold on · off-duty: black oversized jacket, dark turtleneck, sunglasses pushed into hair · relaxed: open white linen shirt over nothing, sleeves rolled, blindfold around neck · shopping: pastel hoodie, expensive sneakers, shopping bag dangling · formal: slim dark suit, no tie, top button undone, still wearing sunglasses indoors
+
+**Eren Yeager**:
+🔒 dark brown long coat over black shirt, dark scarf wrapped loose · casual: faded dark hoodie, hood half-up, scarf bunched · combat: Survey Corps jacket with 3DMG harness, white pants, knee-high boots · stripped: plain black t-shirt, dark pants, barefoot · night: dark peacoat buttoned wrong, like he dressed without caring
+
+**Levi Ackerman**:
+🔒 Survey Corps green cape, white cravat, brown leather ODM harness · downtime: crisp white button-up, sleeves rolled to exact elbow, dark slacks · casual: fitted dark turtleneck, grey wool pants, everything immaculate · cleaning: white shirt tucked in, sleeves rolled high, rubber gloves, apron · winter: dark long coat, white scarf folded precisely, leather gloves
+
+**Baki Hanma**:
+🔒 shirtless, dark fighting shorts, bare feet, taped knuckles · gym: tight white tank top straining at seams, dark joggers, chalk dust on hands · casual: oversized bomber jacket unzipped over bare chest, bandaid on cheek · street: fitted compression shirt showing every muscle, cargo pants, sneakers
+
+**Nanami Kento**:
+🔒 tailored tan dress shirt, navy tie loosened, dark slacks, leather watch · off the clock: clean cream button-up untucked, sleeves rolled, no tie, top three buttons open · combat: dark navy jujutsu uniform, wrappings on forearms · weekend: simple grey henley, dark chinos, loafers · beach: linen short-sleeve shirt, sunglasses, holding a book, still wearing watch
+
+---
 
 ### Tier 2 — Trending
 
-| Character | Series | Visual Signature | Outfit Range |
+| Character | Series | Visual Signature | Outfit Wardrobe |
 |---|---|---|---|
-| Denji | Chainsaw Man | lean wiry build, messy dirty-blonde hair, sharp tired eyes, shark-toothed grin | casual: wrinkled school uniform · street: beat-up hoodie, scuffed sneakers |
-| Aki Hayakawa | Chainsaw Man | lean man with dark hair in a topknot/ponytail, calm tired eyes, cigarette often in mouth | work: dark suit, tie loosened · casual: dark sweater, coat · home: simple shirt, hair down |
-| Guts | Berserk | massive muscular man with wild black hair, missing left eye, prosthetic iron left arm, facial scar | combat: black berserker armor, Dragon Slayer sword · travel: dark leather cloak · rest: bandaged torso |
-| Ryomen Sukuna | Jujutsu Kaisen | tall with pink spiky hair, four eyes, black tribal tattoo lines, cruel smirk | full form: shirtless with full body tattoos, white hakama · vessel: dark school uniform |
-| Choso | Jujutsu Kaisen | lean man with long dark hair in twin tails, dark blood-line markings across nose bridge, emotionally intense | combat: dark vest, exposed arms · casual: oversized dark jacket, protective demeanor |
-| Yuta Okkotsu | Jujutsu Kaisen | lean young man with messy dark hair, dark circles, tired eyes, katana on back | combat: dark navy jujutsu uniform · casual: oversized black jacket, earbuds |
-| Yuji Itadori | Jujutsu Kaisen | athletic young man with pink undercut hair, dark roots, facial markings | school: dark navy jujutsu uniform · gym: grey t-shirt, dark joggers · casual: red hoodie |
-| Aqua Hoshino | Oshi no Ko | handsome young man with dark hair and one star-shaped eye, brooding | school: dark blazer · moody: dark hoodie, headphones around neck |
-| Rin Itoshi | Blue Lock | lean striker with messy dark teal hair, cold piercing eyes | match: Blue Lock soccer jersey · training: dark athletic wear · casual: tracksuit jacket |
-| Nagi Seishiro | Blue Lock | tall with messy white-grey hair, half-lidded bored eyes, languid posture | match: Blue Lock soccer jersey · casual: oversized hoodie, sweatpants, headphones · gaming: slouched with controller |
-| Isagi Yoichi | Blue Lock | athletic young man with dark blue hair, sharp determined eyes | match: Blue Lock soccer jersey · training: dark athletic wear · casual: windbreaker, joggers |
-| Megumi Fushiguro | Jujutsu Kaisen | young man with dark spiky hair, stoic expression | combat: dark navy jujutsu uniform · casual: dark jacket, hands in pockets |
-| Shoto Todoroki | My Hero Academia | half-white half-red hair, heterochromatic eyes, burn scar over left eye | hero: dark blue bodysuit · school: UA blazer · casual: dark jacket, scarf |
-| Loid Forger | SPY x FAMILY | handsome blond man, sharp features, calculating expression | spy: sharp tailored dark suit · home: vest over shirt, sleeves rolled · field: dark trench coat |
-| Killua Zoldyck | Hunter x Hunter | young boy with spiky silver-white hair, sharp blue cat-like eyes | signature: loose purple long-sleeve, dark baggy shorts · night: dark hoodie |
-| Sung Jinwoo | Solo Leveling | tall man with jet-black hair, glowing purple eyes | shadow monarch: dark armor with purple accents · casual: all-black modern outfit |
+| Denji | Chainsaw Man | lean wiry build, messy dirty-blonde hair, sharp tired eyes, shark-toothed grin | 🔒 wrinkled school uniform, tie crooked · street: beat-up hoodie, tape on torn sneakers · casual: oversized shirt stolen from someone else |
+| Aki Hayakawa | Chainsaw Man | lean man with dark hair in topknot/ponytail, calm tired eyes, cigarette always present | 🔒 dark suit with tie loosened · home: simple shirt, hair down, softer face · winter: heavy dark coat, scarf, hands buried in pockets |
+| Guts | Berserk | massive muscular man with wild black hair, missing left eye, prosthetic iron left arm, facial scar | 🔒 black berserker armor, Dragon Slayer sword on back · travel: dark leather cloak, heavy boots, bandaged torso · rest: shirtless, scars visible, sitting hunched |
+| Ryomen Sukuna | Jujutsu Kaisen | tall with pink spiky hair, four eyes (two upper slitted), black tribal tattoo lines covering body, cruel satisfied smirk | 🔒 shirtless with full body tattoos, white hakama flowing · vessel: dark school uniform, tattoos visible on neck/hands · lounging: dark robe open, sake cup in hand |
+| Choso | Jujutsu Kaisen | lean man with long dark hair in twin tails, dark blood-line markings across nose bridge, emotionally intense eyes | 🔒 dark vest, exposed arms showing markings · oversized dark jacket, hood up, protective hunch · casual: layered shirts, sleeves over hands |
+| Yuta Okkotsu | Jujutsu Kaisen | lean young man with messy dark hair, dark circles under eyes, tired haunted eyes, katana strapped to back | 🔒 dark navy jujutsu uniform, katana on back · casual: oversized black jacket drowning his frame, earbuds · night: dark hoodie, hood up, hands buried |
+| Yuji Itadori | Jujutsu Kaisen | athletic young man with pink undercut hair, dark roots, facial markings on cheeks | 🔒 dark navy jujutsu uniform · gym: grey t-shirt damp with sweat, dark joggers, sneakers · casual: red hoodie, hood down, sleeves pushed up |
+| Aqua Hoshino | Oshi no Ko | handsome young man with dark hair, one star-shaped eye (right), guarded brooding expression | 🔒 dark school blazer, tie slightly loosened · moody: dark hoodie, headphones around neck · performance: stylish stage outfit, still looking detached |
+| Rin Itoshi | Blue Lock | lean striker with messy dark teal hair, cold piercing ice-blue eyes, sharp features | 🔒 Blue Lock soccer jersey, shin guards · training: dark athletic compression wear · casual: dark tracksuit jacket zipped to chin, joggers |
+| Nagi Seishiro | Blue Lock | tall with messy white-grey hair, half-lidded permanently bored eyes, languid boneless posture | 🔒 Blue Lock soccer jersey (somehow untucked) · casual: oversized hoodie, sweatpants pooling at ankles, headphones · gaming: slouched with controller, one leg draped over armrest |
+| Isagi Yoichi | Blue Lock | athletic young man with dark blue hair, sharp determined eyes, focused jawline | 🔒 Blue Lock soccer jersey · training: dark athletic wear, sweat-soaked · casual: windbreaker, dark joggers, always looks ready to run |
+| Megumi Fushiguro | Jujutsu Kaisen | young man with dark spiky hair, deep blue-green eyes, stoic expression, sharp features | 🔒 dark navy jujutsu uniform · casual: dark jacket, hands in pockets, dark jeans · winter: black peacoat, scarf, still hands-in-pockets |
+| Shoto Todoroki | My Hero Academia | half-white half-red split hair, heterochromatic eyes (grey left, turquoise right), burn scar over left eye | 🔒 UA hero bodysuit, dark blue · school: UA blazer, perfectly worn · casual: dark jacket, scarf covering lower face, scar exposed |
+| Loid Forger | SPY x FAMILY | handsome blond man, sharp symmetrical features, calculating eyes that can switch to warm in an instant | 🔒 sharp tailored dark suit, pocket square, perfect knot · home: vest over rolled-up shirt sleeves, apron if cooking · field: dark trench coat, collar up, gloves |
+| Killua Zoldyck | Hunter x Hunter | young boy with spiky silver-white hair, sharp blue cat-like eyes, small frame with hidden lethal power | 🔒 loose purple long-sleeve, dark baggy shorts, sneakers · night: dark hoodie, hood up, eyes glowing · training: black sleeveless shirt, bandaged hands |
+| Sung Jinwoo | Solo Leveling | tall man with jet-black hair, glowing purple eyes, sharp angular features, aura of contained power | 🔒 dark shadow monarch armor with purple energy accents · casual: all-black modern outfit, fitted, expensive-looking · hunter: dark tactical jacket, daggers concealed |
 
-**6-8 out of every 10 prompts** should use the character's **signature outfit**. Remaining 2-4, use scene-appropriate casual looks.
+---
+
+## 4.5 Scene Intelligence Spawner
+
+> **The engine can generate ANY scene.** Characters are not locked to specific environments. You decide HOW a character's identity bleeds into whatever environment they're placed in, using your knowledge of who they are.
+
+### Scene Construction Process
+
+1. **Pick the character** → Load their visual signature + choose an outfit from wardrobe
+2. **Pick or INVENT any environment** → The tables in Section 5 are a floor, not a ceiling. You can and SHOULD invent new environments constantly: dentist waiting room, aquarium gift shop, museum after closing, bowling alley at 2AM, airport departure gate, parking garage stairwell, hotel balcony, fish market at dawn, library archive basement, abandoned swimming pool, laundromat at 4AM, hotel rooftop pool, bookstore closing sale, empty planetarium, ferry deck at midnight.
+3. **Character-Authenticate the action** → Ask: *"What would THIS character specifically be doing in this space that no other character would do the same way?"* Generate a behavioral signature and scene-specific action from your knowledge.
+4. **Apply the 5-Layer Formula** (Section 2) — physical anchor, spatial logic, dual light, unspoken narrative, emotional tension.
+
+### Scene Freshness Rules
+
+- **INVENT new environments constantly.** Any real-world space can be a scene. The less obvious the location, the more scroll-stopping the result. Places you pass every day but never imagine an anime character in — that dissonance IS the virality.
+- **Character-Environment Friction = Virality.** The most saveable images come from unexpected pairings. The DNA (your character knowledge) makes it believable; the environment makes it surprising.
+- **Scene Specificity Over Scene Category.** Never "a gym" — instead "a boxing gym after closing, one heavy bag still swinging, chalk dust settling." Never "a cafe" — instead "a tiny second-floor kissaten, brown leather seats cracked, jazz crackling from a mono speaker."
+- **Every scene must feel like a SPECIFIC PLACE with a SPECIFIC TIME** — not a generic category. Add 2-3 environmental micro-details that make it feel real.
+
+### Virality Injection Rules
+
+- **Fish Out of Water (2/10 prompts)**: Deliberately place a character in an environment that contradicts their canon. Baki at a poetry reading. Sukuna at a children's playground (empty, night). Levi at a food truck festival. These generate the highest comment counts ("WHY DOES THIS WORK 😭").
+- **Canon Habit in Wrong Context (1/10)**: Use a character's canonical behavior in a completely unrelated setting. The identity persists; the context surprises.
+- **Scene Collision (1/10)**: Smash two environments together — ramen shop during a thunderstorm with the roof half-collapsed, gym with cherry blossom petals blowing through a broken window, subway car overgrown with vines. Surreal but grounded.
+- **Cultural Micro-Moment (2/10)**: A scene that feels specifically Japanese or culturally grounded — removing shoes at a genkan, bowing slightly to a shopkeeper, sitting in seiza on tatami, holding chopsticks perfectly, konbini onigiri selection at 3AM. These perform exceptionally with international Pinterest audiences.
+- **Backstory Echo (2/10)**: A visual that references the character's past without being explicit — an item that fans would recognize, a posture that mirrors a canonical scene, an environmental detail that parallels their story arc. Fans LIVE for these.
 
 ---
 
@@ -197,6 +276,8 @@ Every prompt MUST produce this specific composite:
 
 ### Poses & Actions
 
+> **NOTE**: Character-specific behavioral signatures from Section 4 OVERRIDE this table. Use this table as a fallback when you need variety beyond a character's DNA, or for cross-character surprise poses.
+
 | Pose | Description |
 |---|---|
 | Bench Rest | hunched on bench, hands clasped, head bowed, sweat dripping |
@@ -214,6 +295,14 @@ Every prompt MUST produce this specific composite:
 | Midnight Balcony | forearms on balcony railing, city lights below, head bowed |
 | Record Browsing | flipping through vinyl crates, one record half-pulled, reading the label |
 | Cigarette Lean | lit cigarette between fingers, smoke curling, leaning against railing |
+| Wrist Tape Unwrap | slowly pulling athletic tape off wrist, focused downward |
+| Umbrella Close | collapsing wet umbrella in doorway, water dripping, shaking hair |
+| Shoe Lacing | one knee up on bench, lacing boots or sneakers, focused |
+| Headphones Adjust | one hand pressing headphone cup to ear, eyes closed, lost in music |
+| Jacket Throw | draping jacket over one shoulder, held by finger, walking |
+| Chopstick Pause | chopsticks frozen mid-air, staring at something off-frame |
+| Window Condensation | finger drawing absently on fogged window, staring through it |
+| Bag Carry | grocery bag or duffle hanging from two fingers, low energy walk |
 
 ### Camera & Framing
 
@@ -409,6 +498,10 @@ Clean anime cel-shading composited over photorealistic background with heavy bok
 - **Rotate characters** within the bucket's "Best Characters" list
 - **Cross-bucket rule**: Never post 3+ batches from the same bucket in a row
 - **Warm balance**: Ensure 4/10 prompts lean warm (golden, amber, sakura) even in cool-dominant buckets
+- **Behavioral Signature rotation**: Never repeat the same behavioral signature for a character within a batch of 5
+- **Invented scenes quota**: At least 2/10 prompts must use an environment NOT listed in any table — freshly invented for that prompt
+- **Fish Out of Water quota**: At least 2/10 prompts must place a character in a scene that contradicts their archetype
+- **Cultural moment quota**: At least 2/10 prompts must include a culturally specific micro-action (see Section 4.5 Virality Injection Rules)
 
 ---
 

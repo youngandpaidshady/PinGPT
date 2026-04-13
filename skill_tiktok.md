@@ -28,7 +28,7 @@ description: Generate 10-slide TikTok carousel prompts with narrative tension pa
 | 3 | **ESCALATION** — build tension | Action pose, dynamic angle, movement blur |
 | 4 | **TEXTURE** — add depth | Micro-details, props, human touches — closest to a quiet still life |
 | 5 | **MOOD SHIFT** — emotional contrast | **Emotional tension** — vulnerability, quiet moment that contradicts slides 1-4's intensity. The character's canon persona should be inverted here |
-| 6-7 | **PEAK** — visual climax | Most cinematic compositions, dramatic dual lighting, widest environmental shots. Include **reflection/mirror mechanic** in at least one (puddle, glass, wet surface) |
+| 6-7 | **PEAK** — visual climax | Most atmospheric compositions, dramatic dual lighting, widest environmental shots. Include **reflection/mirror mechanic** in at least one (puddle, glass, wet surface) |
 | 8-9 | **DRAMATIC SHIFT** — composition surprise | Most extreme camera angles (low-angle-up, high-angle-down, extreme wide isolation, silhouette). Keep SAME art style — consistency is king on TikTok |
 | 10 | **CLOSER** — save-worthy hero shot | Wallpaper-quality, most polished, clean composition. This is the pin people screenshot |
 

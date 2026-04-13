@@ -1,0 +1,589 @@
+{
+  "version": 1,
+  "moods": [
+    {
+      "name": "Back-Alley Smoke Break",
+      "slug": "alleysmoke",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "social exhaustion, introvert escape, the performance is over",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "4AM Insomnia Solitude",
+      "slug": "4amvibes",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "screen glow in dark rooms, convenience stores, the hour nobody sees you",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Last Train Noir",
+      "slug": "lasttrain",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "suited characters on late-night trains, rain-streaked reflections, lone-wolf energy",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Rooftop Rain Catharsis",
+      "slug": "roofrain",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "drenched in rain, defiant stance, city lights bleeding through downpour",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Closing Time Diner",
+      "slug": "closingtime",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "last customer, borrowed warmth, empty cafes, belonging nowhere",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Dawn Walk Survival",
+      "slug": "dawnwalk",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "waterfront at first light, survived the night, golden-blue liminal hour",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Ghost Call Vulnerability",
+      "slug": "ghostcall",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "2AM phone calls, stairwell confessions, words they'd never say in daylight",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Mirror Confrontation",
+      "slug": "mirrorself",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "bathroom mirror at 3AM, identity crisis, the war behind closed doors",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Hospital Waiting Room",
+      "slug": "waitingroom",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "fluorescent purgatory, helpless warriors, the strongest rendered powerless",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Street Duo",
+      "slug": "backstreet",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "Japanese back-alley bond, daytime, street-level chemistry",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Quiet Afternoon Off-Duty",
+      "slug": "quietday",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "iced drinks by the window, sunlight on skin, the peaceful version nobody expects",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Edge of Bed 3AM",
+      "slug": "edgeofbed",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "sitting up in the dark, sheets tangled, the heaviest hour, back to camera",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "2AM Gym Solitude",
+      "slug": "ironsilence",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "training alone at 2AM, punching what they can't say, iron as therapy",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Sunday Ghost",
+      "slug": "sundayghost",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "afternoon light in empty apartments, laundry on the floor, the loneliest day",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Sad Boy Rain",
+      "slug": "sadboy",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "rain-soaked loners, headphones in the city, hoodie-up urban ghosts, feeling everything",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Nostalgic Cel-Shade",
+      "slug": "retrocel",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "VHS warmth, flat color fills, Evangelion-era palettes, the beauty of imperfect animation",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Wabi-Sabi Beauty",
+      "slug": "wabisabi",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "chipped ceramics, worn wood, kintsugi gold, the beauty of age and use",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Gallery Stillness",
+      "slug": "gallerystill",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "empty exhibition halls, art-within-art framing, contemplative distance, marble and light",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Jersey Core",
+      "slug": "jerseycore",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "sports streetwear crossover, athletic hype, team identity, jersey as fashion statement",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Dark Academia",
+      "slug": "darkacademia",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "libraries after hours, foggy campus, candlelit study, tweed and ink, the weight of knowing",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Lofi Bedroom Sanctuary",
+      "slug": "lofiden",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "warm solitude in personality-packed rooms, headphones on, cassette tapes, cozy being alone",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Burnout Desk",
+      "slug": "burnoutdesk",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "birds-eye view of academic crash, asleep on papers, the overachiever who pushed past the limit",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Midnight Noir",
+      "slug": "midnight_noir",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "late-night urban isolation, cinematic solitude, high-contrast spotlight lighting",
+      "environment_count": 5,
+      "status": "active"
+    },
+    {
+      "name": "Golden Passage",
+      "slug": "golden_passage",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "transient sunset travel, train rides, balconies, bittersweet nostalgic warmth",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Stormy Solace",
+      "slug": "stormy_solace",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "rain-slicked intensity, cozy weather contrast, misty greens and dark greys",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Snowfall Silence",
+      "slug": "snowfall_silence",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "solitary figures in winter snow, heavy coats, visible breath, quiet muffled atmosphere",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Neon Arcade",
+      "slug": "neon_arcade",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "chaotic colorful glow of retro arcade cabinets, yet feeling entirely isolated",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Summer Haze",
+      "slug": "summer_haze",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "intense summer heat, cicadas, bright sunlight, deep shadows, Ramune under blinding sky",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Grunge Loner",
+      "slug": "grungeloner",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "band tees, beer cans, floor-sitting, cigarette smoke, books and rebellion",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Skyline Ache",
+      "slug": "skylineache",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "rooftops at twilight, open fields at dusk, purple-pink skies, feeling small against the world",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Sunset Camper Van",
+      "slug": "sunsetvan",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "golden hour, beach solitude, vintage vans, warm coffee, serene lo-fi aesthetic",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Late Shift",
+      "slug": "late_shift",
+      "source": "handcrafted",
+      "created": "2026-01-01",
+      "core_aesthetic": "returning home exhausted, messy apartments, dual warm/cool lighting contrast, loosened ties",
+      "environment_count": 20,
+      "status": "active"
+    },
+    {
+      "name": "Laundromat Liminality",
+      "slug": "laundromat_liminality",
+      "source": "moodmind",
+      "created": "2026-04-12",
+      "core_aesthetic": "Fluorescent hum, spinning drum reflections, and the rhythmic waiting of a late-night chore in a soap-scented sanctuary.",
+      "environment_count": 78,
+      "generation_id": "mm_20260412_033",
+      "status": "active"
+    },
+    {
+      "name": "Aquarium Blue Silence",
+      "slug": "aquarium_blue_silence",
+      "source": "moodmind",
+      "created": "2026-04-12",
+      "core_aesthetic": "Submerged blue light through glass, weightless solitude, and deep-sea tranquility.",
+      "environment_count": 78,
+      "generation_id": "mm_20260412_034",
+      "status": "active"
+    },
+    {
+      "name": "Rural Inaka Rust",
+      "slug": "rural_inaka_rust",
+      "source": "moodmind",
+      "created": "2026-04-12",
+      "core_aesthetic": "Blinding country sunlight, overgrown rail tracks, and the heavy, humid stillness of rural Japanese stagnation.",
+      "environment_count": 69,
+      "generation_id": "mm_20260412_036",
+      "status": "active"
+    },
+    {
+      "name": "Gale-Force Clarity",
+      "slug": "gale_force_clarity",
+      "source": "moodmind",
+      "created": "2026-04-12",
+      "core_aesthetic": "Violent winds on high ridges, fluttering fabric, and the exhilarating sharpness of high-altitude cold air.",
+      "environment_count": 73,
+      "generation_id": "mm_20260412_037",
+      "status": "active"
+    },
+    {
+      "name": "Mist-Veiled Bus Stop",
+      "slug": "mist_veiled_bus_stop",
+      "source": "moodmind",
+      "created": "2026-04-12",
+      "core_aesthetic": "Thick white fog obscuring the world, roadside waiting, and the soft isolation of a morning lost in mist.",
+      "environment_count": 78,
+      "generation_id": "mm_20260412_038",
+      "status": "active"
+    },
+    {
+      "name": "Fumikiri Red Pulse",
+      "slug": "fumikiri_red_pulse",
+      "source": "moodmind",
+      "created": "2026-04-12",
+      "core_aesthetic": "Rhythmic red warning lights at railway crossings illuminating the blue-hour gloom as a silhouette waits for the train.",
+      "environment_count": 73,
+      "generation_id": "mm_20260412_038",
+      "status": "active"
+    },
+    {
+      "name": "Petal-Storm Ephemera",
+      "slug": "petal_storm_ephemera",
+      "source": "moodmind",
+      "created": "2026-04-12",
+      "core_aesthetic": "High-velocity wind scattering thousands of cherry blossoms or autumn leaves, capturing a fleeting, beautiful goodbye.",
+      "environment_count": 69,
+      "generation_id": "mm_20260412_039",
+      "status": "active"
+    },
+    {
+      "name": "Shallow Mirror-Tide",
+      "slug": "shallow_mirror_tide",
+      "source": "moodmind",
+      "created": "2026-04-12",
+      "core_aesthetic": "Walking across ankle-deep tide pools that perfectly reflect a vast, cloud-filled sky, erasing the horizon in ethereal blue.",
+      "environment_count": 73,
+      "generation_id": "mm_20260412_040",
+      "status": "active"
+    },
+    {
+      "name": "Amber Archive",
+      "slug": "amber_archive",
+      "source": "moodmind",
+      "created": "2026-04-12",
+      "core_aesthetic": "Blinding sunbeams piercing through dusty, towering library stacks, highlighting suspended particles and the heavy stillness of ancient books.",
+      "environment_count": 73,
+      "generation_id": "mm_20260412_041",
+      "status": "active"
+    },
+    {
+      "name": "Vapor-Glass Sanctuary",
+      "slug": "vaporglass_sanctuary",
+      "source": "moodmind",
+      "created": "2026-04-12",
+      "core_aesthetic": "Lush tropical flora trapped behind condensation-slicked glass panes, creating a blurred, emerald-tinted world of humid, sheltered isolation.",
+      "environment_count": 73,
+      "generation_id": "mm_20260412_042",
+      "status": "active"
+    },
+    {
+      "name": "Sun-Drenched Downpour",
+      "slug": "sun_drenched_downpour",
+      "source": "moodmind",
+      "created": "2026-04-13",
+      "core_aesthetic": "Golden sunlight piercing through heavy rain, turning falling droplets into shimmering prisms against dark, moody storm clouds.",
+      "environment_count": 20,
+      "generation_id": "mm_20260413_9013d7",
+      "status": "active"
+    },
+    {
+      "name": "Ember Solace",
+      "slug": "ember_solace",
+      "source": "moodmind",
+      "created": "2026-04-13",
+      "core_aesthetic": "Firelight warmth against a freezing blue night, glowing sparks drifting into a snowy void.",
+      "environment_count": 20,
+      "generation_id": "mm_20260413_c5e9d4",
+      "status": "active"
+    },
+    {
+      "name": "Dashboard Horizon",
+      "slug": "dashboard_horizon",
+      "source": "moodmind",
+      "created": "2026-04-13",
+      "core_aesthetic": "Driving into a blinding sunset, car interior in deep shadow, golden light bleeding over the steering wheel.",
+      "environment_count": 20,
+      "generation_id": "mm_20260413_84a2d0",
+      "status": "active"
+    },
+    {
+      "name": "Chlorine Blue Midnight",
+      "slug": "chlorine_midnight",
+      "source": "moodmind",
+      "created": "2026-04-13",
+      "core_aesthetic": "Floating weightless in a dark pool, underwater lights casting rippling turquoise caustics on the surface.",
+      "environment_count": 20,
+      "generation_id": "mm_20260413_2981d4",
+      "status": "active"
+    },
+    {
+      "name": "Drafting Table Dawn",
+      "slug": "drafting_dawn",
+      "source": "moodmind",
+      "created": "2026-04-13",
+      "core_aesthetic": "A single desk lamp illuminating meticulous work while the room is drowned in pre-dawn blue.",
+      "environment_count": 20,
+      "generation_id": "mm_20260413_0c0738",
+      "status": "active"
+    },
+    {
+      "name": "Storm-Drain Petals",
+      "slug": "storm_drain_petals",
+      "source": "moodmind",
+      "created": "2026-04-13",
+      "core_aesthetic": "Pink cherry blossoms trapped in the swirling gray water of an urban gutter during a heavy downpour.",
+      "environment_count": 20,
+      "generation_id": "mm_20260413_985b8c",
+      "status": "active"
+    },
+    {
+      "name": "Static-Screen Solitude",
+      "slug": "static_solitude",
+      "source": "moodmind",
+      "created": "2026-04-13",
+      "core_aesthetic": "Character sitting in front of a wall of old CRT monitors displaying white noise, the gray flicker lighting the room.",
+      "environment_count": 20,
+      "generation_id": "mm_20260413_03d143",
+      "status": "active"
+    },
+    {
+      "name": "Fire-Escape Forest",
+      "slug": "fire_escape_forest",
+      "source": "moodmind",
+      "created": "2026-04-13",
+      "core_aesthetic": "Sitting on rusted iron stairs surrounded by a dense thicket of potted plants, golden hour light hitting the leaves.",
+      "environment_count": 20,
+      "generation_id": "mm_20260413_813e67",
+      "status": "active"
+    },
+    {
+      "name": "Snow-Capped Phone Booth",
+      "slug": "snow_phone_booth",
+      "source": "moodmind",
+      "created": "2026-04-13",
+      "core_aesthetic": "A lone red phone booth buried in deep snow, its warm interior light glowing like a lantern in a blizzard.",
+      "environment_count": 20,
+      "generation_id": "mm_20260413_90a083",
+      "status": "active"
+    },
+    {
+      "name": "Bakery Window Steam",
+      "slug": "bakery_steam",
+      "source": "moodmind",
+      "created": "2026-04-13",
+      "core_aesthetic": "Looking through a fogged bakery window at 5 AM; warm golden bread inside, blue cold outside.",
+      "environment_count": 20,
+      "generation_id": "mm_20260413_b0e3ea",
+      "status": "active"
+    },
+    {
+      "name": "Whale-Skeleton Museum",
+      "slug": "whale_museum",
+      "source": "moodmind",
+      "created": "2026-04-13",
+      "core_aesthetic": "Character standing beneath a massive blue whale skeleton in a moonlit, silent museum hall.",
+      "environment_count": 20,
+      "generation_id": "mm_20260413_87894f",
+      "status": "active"
+    },
+    {
+      "name": "Rooftop Helipad Calm",
+      "slug": "helipad_calm",
+      "source": "moodmind",
+      "created": "2026-04-13",
+      "core_aesthetic": "Lying flat on a giant red 'H' on a skyscraper rooftop, looking up at a vast, cloudless sky.",
+      "environment_count": 20,
+      "generation_id": "mm_20260413_41020a",
+      "status": "active"
+    },
+    {
+      "name": "Suburban Street-Light Haze",
+      "slug": "streetlight_haze",
+      "source": "moodmind",
+      "created": "2026-04-13",
+      "core_aesthetic": "The yellow-orange cone of a single streetlamp in a fog-heavy suburban cul-de-sac.",
+      "environment_count": 20,
+      "generation_id": "mm_20260413_ca1bc2",
+      "status": "active"
+    },
+    {
+      "name": "Tangled Wire Ghetto",
+      "slug": "wire_ghetto",
+      "source": "moodmind",
+      "created": "2026-04-13",
+      "core_aesthetic": "Character on a balcony overlooking a chaotic mess of power lines and transformers against a sunset.",
+      "environment_count": 20,
+      "generation_id": "mm_20260413_149702",
+      "status": "active"
+    },
+    {
+      "name": "Tunnel-Flash Rhythm",
+      "slug": "tunnel_flash",
+      "source": "moodmind",
+      "created": "2026-04-13",
+      "core_aesthetic": "The strobe effect of tunnel lights hitting a character’s face inside a fast-moving subway train.",
+      "environment_count": 20,
+      "generation_id": "mm_20260413_a5c3d3",
+      "status": "active"
+    },
+    {
+      "name": "Botanical Lab Decay",
+      "slug": "botanical_decay",
+      "source": "moodmind",
+      "created": "2026-04-13",
+      "core_aesthetic": "Overgrown science equipment, cracked test tubes with vines, and green/mossy palette in an abandoned lab.",
+      "environment_count": 20,
+      "generation_id": "mm_20260413_5ca50b",
+      "status": "active"
+    },
+    {
+      "name": "Rooftop Water Tank Solitude",
+      "slug": "water_tank_solitude",
+      "source": "moodmind",
+      "created": "2026-04-13",
+      "core_aesthetic": "Sitting atop a rusted spherical water tank, legs dangling over a massive city grid.",
+      "environment_count": 20,
+      "generation_id": "mm_20260413_90d9f8",
+      "status": "active"
+    },
+    {
+      "name": "Kitchen Light Confessional",
+      "slug": "kitchen_confessional",
+      "source": "moodmind",
+      "created": "2026-04-13",
+      "core_aesthetic": "Leaning against a fridge in a dark kitchen, the open door's light spill as the only source.",
+      "environment_count": 20,
+      "generation_id": "mm_20260413_659fbf",
+      "status": "active"
+    },
+    {
+      "name": "Terminal Gate Liminal",
+      "slug": "terminal_liminal",
+      "source": "moodmind",
+      "created": "2026-04-13",
+      "core_aesthetic": "Empty airport terminal at 3 AM, blue floor lights, wide expansive glass looking at stars.",
+      "environment_count": 20,
+      "generation_id": "mm_20260413_b8bedb",
+      "status": "active"
+    }
+  ],
+  "stats": {
+    "total_moods": 61,
+    "handcrafted": 32,
+    "ai_generated": 29,
+    "last_generation": "2026-04-13"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "batches": [
+    {
+      "batch_id": "ranpin_gojo_run",
+      "theme": "ranpin",
+      "total_images": 9,
+      "grades": {
+        "S": 4, "A": 4, "B": 1, "C": 0, "D": 0, "F": 0
+      },
+      "s_tier_rate": "100%",
+      "pipeline_verdict": "MASSIVE IMPROVEMENT",
+      "winning_patterns": ["explicitly locking the blindfold and uniform in every prompt without exception", "dual-source cinematic lighting works perfectly against his dark uniform"],
+      "losing_patterns": [],
+      "skill_patches_applied": ["Added explicit ban on stripping blindfold and uniform in skill_characters.md"],
+      "character_quirks_found": { "Gojo": "If blindfold/sunglasses AND uniform are removed simultaneously, the model catastrophically hallucinates a generic K-Pop idol in pseudo-3D. Enforcing at least one signature element locks the 2D cel-shaded style." },
+      "2d_fail_rate": "0%",
+      "text_contamination_rate": "0%"
+    }
+  ]
+}

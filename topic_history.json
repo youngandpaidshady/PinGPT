@@ -1,0 +1,19 @@
+{
+  "topics": [
+    {
+      "topic": "8 characters who would survive a 1v1 with Sukuna",
+      "series": "jjk",
+      "category": "power_scaling",
+      "date": "2026-04-04",
+      "model": "gemini-2.5-pro"
+    },
+    {
+      "topic": "Top 8 characters with the best hand-to-hand combat in JJK",
+      "series": "jjk",
+      "category": "power_scaling",
+      "date": "2026-04-05",
+      "model": "gemini-2.5-pro"
+    }
+  ],
+  "_comment": "Auto-populated by trend_fetch.js and the LLM during /trendtok runs. Each entry tracks topic, series, date, and model to prevent repeats."
+}

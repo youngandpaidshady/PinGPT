@@ -50,7 +50,7 @@ When transforming a user's uploaded photo into anime/art style, preserving **exa
 
 | Style | Prompt Description |
 |---|---|
-| Clean Cel-Shading (DEFAULT) | clean anime cel-shading with defined black outlines and flat color fills, resembling a high-quality anime screenshot, composited over a photorealistic background with heavy bokeh |
+| Clean Cel-Shading (DEFAULT) | clean anime cel-shading with defined black outlines and flat color fills, resembling a high-quality anime screenshot, composited over a atmospheric background with heavy bokeh |
 | Ukiyo-e | traditional Japanese ukiyo-e woodblock print style with bold flat colors, thick black outlines, stylized waves and clouds |
 | Samurai Ink | dramatic samurai-themed ink wash style with aggressive brushstrokes, splattered ink droplets, bold calligraphic energy |
 | Sumi-e Wash | Japanese sumi-e ink wash with flowing brushstrokes, bleeding ink edges, white negative space |
@@ -70,7 +70,7 @@ When transforming a user's uploaded photo into anime/art style, preserving **exa
 
 | Style | Prompt Description |
 |---|---|
-| K-Drama Cinematic | soft dreamy focus, lens flare, warm golden skin tones, romantic color grading, film grain |
+| K-Drama atmospheric | soft dreamy focus, lens flare, warm golden skin tones, romantic color grading, film grain |
 | Manhwa Sharp | ultra-sharp clean digital linework, vivid saturated colors, dramatic power auras |
 | Webtoon Clean | soft smooth shading, pastel-adjacent palette, minimal outlines, digital airbrushed skin |
 
@@ -86,7 +86,7 @@ When transforming a user's uploaded photo into anime/art style, preserving **exa
 
 | Style | Prompt Description |
 |---|---|
-| Mappa Sakuga | MAPPA studio high-action with fluid dynamic poses, vivid particle effects, cinematic camera angles |
+| Mappa Sakuga | MAPPA studio high-action with fluid dynamic poses, vivid particle effects, atmospheric camera angles |
 | Dark Seinen | heavy shadow work, mature gritty linework, cross-hatching, muted desaturated palette |
 | Glitch Anime | digital glitch with chromatic aberration, RGB channel splitting, corrupted scan lines |
 | Neon Cyberpunk | heavy neon lighting in pink/cyan/purple, holographic overlays, rain-slicked futuristic streets |
@@ -111,11 +111,11 @@ When transforming a user's uploaded photo into anime/art style, preserving **exa
 | Norse Viking | runic engravings, fur and leather textures, cold steel-blue and blood-red palette |
 | Egyptian Gold | gold and lapis lazuli palette, hieroglyphic border elements, Eye of Horus motifs |
 
-**🎬 Cinematic**
+**🎬 atmospheric**
 
 | Style | Prompt Description |
 |---|---|
-| Shinkai Cinematic | Makoto Shinkai hyper-detailed with impossibly beautiful sky gradients, volumetric cloud lighting |
+| Shinkai atmospheric | Makoto Shinkai hyper-detailed with impossibly beautiful sky gradients, volumetric cloud lighting |
 | Film Noir | extreme high-contrast B&W, venetian blind shadow patterns, 1940s detective atmosphere |
 | Gothic Dark | ornate cathedral architecture, stained glass colored light, deep crimson and midnight purple |
 | Mixed-Media Collage | torn paper textures, layered photographic elements, newspaper clippings, paint splatters |

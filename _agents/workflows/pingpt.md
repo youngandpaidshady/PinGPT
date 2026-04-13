@@ -17,10 +17,16 @@ description: Generate a Pinterest-aesthetic anime character image prompt for Nan
 
 ## Steps
 
-1. Read the PinGPT skill file to load the prompt engine instructions:
+1. Read the PinGPT engine modules (load ALL for flexible generation):
 
 ```
 View the file at c:\Users\Administrator\Desktop\PinGPT\skill.md
+View the file at c:\Users\Administrator\Desktop\PinGPT\skill_characters.md
+View the file at c:\Users\Administrator\Desktop\PinGPT\skill_scenes.md
+View the file at c:\Users\Administrator\Desktop\PinGPT\skill_atmosphere.md
+View the file at c:\Users\Administrator\Desktop\PinGPT\skill_examples.md
+View the file at c:\Users\Administrator\Desktop\PinGPT\skill_output.md
+View the file at c:\Users\Administrator\Desktop\PinGPT\skill_diversity.md
 ```
 
 2. Parse the user input:
@@ -30,11 +36,11 @@ View the file at c:\Users\Administrator\Desktop\PinGPT\skill.md
 
 3. **⚠️ CRITICAL — SCENE NARRATIVE INTELLIGENCE IS THE #1 PRIORITY ⚠️**
 
-   Before touching ANY dictionary table, you MUST construct a **cinematic micro-story scene** using Section 4.2's Scene Construction Formula. Every prompt starts by answering: **"What is the character doing RIGHT NOW, and what happened 5 seconds ago?"**
+   Before touching ANY dictionary table, you MUST construct a **atmospheric micro-story scene** using Section 4.2's Scene Construction Formula. Every prompt starts by answering: **"What is the character doing RIGHT NOW, and what happened 5 seconds ago?"**
 
    The 4-layer construction order is NON-NEGOTIABLE:
    1. **PHYSICAL ANCHOR** — A hyper-specific object or interaction (marshmallow on a stick, guitar pick between teeth, condensation on a coffee cup, chalk dust on fingers). If the character has nothing in their hands and isn't interacting with anything, the scene is DEAD.
-   2. **SPATIAL LOGIC** — Where EXACTLY in the space? Not "in a classroom" but "perched sideways on a student desk, back against the wall, one leg dangling." Spatial precision = cinematic framing.
+   2. **SPATIAL LOGIC** — Where EXACTLY in the space? Not "in a classroom" but "perched sideways on a student desk, back against the wall, one leg dangling." Spatial precision = atmospheric framing.
    3. **DUAL LIGHT STORY** — TWO competing light sources. Campfire amber vs forest darkness. Desk lamp warm vs moonlight blue through blinds. NEVER single-temperature lighting.
    4. **UNSPOKEN NARRATIVE** — Implied through environment details (gym bag already packed = leaving, coffee half-drunk = been here a while, hoodie damp = just came in from rain).
 

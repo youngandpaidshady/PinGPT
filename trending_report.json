@@ -1,0 +1,475 @@
+{
+  "generated_at": "2026-04-03T18:45:28.625Z",
+  "season": "Spring 2026",
+  "sources": {
+    "jikan": {
+      "status": "active",
+      "entries": 25
+    },
+    "google_trends": "stub",
+    "pinterest_trends": "stub",
+    "anitrendz": "stub"
+  },
+  "total_trending": 10,
+  "pingpt_ready": 2,
+  "trending": [
+    {
+      "rank": 1,
+      "title": "Classroom of the Elite 4th Season: Second Year, First Semester",
+      "title_jp": "Youkoso Jitsuryoku Shijou Shugi no Kyoushitsu e 4th Season: 2-nensei-hen 1 Gakki",
+      "mal_id": 59708,
+      "mal_score": 8.31,
+      "members": 138493,
+      "airing": true,
+      "genres": [
+        "Drama",
+        "Suspense"
+      ],
+      "trend_score": 45,
+      "trend_signal": "RISING",
+      "characters": [
+        "Kiyotaka Ayanokouji",
+        "Suzune Horikita",
+        "Honami Ichinose",
+        "Kei Karuizawa",
+        "Arisu Sakayanagi"
+      ],
+      "known_in_pingpt": false,
+      "pingpt_characters": [],
+      "unknown_characters": [
+        "Kiyotaka Ayanokouji",
+        "Suzune Horikita",
+        "Honami Ichinose",
+        "Kei Karuizawa",
+        "Arisu Sakayanagi"
+      ],
+      "recommended_moods": [
+        "/ghostcall",
+        "/dawnwalk",
+        "/alleysmoke"
+      ],
+      "carousel_topics": [
+        "Most underrated characters in Classroom of the Elite 4th Season: Second Year, First Semester",
+        "Characters who deserved better in Classroom of the Elite 4th Season: Second Year, First Semester",
+        "Saddest moments in Classroom of the Elite 4th Season: Second Year, First Semester"
+      ],
+      "auto_prompt_ready": false,
+      "supplementary_signals": {
+        "google_trends": "stub",
+        "pinterest_trends": "stub",
+        "anitrendz": "stub"
+      }
+    },
+    {
+      "rank": 2,
+      "title": "Dr. Stone: Science Future Part 3",
+      "title_jp": "Dr. Stone: Science Future Part 3",
+      "mal_id": 62568,
+      "mal_score": 8.23,
+      "members": 92936,
+      "airing": true,
+      "genres": [
+        "Adventure",
+        "Comedy"
+      ],
+      "trend_score": 35,
+      "trend_signal": "WARM",
+      "characters": [
+        "Gen Asagiri",
+        "Chrome",
+        "Senkuu Ishigami",
+        "Kohaku",
+        "Ryuusui Nanami",
+        "Yuzuriha Ogawa",
+        "Taiju Ooki",
+        "Suika"
+      ],
+      "known_in_pingpt": true,
+      "pingpt_characters": [
+        "Nanami Kento",
+        "🔒 dark school blazer, tie slightly loosened · moody: dark hoodie, headphones around neck · performance: stylish stage outfit, still looking detached"
+      ],
+      "unknown_characters": [
+        "Gen Asagiri",
+        "Chrome",
+        "Senkuu Ishigami",
+        "Kohaku",
+        "Yuzuriha Ogawa",
+        "Suika"
+      ],
+      "recommended_moods": [
+        "/roofrain",
+        "/sundayghost",
+        "/lasttrain"
+      ],
+      "carousel_topics": [
+        "Most underrated characters in Dr. Stone: Science Future Part 3",
+        "Characters who deserved better in Dr. Stone: Science Future Part 3",
+        "Saddest moments in Dr. Stone: Science Future Part 3"
+      ],
+      "auto_prompt_ready": true,
+      "supplementary_signals": {
+        "google_trends": "stub",
+        "pinterest_trends": "stub",
+        "anitrendz": "stub"
+      }
+    },
+    {
+      "rank": 3,
+      "title": "Dr. Stone: Science Future Part 3",
+      "title_jp": "Dr. Stone: Science Future Part 3",
+      "mal_id": 62568,
+      "mal_score": 8.23,
+      "members": 92936,
+      "airing": true,
+      "genres": [
+        "Adventure",
+        "Comedy"
+      ],
+      "trend_score": 35,
+      "trend_signal": "WARM",
+      "characters": [
+        "Gen Asagiri",
+        "Chrome",
+        "Senkuu Ishigami",
+        "Kohaku",
+        "Ryuusui Nanami",
+        "Yuzuriha Ogawa",
+        "Taiju Ooki",
+        "Suika"
+      ],
+      "known_in_pingpt": true,
+      "pingpt_characters": [
+        "Nanami Kento",
+        "🔒 dark school blazer, tie slightly loosened · moody: dark hoodie, headphones around neck · performance: stylish stage outfit, still looking detached"
+      ],
+      "unknown_characters": [
+        "Gen Asagiri",
+        "Chrome",
+        "Senkuu Ishigami",
+        "Kohaku",
+        "Yuzuriha Ogawa",
+        "Suika"
+      ],
+      "recommended_moods": [
+        "/mirrorself",
+        "/roofrain",
+        "/ghostcall"
+      ],
+      "carousel_topics": [
+        "Most underrated characters in Dr. Stone: Science Future Part 3",
+        "Characters who deserved better in Dr. Stone: Science Future Part 3",
+        "Saddest moments in Dr. Stone: Science Future Part 3"
+      ],
+      "auto_prompt_ready": true,
+      "supplementary_signals": {
+        "google_trends": "stub",
+        "pinterest_trends": "stub",
+        "anitrendz": "stub"
+      }
+    },
+    {
+      "rank": 4,
+      "title": "Re:ZERO -Starting Life in Another World- Season 4",
+      "title_jp": "Re:Zero kara Hajimeru Isekai Seikatsu 4th Season",
+      "mal_id": 61316,
+      "mal_score": 0,
+      "members": 149778,
+      "airing": false,
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "Suspense"
+      ],
+      "trend_score": 10,
+      "trend_signal": "FADING",
+      "characters": [
+        "Emilia",
+        "Subaru Natsuki",
+        "Beatrice",
+        "Ram",
+        "Rem"
+      ],
+      "known_in_pingpt": false,
+      "pingpt_characters": [],
+      "unknown_characters": [
+        "Emilia",
+        "Subaru Natsuki",
+        "Beatrice",
+        "Ram",
+        "Rem"
+      ],
+      "recommended_moods": [
+        "/roofrain",
+        "/waitingroom",
+        "/dawnwalk"
+      ],
+      "carousel_topics": [
+        "Most underrated characters in Re:ZERO -Starting Life in Another World- Season 4",
+        "Characters who deserved better in Re:ZERO -Starting Life in Another World- Season 4",
+        "Saddest moments in Re:ZERO -Starting Life in Another World- Season 4"
+      ],
+      "auto_prompt_ready": false,
+      "supplementary_signals": {
+        "google_trends": "stub",
+        "pinterest_trends": "stub",
+        "anitrendz": "stub"
+      }
+    },
+    {
+      "rank": 5,
+      "title": "That Time I Got Reincarnated as a Slime Season 4",
+      "title_jp": "Tensei shitara Slime Datta Ken 4th Season",
+      "mal_id": 59970,
+      "mal_score": 0,
+      "members": 133225,
+      "airing": false,
+      "genres": [
+        "Action",
+        "Comedy",
+        "Fantasy"
+      ],
+      "trend_score": 10,
+      "trend_signal": "FADING",
+      "characters": [
+        "Rimuru Tempest",
+        "Benimaru",
+        "Diablo",
+        "Milim Nava",
+        "Shion",
+        "Shuna",
+        "Veldora Tempest"
+      ],
+      "known_in_pingpt": false,
+      "pingpt_characters": [],
+      "unknown_characters": [
+        "Rimuru Tempest",
+        "Benimaru",
+        "Diablo",
+        "Milim Nava",
+        "Shion",
+        "Shuna",
+        "Veldora Tempest"
+      ],
+      "recommended_moods": [
+        "/dawnwalk",
+        "/sundayghost",
+        "/alleysmoke"
+      ],
+      "carousel_topics": [
+        "Most underrated characters in That Time I Got Reincarnated as a Slime Season 4",
+        "Characters who deserved better in That Time I Got Reincarnated as a Slime Season 4",
+        "Saddest moments in That Time I Got Reincarnated as a Slime Season 4"
+      ],
+      "auto_prompt_ready": false,
+      "supplementary_signals": {
+        "google_trends": "stub",
+        "pinterest_trends": "stub",
+        "anitrendz": "stub"
+      }
+    },
+    {
+      "rank": 6,
+      "title": "Witch Hat Atelier",
+      "title_jp": "Tongari Boushi no Atelier",
+      "mal_id": 51553,
+      "mal_score": 0,
+      "members": 113947,
+      "airing": false,
+      "genres": [
+        "Fantasy"
+      ],
+      "trend_score": 10,
+      "trend_signal": "FADING",
+      "characters": [
+        "Coco",
+        "Qifrey"
+      ],
+      "known_in_pingpt": false,
+      "pingpt_characters": [],
+      "unknown_characters": [
+        "Coco",
+        "Qifrey"
+      ],
+      "recommended_moods": [
+        "/backstreet",
+        "/edgeofbed",
+        "/quietday"
+      ],
+      "carousel_topics": [
+        "Most underrated characters in Witch Hat Atelier",
+        "Characters who deserved better in Witch Hat Atelier",
+        "Saddest moments in Witch Hat Atelier"
+      ],
+      "auto_prompt_ready": false,
+      "supplementary_signals": {
+        "google_trends": "stub",
+        "pinterest_trends": "stub",
+        "anitrendz": "stub"
+      }
+    },
+    {
+      "rank": 7,
+      "title": "The Angel Next Door Spoils Me Rotten 2",
+      "title_jp": "Otonari no Tenshi-sama ni Itsunomanika Dame Ningen ni Sareteita Ken 2",
+      "mal_id": 56876,
+      "mal_score": 0,
+      "members": 99563,
+      "airing": false,
+      "genres": [
+        "Romance"
+      ],
+      "trend_score": 0,
+      "trend_signal": "FADING",
+      "characters": [
+        "Amane Fujimiya",
+        "Mahiru Shiina"
+      ],
+      "known_in_pingpt": false,
+      "pingpt_characters": [],
+      "unknown_characters": [
+        "Amane Fujimiya",
+        "Mahiru Shiina"
+      ],
+      "recommended_moods": [
+        "/sundayghost",
+        "/ghostcall",
+        "/roofrain"
+      ],
+      "carousel_topics": [
+        "Most underrated characters in The Angel Next Door Spoils Me Rotten 2",
+        "Characters who deserved better in The Angel Next Door Spoils Me Rotten 2",
+        "Saddest moments in The Angel Next Door Spoils Me Rotten 2"
+      ],
+      "auto_prompt_ready": false,
+      "supplementary_signals": {
+        "google_trends": "stub",
+        "pinterest_trends": "stub",
+        "anitrendz": "stub"
+      }
+    },
+    {
+      "rank": 8,
+      "title": "Wistoria: Wand and Sword Season 2",
+      "title_jp": "Tsue to Tsurugi no Wistoria Season 2",
+      "mal_id": 59983,
+      "mal_score": 0,
+      "members": 89306,
+      "airing": false,
+      "genres": [
+        "Action",
+        "Fantasy"
+      ],
+      "trend_score": 0,
+      "trend_signal": "FADING",
+      "characters": [
+        "Elfaria Albis Serfort",
+        "Will Serfort"
+      ],
+      "known_in_pingpt": false,
+      "pingpt_characters": [],
+      "unknown_characters": [
+        "Elfaria Albis Serfort",
+        "Will Serfort"
+      ],
+      "recommended_moods": [
+        "/roofrain",
+        "/dawnwalk",
+        "/ironsilence"
+      ],
+      "carousel_topics": [
+        "Most underrated characters in Wistoria: Wand and Sword Season 2",
+        "Characters who deserved better in Wistoria: Wand and Sword Season 2",
+        "Saddest moments in Wistoria: Wand and Sword Season 2"
+      ],
+      "auto_prompt_ready": false,
+      "supplementary_signals": {
+        "google_trends": "stub",
+        "pinterest_trends": "stub",
+        "anitrendz": "stub"
+      }
+    },
+    {
+      "rank": 9,
+      "title": "Daemons of the Shadow Realm",
+      "title_jp": "Yomi no Tsugai",
+      "mal_id": 62001,
+      "mal_score": 0,
+      "members": 58066,
+      "airing": false,
+      "genres": [
+        "Action",
+        "Adventure",
+        "Fantasy"
+      ],
+      "trend_score": 0,
+      "trend_signal": "FADING",
+      "characters": [
+        "Asa",
+        "Yuru"
+      ],
+      "known_in_pingpt": false,
+      "pingpt_characters": [],
+      "unknown_characters": [
+        "Asa",
+        "Yuru"
+      ],
+      "recommended_moods": [
+        "/backstreet",
+        "/alleysmoke",
+        "/greenbreath"
+      ],
+      "carousel_topics": [
+        "Most underrated characters in Daemons of the Shadow Realm",
+        "Characters who deserved better in Daemons of the Shadow Realm",
+        "Saddest moments in Daemons of the Shadow Realm"
+      ],
+      "auto_prompt_ready": false,
+      "supplementary_signals": {
+        "google_trends": "stub",
+        "pinterest_trends": "stub",
+        "anitrendz": "stub"
+      }
+    },
+    {
+      "rank": 10,
+      "title": "Ascendance of a Bookworm: Adopted Daughter of an Archduke",
+      "title_jp": "Honzuki no Gekokujou: Shisho ni Naru Tame ni wa Shudan wo Erandeiraremasen - Ryoushu no Youjo",
+      "mal_id": 57466,
+      "mal_score": 0,
+      "members": 53336,
+      "airing": false,
+      "genres": [
+        "Fantasy"
+      ],
+      "trend_score": 0,
+      "trend_signal": "FADING",
+      "characters": [
+        "Ferdinand",
+        "Myne"
+      ],
+      "known_in_pingpt": false,
+      "pingpt_characters": [],
+      "unknown_characters": [
+        "Ferdinand",
+        "Myne"
+      ],
+      "recommended_moods": [
+        "/dawnwalk",
+        "/roofrain",
+        "/lasttrain"
+      ],
+      "carousel_topics": [
+        "Most underrated characters in Ascendance of a Bookworm: Adopted Daughter of an Archduke",
+        "Characters who deserved better in Ascendance of a Bookworm: Adopted Daughter of an Archduke",
+        "Saddest moments in Ascendance of a Bookworm: Adopted Daughter of an Archduke"
+      ],
+      "auto_prompt_ready": false,
+      "supplementary_signals": {
+        "google_trends": "stub",
+        "pinterest_trends": "stub",
+        "anitrendz": "stub"
+      }
+    }
+  ]
+}

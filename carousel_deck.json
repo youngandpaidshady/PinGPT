@@ -1,0 +1,153 @@
+{
+  "topic": "Top 7 characters with the best hand-to-hand combat in JJK",
+  "slide_count": 9,
+  "tiktok_hook": "Top 7 JJK characters whose hands are rated E for everyone 😭",
+  "caption": "Who else had to make the list 😭 Yuji's hands are a cheat code but Toji at #1 is undeniable. Raw physicals unmatched. Stay mad in the comments if your fave didn't make the list and tag someone who needs to see this.",
+  "hashtags": "#jjk #jujutsukaisen #animeedits #tojifushiguro #yujiitadori #sukuna #animeaesthetic",
+  "slides": [
+    {
+      "slide_num": 1,
+      "character": "Toji Fushiguro",
+      "title": "Cover",
+      "type": "cover",
+      "style": "cover",
+      "text_overlay": {
+        "lines": ["TOP 7 JJK", "PURE HANDS"],
+        "spec": {
+          "color": "#FFFFFF",
+          "stroke": "#000000",
+          "strokeWidth": 4,
+          "position": "center"
+        }
+      }
+    },
+    {
+      "slide_num": 2,
+      "character": "Megumi Fushiguro",
+      "title": "Rank 7",
+      "type": "entry",
+      "style": "cinematic",
+      "text_overlay": {
+        "lines": ["7. MEGUMI FUSHIGURO", "HE HAS HANDS BUT BRO STILL TRIES", "TO SUMMON MAHORAGA FIRST MINUTE IN"],
+        "spec": {
+          "color": "#FFFFFF",
+          "stroke": "#000000",
+          "strokeWidth": 4,
+          "position": "center-bottom"
+        }
+      }
+    },
+    {
+      "slide_num": 3,
+      "character": "Yuta Okkotsu",
+      "title": "Rank 6",
+      "type": "entry",
+      "style": "manga_tint",
+      "text_overlay": {
+        "lines": ["6. YUTA OKKOTSU", "COPY IS SICK BUT HE WILL STILL", "THROW DOWN WHEN RIKA IS BUSY"],
+        "spec": {
+          "color": "#FFFFFF",
+          "stroke": "#000000",
+          "strokeWidth": 4,
+          "position": "center-bottom"
+        }
+      }
+    },
+    {
+      "slide_num": 4,
+      "character": "Choso",
+      "title": "Rank 5",
+      "type": "entry",
+      "style": "cinematic",
+      "text_overlay": {
+        "lines": ["5. CHOSO", "FLOWING RED SCALE IS LOWKEY", "A CQC CHEAT CODE. BRO MOVES CRAZY"],
+        "spec": {
+          "color": "#FFFFFF",
+          "stroke": "#000000",
+          "strokeWidth": 4,
+          "position": "center-bottom"
+        }
+      }
+    },
+    {
+      "slide_num": 5,
+      "character": "Nanami Kento",
+      "title": "Rank 4",
+      "type": "entry",
+      "style": "manga_tint",
+      "text_overlay": {
+        "lines": ["4. NANAMI KENTO", "JUST PURE 9-TO-5 CLOCK-PUNCHING RAGE", "NO FLASHY MOVES NEEDED HEREE"],
+        "spec": {
+          "color": "#FFFFFF",
+          "stroke": "#000000",
+          "strokeWidth": 4,
+          "position": "center-bottom"
+        }
+      }
+    },
+    {
+      "slide_num": 6,
+      "character": "Ryomen Sukuna",
+      "title": "Rank 3",
+      "type": "entry",
+      "style": "manga_tint",
+      "text_overlay": {
+        "lines": ["3. RYOMEN SUKUNA", "4 ARMS IN A FISTFIGHT IS SICK WORK.", "ABSOLUTE MENACE TIMING"],
+        "spec": {
+          "color": "#FFFFFF",
+          "stroke": "#000000",
+          "strokeWidth": 4,
+          "position": "center-bottom"
+        }
+      }
+    },
+    {
+      "slide_num": 7,
+      "character": "Yuji Itadori",
+      "title": "Rank 2",
+      "type": "entry",
+      "style": "cinematic",
+      "text_overlay": {
+        "lines": ["2. YUJI ITADORI", "LEFT RIGHT GOODNIGHT.", "RATED E FOR EVERYONE 😭"],
+        "spec": {
+          "color": "#FFFFFF",
+          "stroke": "#000000",
+          "strokeWidth": 4,
+          "position": "center-bottom"
+        }
+      }
+    },
+    {
+      "slide_num": 8,
+      "character": "Toji Fushiguro",
+      "title": "Rank 1",
+      "type": "entry",
+      "style": "cinematic",
+      "text_overlay": {
+        "lines": ["1. TOJI FUSHIGURO", "ZERO CURSED ENERGY. 100% VIOLENCE.", "THE PHYSICAL GOAT. NUN TO BE SAID."],
+        "spec": {
+          "color": "#FFFFFF",
+          "stroke": "#000000",
+          "strokeWidth": 4,
+          "position": "center-bottom"
+        }
+      }
+    },
+    {
+      "slide_num": 9,
+      "character": "Yuji Itadori",
+      "title": "Closer",
+      "type": "closer",
+      "style": "closer",
+      "text_overlay": {
+        "lines": ["WHO DID I MISS?", "STAY MAD IN THE COMMENTS", "SAVE FOR LATER ->"],
+        "spec": {
+          "color": "#FFFFFF",
+          "stroke": "#000000",
+          "strokeWidth": 4,
+          "position": "center"
+        }
+      }
+    }
+  ]
+}

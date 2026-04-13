@@ -1,23 +1,27 @@
-# Dependencies
+# Node
 node_modules/
+package-lock.json
+
+# Python
 __pycache__/
 *.pyc
-
-# Environment
 .env
+venv/
+.venv/
 
-# Output
+# Secrets
+credentials.json
+token.json
+gemini_feeder_config.json
+
+# Outputs & Artifacts
 output/
+tmp/
+*.log
 
-# Reference images (too large for git)
-pics/
+# Models / Heavy Media
+models.txt
 
-# OS
-Thumbs.db
-.DS_Store
-
-# IDE
-.vscode/
-*.swp
-
-.vercel
+# Gemini Agent Data
+.gemini/
+.gemini_workspace/
